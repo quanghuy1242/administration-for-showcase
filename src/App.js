@@ -1,7 +1,7 @@
 import React from 'react';
 import { Customizer } from 'office-ui-fabric-react';
 import { FluentCustomizations } from '@uifabric/fluent-theme';
-import RouteContainer from './components/RouteContainer/RouteContainer';
+import { RouteContainer } from './components/RouteContainer/RouteContainer';
 
 class App extends React.Component {
   render() {
