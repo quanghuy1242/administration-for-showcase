@@ -11,16 +11,22 @@ class NavSide extends React.Component {
     this.state = {
       links: [
         {
-          name: 'Home',
+          name: 'Dashboard',
           url: '/',
-          key: "keyHome",
-          icon: 'Home'
+          key: "keyDashboard",
+          icon: 'Taskboard'
+        },
+        {
+          name: 'Projects',
+          url: '/projects',
+          key: 'keyprojects',
+          icon: 'OEM'
         },
         {
           name: 'Categories',
           url: '/categories',
           key: 'keyCategories',
-          icon: 'Taskboard'
+          icon: 'Stack'
         },
         {
           name: 'About',
