@@ -3,7 +3,7 @@ import { mergeStyleSets } from 'office-ui-fabric-react';
 export const getStyle = () => {
   return mergeStyleSets({
     projectItem: {
-      height: 80,
+      height: 70,
       padding: '0.7rem',
       cursor: 'pointer',
       color: '#494949',

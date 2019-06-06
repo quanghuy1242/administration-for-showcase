@@ -8,7 +8,7 @@ export class ProjectItem extends React.Component {
     const classNames = getStyle();
     return (
       <Stack className={css(className, classNames.projectItem)} verticalAlign="center">
-        <Text variant="large" className={classNames.projectItem_Header}>{project.name}</Text>
+        <Text variant="large" className={classNames.projectItem_Header} nowrap>{project.name}</Text>
         <Text variant="mediumPlus">{project.date.toLocaleDateString()}</Text>
       </Stack>
     );
