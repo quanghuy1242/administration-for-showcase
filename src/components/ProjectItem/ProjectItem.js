@@ -7,8 +7,9 @@ export class ProjectItem extends React.Component {
     const { project, className } = this.props;
     const classNames = getStyle();
     return (
-      <Stack className={css(className, classNames.projectItem)}>
-        <Text variant="mediumPlus">{project.name}</Text>
+      <Stack className={css(className, classNames.projectItem)} verticalAlign="center">
+        <Text variant="large" className={classNames.projectItem_Header}>{project.name}</Text>
+        <Text variant="mediumPlus">{project.date.toLocaleDateString()}</Text>
       </Stack>
     );
   }
