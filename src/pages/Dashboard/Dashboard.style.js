@@ -6,10 +6,10 @@ export const getStyle = () => {
       width: '100%'
     },
     leftPanel: {
-      width: 300
+      width: 300,
+      backgroundColor: 'rgba(139, 159, 172, 0.082)',
     },
     rightPanel: {
-      backgroundColor: 'red'
     }
   })
 }
