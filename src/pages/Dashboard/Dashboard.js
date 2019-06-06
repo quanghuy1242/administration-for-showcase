@@ -2,6 +2,7 @@ import React from 'react';
 import { Stack } from 'office-ui-fabric-react';
 import { getStyle } from './Dashboard.style';
 import { ProjectList } from '../../components/ProjectList/ProjectList';
+import { ProjectDetail } from '../../components/ProjectDetail/ProjectDetail';
 
 export class Dashboard extends React.Component {
   constructor(props) {
@@ -33,7 +34,7 @@ export class Dashboard extends React.Component {
           />
         </Stack.Item>
         <Stack.Item grow disableShrink className={classNames.rightPanel}>
-          Right
+          <ProjectDetail />
         </Stack.Item>
       </Stack>
     );
