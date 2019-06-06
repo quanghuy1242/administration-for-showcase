@@ -19,7 +19,6 @@ export class Dashboard extends React.Component {
 
   onSelectedProjectChanged = (id) => {
     this.setState({ selectedProjectId: id });
-    console.log(id);
   }
 
   render() {
