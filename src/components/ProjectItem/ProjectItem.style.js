@@ -7,14 +7,21 @@ export const getStyle = () => {
       padding: '0.7rem',
       cursor: 'pointer',
       color: '#494949',
+      transition: '0.2s',
       selectors: {
         ':hover': {
-          backgroundColor: 'rgba(141, 141, 141, 0.204)'
+          backgroundColor: 'rgba(141, 141, 141, 0.100)',
+          transition: '0.2s'
         }
       }
     },
     projectItem_Header: {
-      fontWeight: '400'
+      fontWeight: '500',
+      color: '#285568'
+    },
+    projectItem_Subheader: {
+      fontSize: '15',
+      opacity: 0.7
     }
   })
 }

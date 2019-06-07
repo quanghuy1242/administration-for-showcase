@@ -10,7 +10,7 @@ export const getStyle = () => {
       backgroundColor: 'rgba(89, 144, 180, 0.377) !important',
       selectors: {
         "& span:nth-child(1)": {
-          fontWeight: '800'
+          fontWeight: '700'
         }
       }
     },
