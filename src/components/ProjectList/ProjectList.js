@@ -17,6 +17,11 @@ export class ProjectList extends React.Component {
           </Stack.Item>
           <Stack.Item>
             <IconButton
+              iconProps={{ iconName: 'Add' }}
+            />
+          </Stack.Item>
+          <Stack.Item>
+            <IconButton
               iconProps={{ iconName: 'MoreVertical' }}
             />
           </Stack.Item>
