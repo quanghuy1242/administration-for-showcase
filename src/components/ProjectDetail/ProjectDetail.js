@@ -10,7 +10,7 @@ export class ProjectDetail extends React.Component {
         <Stack horizontal className={classNames.header} tokens={{ childrenGap: 5 }}>
           <Stack.Item grow disableShrink>
             <TextField
-              value="Unknown Title"
+              value="Untitled"
             />
           </Stack.Item>
           <Stack.Item className={classNames.headerAction}>
