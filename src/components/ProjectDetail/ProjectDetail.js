@@ -21,9 +21,9 @@ export class ProjectDetail extends React.Component {
         </Stack>
         <Pivot>
           <PivotItem headerText="Description"></PivotItem>
-          <PivotItem headerText="Description"></PivotItem>
-          <PivotItem headerText="Description"></PivotItem>
-          <PivotItem headerText="Description"></PivotItem>
+          <PivotItem headerText="Screenshots"></PivotItem>
+          <PivotItem headerText="Changelog"></PivotItem>
+          <PivotItem headerText="Upcoming features"></PivotItem>
         </Pivot>
       </Stack>
     );
