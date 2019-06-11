@@ -26,14 +26,17 @@ export class Dashboard extends React.Component {
     const classNames = getStyle();
     return (
       <Stack horizontal className={classNames.dashboardWrapper}>
-        <Stack.Item className={classNames.leftPanel}>
+        <Stack.Item className={classNames.technologiesPanel}>
+          technologiesPanel
+        </Stack.Item>
+        <Stack.Item className={classNames.projectsPanel}>
           <ProjectList
             projects={this.state.projects}
             selected={this.state.selectedProjectId}
             onSelectedProjectChanged={this.onSelectedProjectChanged}
           />
         </Stack.Item>
-        <Stack.Item grow disableShrink className={classNames.rightPanel}>
+        <Stack.Item grow disableShrink className={classNames.projectDetailPanel}>
           <ProjectDetail />
         </Stack.Item>
       </Stack>
