@@ -3,6 +3,7 @@ import { Stack } from 'office-ui-fabric-react';
 import { getStyle } from './Dashboard.style';
 import { ProjectList } from '../../components/ProjectList/ProjectList';
 import { ProjectDetail } from '../../components/ProjectDetail/ProjectDetail';
+import { TechList } from '../../components/TechList/TechList';
 
 export class Dashboard extends React.Component {
   constructor(props) {
@@ -14,7 +15,11 @@ export class Dashboard extends React.Component {
         { id: '3', name: 'Student Management', date: new Date() },
         { id: '4', name: 'ATM Emulator', date: new Date() },
       ],
-      selectedProjectId: 1
+      techs: [
+        { id: '1', name: 'Angular', date: new Date() }
+      ],
+      selectedProjectId: 1,
+      selectedTechId: 1
     };
   }
 
@@ -27,7 +32,11 @@ export class Dashboard extends React.Component {
     return (
       <Stack horizontal className={classNames.dashboardWrapper}>
         <Stack.Item className={classNames.technologiesPanel}>
-          technologiesPanel
+          <TechList
+            techs={this.state.techs}
+            selected={this.state.selectedTechId}
+            // onSelectedProjectChanged={this.onSelectedProjectChanged}
+          />
         </Stack.Item>
         <Stack.Item className={classNames.projectsPanel}>
           <ProjectList
