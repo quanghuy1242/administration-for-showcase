@@ -9,26 +9,9 @@ export class MainApp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isCollapsed: false,
-      isOverlay: false
+      isCollapsed: true,
+      isOverlay: true
     };
-  }
-
-  componentDidMount() {
-    this.toggleOverlayNav();
-    window.addEventListener('resize', this.toggleOverlayNav.bind(this), false);
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('resize', this.toggleOverlayNav.bind(this), false);
-  }
-
-  toggleOverlayNav() {
-    const isMobile = window.matchMedia("(max-width: 599px)").matches;
-    this.setState({
-      isCollapsed: isMobile,
-      isOverlay: isMobile
-    });
   }
 
   toggleSideBar() {
@@ -41,15 +24,15 @@ export class MainApp extends React.Component {
       <div className={classNames.MainAppWrapper}>
         <Router>
           <Stack>
-            <NavTop />
+            <NavTop onToggleSideBar={() => this.toggleSideBar()} />
             <Stack horizontal>
-            <NavSide
-              isCollapsed={this.state.isCollapsed} 
-              isOverlay={this.state.isOverlay} 
-              onDismiss={() => this.toggleSideBar()}
-            />
-              <>{this.props.children}</>
-            </Stack>
+              <NavSide
+                isCollapsed={this.state.isCollapsed} 
+                isOverlay={this.state.isOverlay} 
+                onDismiss={() => this.toggleSideBar()}
+              />
+                <>{this.props.children}</>
+              </Stack>
           </Stack>
         </Router>
       </div>
