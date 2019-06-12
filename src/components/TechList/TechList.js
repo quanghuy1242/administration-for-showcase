@@ -75,11 +75,13 @@ export class TechList extends React.Component {
             <IconButton
               iconProps={{ iconName: 'Add' }}
               onClick={this.handleShowPanel}
+              className={classNames.iconButton}
             />
           </Stack.Item>
           <Stack.Item>
             <IconButton
               iconProps={{ iconName: 'MoreVertical' }}
+              className={classNames.iconButton}
             />
           </Stack.Item>
         </Stack>
