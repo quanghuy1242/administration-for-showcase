@@ -48,7 +48,7 @@ export class Dashboard extends React.Component {
     return (
       <Stack horizontal className={classNames.dashboardWrapper}>
         <Stack.Item>
-          <Stack>
+          <Stack className={classNames.leftPanel}>
             <Stack.Item>
               <FilterPanel
                 onAddNewTech={this.onAddNewTech}
