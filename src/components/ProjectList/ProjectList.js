@@ -1,7 +1,7 @@
 import React from 'react';
 import { ProjectItem } from '../ProjectItem/ProjectItem';
 import { getStyle } from './ProjectList.style';
-import { Stack, SearchBox, IconButton } from 'office-ui-fabric-react';
+import { Stack } from 'office-ui-fabric-react';
 
 export class ProjectList extends React.Component {
   render() {
@@ -9,25 +9,6 @@ export class ProjectList extends React.Component {
     const classNames = getStyle();
     return (
       <Stack>
-        <Stack horizontal className={classNames.filterSession}>
-          <Stack.Item grow disableShrink>
-            <SearchBox
-              placeholder="Filter..."
-            />
-          </Stack.Item>
-          <Stack.Item>
-            <IconButton
-              iconProps={{ iconName: 'Add' }}
-              className={classNames.iconButton}
-            />
-          </Stack.Item>
-          <Stack.Item>
-            <IconButton
-              iconProps={{ iconName: 'MoreVertical' }}
-              className={classNames.iconButton}
-            />
-          </Stack.Item>
-        </Stack>
         <div className={classNames.projectsListWrapper}>
           {projects.map(project => (
             <div

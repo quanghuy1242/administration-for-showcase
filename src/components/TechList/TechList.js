@@ -1,7 +1,7 @@
 import React from 'react';
 import { TechItem } from '../TechItem/TechItem';
 import { getStyle } from './TechList.style';
-import { Stack, SearchBox, IconButton, Panel, PanelType, PrimaryButton, DefaultButton, TextField } from 'office-ui-fabric-react';
+import { Stack, Panel, PanelType, PrimaryButton, DefaultButton, TextField } from 'office-ui-fabric-react';
 
 export class TechList extends React.Component {
   constructor(props) {
@@ -65,26 +65,6 @@ export class TechList extends React.Component {
     const classNames = getStyle();
     return (
       <Stack>
-        <Stack horizontal className={classNames.filterSession}>
-          <Stack.Item grow disableShrink>
-            <SearchBox
-              placeholder="Filter..."
-            />
-          </Stack.Item>
-          <Stack.Item>
-            <IconButton
-              iconProps={{ iconName: 'Add' }}
-              onClick={this.handleShowPanel}
-              className={classNames.iconButton}
-            />
-          </Stack.Item>
-          <Stack.Item>
-            <IconButton
-              iconProps={{ iconName: 'MoreVertical' }}
-              className={classNames.iconButton}
-            />
-          </Stack.Item>
-        </Stack>
         <Panel
           isOpen={this.state.isPanelOpen}
           type={PanelType.medium}
