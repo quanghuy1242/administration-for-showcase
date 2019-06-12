@@ -50,7 +50,9 @@ export class Dashboard extends React.Component {
         <Stack.Item>
           <Stack>
             <Stack.Item>
-              <FilterPanel />
+              <FilterPanel
+                onAddNewTech={this.onAddNewTech}
+              />
             </Stack.Item>
             <Stack.Item>
               <Stack horizontal>
@@ -59,7 +61,6 @@ export class Dashboard extends React.Component {
                     techs={this.state.techs}
                     selected={this.state.selectedTechId}
                     onSelectedTechChanged={this.onSelectedTechChanged}
-                    onAddNewTech={this.onAddNewTech}
                   />
                 </Stack.Item>
                 <Stack.Item className={classNames.projectsPanel}>
