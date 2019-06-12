@@ -32,6 +32,16 @@ export class Dashboard extends React.Component {
     this.setState({ selectedTechId: id });
   }
 
+  onAddNewTech = (newTech) => {
+    this.setState({
+      techs: [
+        ...this.state.techs,
+        newTech
+      ],
+      selectedTechId: newTech.id
+    })
+  }
+
   render() {
     const classNames = getStyle();
     return (
@@ -41,6 +51,7 @@ export class Dashboard extends React.Component {
             techs={this.state.techs}
             selected={this.state.selectedTechId}
             onSelectedTechChanged={this.onSelectedTechChanged}
+            onAddNewTech={this.onAddNewTech}
           />
         </Stack.Item>
         <Stack.Item className={classNames.projectsPanel}>
