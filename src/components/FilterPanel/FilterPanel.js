@@ -1,6 +1,6 @@
 import React from 'react';
 import { getStyle } from './FilterPanel.style';
-import { Stack, SearchBox, IconButton } from 'office-ui-fabric-react';
+import { Stack, SearchBox, PrimaryButton } from 'office-ui-fabric-react';
 
 export class FilterPanel extends React.Component {
   render() {
@@ -13,16 +13,25 @@ export class FilterPanel extends React.Component {
             />
           </Stack.Item>
           <Stack.Item>
-            <IconButton
-              iconProps={{ iconName: 'Add' }}
-              className={classNames.iconButton}
-            />
-          </Stack.Item>
-          <Stack.Item>
-            <IconButton
-              iconProps={{ iconName: 'MoreVertical' }}
-              className={classNames.iconButton}
-            />
+            <PrimaryButton
+              className={classNames.newButton}
+              menuProps={{
+                items: [
+                  {
+                    key: 'newProject',
+                    text: 'Project',
+                    iconProps: { iconName: 'OEM' }
+                  },
+                  {
+                    key: 'newTech',
+                    text: 'Technology',
+                    iconProps: { iconName: 'Stack' }
+                  }
+                ]
+              }}
+            >
+              New
+            </PrimaryButton>
           </Stack.Item>
         </Stack>
     );
