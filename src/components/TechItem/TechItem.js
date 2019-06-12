@@ -8,8 +8,7 @@ export class TechItem extends React.Component {
     const classNames = getStyle();
     return (
       <Stack className={css(className, classNames.projectItem)} verticalAlign="center">
-        <Text variant="large" className={classNames.projectItem_Header} nowrap>{tech.name}</Text>
-        <Text variant="mediumPlus" className={classNames.projectItem_Subheader}>{tech.date.toLocaleDateString()}</Text>
+        <Text variant="medium" className={classNames.projectItem_Header} nowrap>{tech.name}</Text>
         <IconButton
           iconProps={{ iconName: 'MoreVertical' }}
           className={classNames.moreButton}

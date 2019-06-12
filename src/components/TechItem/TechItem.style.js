@@ -4,8 +4,8 @@ export const getStyle = () => {
   return mergeStyleSets({
     projectItem: {
       position: 'relative',
-      height: 70,
-      padding: '0.7rem',
+      height: 35,
+      padding: '0 0.7rem',
       cursor: 'pointer',
       color: '#494949',
       transition: '0.2s',
