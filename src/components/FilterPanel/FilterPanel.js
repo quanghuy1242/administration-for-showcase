@@ -63,52 +63,52 @@ export class FilterPanel extends React.Component {
     const classNames = getStyle();
     return (
       <Stack horizontal className={classNames.filterSession}>
-          <Stack.Item grow disableShrink>
-            <SearchBox
-              placeholder="Filter..."
-            />
-          </Stack.Item>
-          <Stack.Item>
-            <PrimaryButton
-              className={classNames.newButton}
-              menuProps={{
-                items: [
-                  {
-                    key: 'newProject',
-                    text: 'Project',
-                    iconProps: { iconName: 'OEM' }
-                  },
-                  {
-                    key: 'newTech',
-                    text: 'Technology',
-                    iconProps: { iconName: 'Stack' },
-                    onClick: this.handleShowPanel
-                  }
-                ]
-              }}
-            >
-              New
-            </PrimaryButton>
-          </Stack.Item>
-          <Panel
-            isOpen={this.state.isPanelOpen}
-            type={PanelType.medium}
-            headerText="Add new technology"
-            closeButtonAriaLabel="Close"
-            onRenderFooterContent={this.handleRenderFooterContent}
+        <Stack.Item grow disableShrink>
+          <SearchBox
+            placeholder="Filter..."
+          />
+        </Stack.Item>
+        <Stack.Item>
+          <PrimaryButton
+            className={classNames.newButton}
+            menuProps={{
+              items: [
+                {
+                  key: 'newProject',
+                  text: 'Project',
+                  iconProps: { iconName: 'OEM' }
+                },
+                {
+                  key: 'newTech',
+                  text: 'Technology',
+                  iconProps: { iconName: 'Stack' },
+                  onClick: this.handleShowPanel
+                }
+              ]
+            }}
           >
-            <TextField
-              label="Id"
-              value={this.state.newTech.id}
-              onChange={this.handleIdChanged}
-            />
-            <TextField
-              label="Name of technologoy"
-              value={this.state.newTech.name}
-              onChange={this.handleNameChanged}
-            />
-          </Panel>
-        </Stack>
+            New
+          </PrimaryButton>
+        </Stack.Item>
+        <Panel
+          isOpen={this.state.isPanelOpen}
+          type={PanelType.medium}
+          headerText="Add new technology"
+          closeButtonAriaLabel="Close"
+          onRenderFooterContent={this.handleRenderFooterContent}
+        >
+          <TextField
+            label="Id"
+            value={this.state.newTech.id}
+            onChange={this.handleIdChanged}
+          />
+          <TextField
+            label="Name of technologoy"
+            value={this.state.newTech.name}
+            onChange={this.handleNameChanged}
+          />
+        </Panel>
+      </Stack>
     );
   }
 }
