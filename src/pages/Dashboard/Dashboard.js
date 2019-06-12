@@ -16,7 +16,8 @@ export class Dashboard extends React.Component {
         { id: '4', name: 'ATM Emulator', date: new Date() },
       ],
       techs: [
-        { id: '1', name: 'Angular', date: new Date() }
+        { id: '1', name: 'Angular', date: new Date() },
+        { id: '2', name: 'React', date: new Date() }
       ],
       selectedProjectId: 1,
       selectedTechId: 1
@@ -27,6 +28,10 @@ export class Dashboard extends React.Component {
     this.setState({ selectedProjectId: id });
   }
 
+  onSelectedTechChanged = (id) => {
+    this.setState({ selectedTechId: id });
+  }
+
   render() {
     const classNames = getStyle();
     return (
@@ -35,7 +40,7 @@ export class Dashboard extends React.Component {
           <TechList
             techs={this.state.techs}
             selected={this.state.selectedTechId}
-            // onSelectedProjectChanged={this.onSelectedProjectChanged}
+            onSelectedTechChanged={this.onSelectedTechChanged}
           />
         </Stack.Item>
         <Stack.Item className={classNames.projectsPanel}>

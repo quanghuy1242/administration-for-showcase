@@ -1,9 +1,37 @@
 import React from 'react';
 import { TechItem } from '../TechItem/TechItem';
 import { getStyle } from './TechList.style';
-import { Stack, SearchBox, IconButton } from 'office-ui-fabric-react';
+import { Stack, SearchBox, IconButton, Panel, PanelType, PrimaryButton, DefaultButton } from 'office-ui-fabric-react';
 
 export class TechList extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isPanelOpen: false
+    };
+  }
+  
+  handleShowPanel = () => {
+    this.setState({ isPanelOpen: true });
+  }
+
+  handleClosePanel = () => {
+    this.setState({ isPanelOpen: false })
+  }
+
+  handleRenderFooterContent = () => {
+    return (
+      <div>
+        <PrimaryButton style={{ marginRight: 8 }}>
+          Save
+        </PrimaryButton>
+        <DefaultButton onClick={this.handleClosePanel}>
+          Close
+        </DefaultButton>
+      </div>
+    );
+  };
+
   render() {
     const { techs, selected } = this.props;
     const classNames = getStyle();
@@ -18,6 +46,7 @@ export class TechList extends React.Component {
           <Stack.Item>
             <IconButton
               iconProps={{ iconName: 'Add' }}
+              onClick={this.handleShowPanel}
             />
           </Stack.Item>
           <Stack.Item>
@@ -26,10 +55,19 @@ export class TechList extends React.Component {
             />
           </Stack.Item>
         </Stack>
+        <Panel
+          isOpen={this.state.isPanelOpen}
+          type={PanelType.medium}
+          headerText="Add new technology"
+          closeButtonAriaLabel="Close"
+          onRenderFooterContent={this.handleRenderFooterContent}
+        >
+          Content goes here
+        </Panel>
         <div className={classNames.projectsListWrapper}>
           {techs.map(project => (
             <div
-              // onClick={() => this.props.onSelectedProjectChanged(project.id)}
+              onClick={() => this.props.onSelectedTechChanged(project.id)}
               key={project.id}
             >
               <TechItem
