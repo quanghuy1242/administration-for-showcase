@@ -33,14 +33,20 @@ export class Dashboard extends React.Component {
     this.setState({ selectedTechId: id });
   }
 
-  onAddNewTech = (newTech) => {
-    this.setState({
-      techs: [
-        ...this.state.techs,
-        newTech
-      ],
-      selectedTechId: newTech.id
-    })
+  onAddEditTech = (newTech) => {
+    for (let tech of this.state.techs) {
+      if (tech.id !== newTech.id) {
+        this.setState({
+          techs: [
+            ...this.state.techs,
+            newTech
+          ],
+          selectedTechId: newTech.id
+        });
+      } else {
+        // co roi thi update
+      }
+    }
   }
 
   render() {
@@ -51,7 +57,7 @@ export class Dashboard extends React.Component {
           <Stack className={classNames.leftPanel}>
             <Stack.Item>
               <FilterPanel
-                onAddNewTech={this.onAddNewTech}
+                onAddEditTech={this.onAddEditTech}
               />
             </Stack.Item>
             <Stack.Item>
