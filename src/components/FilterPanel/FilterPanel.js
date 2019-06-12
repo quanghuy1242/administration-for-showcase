@@ -1,6 +1,11 @@
 import React from 'react';
 import { getStyle } from './FilterPanel.style';
-import { Stack, SearchBox, PrimaryButton, Panel, PanelType, TextField, DefaultButton } from 'office-ui-fabric-react';
+import { Stack, SearchBox, PrimaryButton, Panel, PanelType, TextField, DefaultButton, ComboBox } from 'office-ui-fabric-react';
+
+const INITIAL_OPTIONS = [
+  { key: 'projectOpt', text: 'Project' },
+  { key: 'technolOpt', text: 'Technology' }
+]
 
 export class FilterPanel extends React.Component {
   constructor(props) {
@@ -11,7 +16,9 @@ export class FilterPanel extends React.Component {
         id: '',
         name: '',
         date: null
-      }
+      },
+      comboboxOptions: [],
+      initialComboboxText: 'Project'
     };
   }
 
@@ -43,6 +50,26 @@ export class FilterPanel extends React.Component {
     })
   }
 
+  handleComboBoxChange = (event, option) => {
+    this.setState({
+      comboboxSelectedOption: option.key,
+      initialComboboxText: option.text
+    })
+  }
+
+  handleGetOptions = () => {
+    if (this.state.comboboxOptions.length > 0) {
+      return this.state.comboboxOptions;
+    }
+
+    this.setState({
+      options: INITIAL_OPTIONS,
+      comboboxSelectedOption: 'projectOpt',
+    });
+
+    return INITIAL_OPTIONS;
+  }
+
   handleRenderFooterContent = () => {
     return (
       <div>
@@ -63,6 +90,14 @@ export class FilterPanel extends React.Component {
     const classNames = getStyle();
     return (
       <Stack horizontal className={classNames.filterSession}>
+        <ComboBox
+          options={this.state.comboboxOptions}
+          selectedKey={this.state.comboboxSelectedOption}
+          onResolveOptions={this.handleGetOptions}
+          onChange={this.handleComboBoxChange}
+          text={this.state.initialComboboxText}
+          className={classNames.comboxFilter}
+        />
         <Stack.Item grow disableShrink>
           <SearchBox
             placeholder="Filter..."
