@@ -4,6 +4,7 @@ import { getStyle } from './Dashboard.style';
 import { ProjectList } from '../../components/ProjectList/ProjectList';
 import { ProjectDetail } from '../../components/ProjectDetail/ProjectDetail';
 import { TechList } from '../../components/TechList/TechList';
+import { FilterPanel } from '../../components/FilterPanel/FilterPanel';
 
 export class Dashboard extends React.Component {
   constructor(props) {
@@ -46,20 +47,31 @@ export class Dashboard extends React.Component {
     const classNames = getStyle();
     return (
       <Stack horizontal className={classNames.dashboardWrapper}>
-        <Stack.Item className={classNames.technologiesPanel}>
-          <TechList
-            techs={this.state.techs}
-            selected={this.state.selectedTechId}
-            onSelectedTechChanged={this.onSelectedTechChanged}
-            onAddNewTech={this.onAddNewTech}
-          />
-        </Stack.Item>
-        <Stack.Item className={classNames.projectsPanel}>
-          <ProjectList
-            projects={this.state.projects}
-            selected={this.state.selectedProjectId}
-            onSelectedProjectChanged={this.onSelectedProjectChanged}
-          />
+        <Stack.Item>
+          <Stack>
+            <Stack.Item>
+              <FilterPanel />
+            </Stack.Item>
+            <Stack.Item>
+              <Stack horizontal>
+                <Stack.Item className={classNames.technologiesPanel}>
+                  <TechList
+                    techs={this.state.techs}
+                    selected={this.state.selectedTechId}
+                    onSelectedTechChanged={this.onSelectedTechChanged}
+                    onAddNewTech={this.onAddNewTech}
+                  />
+                </Stack.Item>
+                <Stack.Item className={classNames.projectsPanel}>
+                  <ProjectList
+                    projects={this.state.projects}
+                    selected={this.state.selectedProjectId}
+                    onSelectedProjectChanged={this.onSelectedProjectChanged}
+                  />
+                </Stack.Item>
+              </Stack>
+            </Stack.Item>
+          </Stack>
         </Stack.Item>
         <Stack.Item grow disableShrink className={classNames.projectDetailPanel}>
           <ProjectDetail />
