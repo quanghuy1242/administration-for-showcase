@@ -1,11 +1,6 @@
 import React from 'react';
 import { getStyle } from './FilterPanel.style';
-import { Stack, SearchBox, PrimaryButton, Panel, PanelType, TextField, DefaultButton, ComboBox } from 'office-ui-fabric-react';
-
-const INITIAL_OPTIONS = [
-  { key: 'projectOpt', text: 'Project' },
-  { key: 'technolOpt', text: 'Technology' }
-]
+import { Stack, SearchBox, PrimaryButton, Panel, PanelType, TextField, DefaultButton, Dropdown } from 'office-ui-fabric-react';
 
 export class FilterPanel extends React.Component {
   constructor(props) {
@@ -17,9 +12,18 @@ export class FilterPanel extends React.Component {
         name: '',
         date: null
       },
-      comboboxOptions: [],
-      initialComboboxText: 'Project'
+      selectedFilterItem: undefined,
+      dropdownItem: [
+        { key: 'projectOpt', text: 'Project' },
+        { key: 'technolOpt', text: 'Technology' }
+      ]
     };
+  }
+
+  componentDidMount() {
+    this.setState({
+      selectedFilterItem: this.state.dropdownItem[0]
+    });
   }
 
   handleShowPanel = () => {
@@ -50,24 +54,10 @@ export class FilterPanel extends React.Component {
     })
   }
 
-  handleComboBoxChange = (event, option) => {
+  handleFilterChange = (event, item) => {
     this.setState({
-      comboboxSelectedOption: option.key,
-      initialComboboxText: option.text
+      selectedFilterItem: item
     })
-  }
-
-  handleGetOptions = () => {
-    if (this.state.comboboxOptions.length > 0) {
-      return this.state.comboboxOptions;
-    }
-
-    this.setState({
-      options: INITIAL_OPTIONS,
-      comboboxSelectedOption: 'projectOpt',
-    });
-
-    return INITIAL_OPTIONS;
   }
 
   handleRenderFooterContent = () => {
@@ -90,12 +80,10 @@ export class FilterPanel extends React.Component {
     const classNames = getStyle();
     return (
       <Stack horizontal className={classNames.filterSession}>
-        <ComboBox
-          options={this.state.comboboxOptions}
-          selectedKey={this.state.comboboxSelectedOption}
-          onResolveOptions={this.handleGetOptions}
-          onChange={this.handleComboBoxChange}
-          text={this.state.initialComboboxText}
+        <Dropdown
+          selectedKey={this.state.selectedFilterItem ? this.state.selectedFilterItem.key : undefined}
+          options={this.state.dropdownItem}
+          onChange={this.handleFilterChange}
           className={classNames.comboxFilter}
         />
         <Stack.Item grow disableShrink>
