@@ -5,6 +5,7 @@ export const getStyle = () => {
   return mergeStyleSets({
     loginWrapper: {
       width: 400,
+      height: 330,
       padding: '2rem',
       boxShadow: Depths.depth8
     },
