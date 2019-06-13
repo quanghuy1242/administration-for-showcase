@@ -1,5 +1,5 @@
 import React from 'react';
-import { Nav, Icon, initializeIcons } from 'office-ui-fabric-react';
+import { Nav, Icon, initializeIcons, TooltipHost, DirectionalHint } from 'office-ui-fabric-react';
 import { getStyle } from './NavSide.style';
 import { Link, withRouter } from 'react-router-dom';
 
@@ -53,12 +53,14 @@ class NavSide extends React.Component {
 
   onRenderLink = (props) => {
     return (
-      <Link className={props.className} style={{color: 'inherit', boxSizing: 'border-box'}} to={props.href}>
-        <span style={{display: 'flex'}}>
-          { props.iconProps && <Icon style={{margin: '0 10px', fontSize: '20px'}} {...props.iconProps} /> }
-          {props.children}
-        </span>
-      </Link>
+      <TooltipHost content={props.title} calloutProps={{ directionalHint: DirectionalHint.rightTopEdge }}>
+        <Link className={props.className} style={{color: 'inherit', boxSizing: 'border-box'}} to={props.href}>
+          <span style={{display: 'flex'}}>
+            { props.iconProps && <Icon style={{margin: '0 10px', fontSize: '20px'}} {...props.iconProps} /> }
+            {/* {props.children} */}
+          </span>
+        </Link>  
+      </TooltipHost>
     );
   }
 
@@ -75,7 +77,7 @@ class NavSide extends React.Component {
             onLinkClick={() => {}}
             styles={{
               root: {
-                width: this.props.isCollapsed ? 0 : 250,
+                width: this.props.isCollapsed ? 0 : 45,
                 height: '100%',
                 boxSizing: 'border-box',
                 overflowY: 'auto',

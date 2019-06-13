@@ -9,8 +9,8 @@ export class MainApp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isCollapsed: true,
-      isOverlay: true
+      isCollapsed: false,
+      isOverlay: false
     };
   }
 
