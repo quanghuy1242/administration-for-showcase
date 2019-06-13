@@ -85,6 +85,7 @@ class NavSide extends React.Component {
                 zIndex: 98
               }
             }}
+            className={classNames.navInnerWrapper}
             groups={[{ links: this.state.links }]}
             linkAs={this.onRenderLink}
           />

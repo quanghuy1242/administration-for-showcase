@@ -26,6 +26,13 @@ export const getStyle = ({ isCollapsed, isOverlay }) => {
       backgroundColor: '#eee',
       opacity: 0.3,
       zIndex: 97
+    },
+    navInnerWrapper: {
+      selectors: {
+        '& ul': {
+          marginTop: '0.4rem'
+        }
+      }
     }
   })
 }
