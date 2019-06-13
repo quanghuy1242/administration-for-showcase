@@ -22,6 +22,10 @@ export const getStyle = () => {
     projectItem_Subheader: {
       fontSize: '15',
       opacity: 0.7
+    },
+    hoverCard: {
+      width: 270,
+      height: 200
     }
   })
 }
