@@ -70,6 +70,7 @@ export class Login extends React.Component {
                 onChange={this.handleUsernameChanged}
               />
               <TextField
+                type="password"
                 label="Password"
                 onGetErrorMessage={this.handlePasswordError}
                 value={this.state.password}
