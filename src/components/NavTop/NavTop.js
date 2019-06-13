@@ -11,7 +11,7 @@ export class NavTop extends React.Component {
         <IconButton
           iconProps={{iconName: "GlobalNavButton"}}
           onClick={this.props.onToggleSideBar}
-          style={{marginRight: '0.5rem'}}
+          className={classNames.iconButton}
         />
         <NavLink href="/">
           <Text variant="xLarge" style={{fontWeight: 400}}>Administration for Project Showcase</Text>

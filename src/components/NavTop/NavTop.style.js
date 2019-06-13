@@ -9,6 +9,18 @@ export const getStyle = () => {
       zIndex: 99999999,
       padding: '0rem 1rem 0rem 1rem',
       backgroundColor: 'white'
+    },
+    iconButton: {
+      marginRight: '0.5rem',
+      color: 'black',
+      selectors: {
+        ':hover': {
+          backgroundColor: 'none',
+        },
+        ':active': {
+          backgroundColor: 'none'
+        }
+      }
     }
   })
 }
