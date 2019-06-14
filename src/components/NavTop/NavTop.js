@@ -18,6 +18,22 @@ export class NavTop extends React.Component {
             Administration for Project Showcase
           </Text>
         </NavLink>
+        <Stack.Item grow disableShrink className={classNames.higherIndex}>
+          <Stack
+            horizontalAlign="end"
+            verticalAlign="center"
+            horizontal
+          >
+            <Text variant="Large" className={classNames.NavTopText} style={{ marginRight: '0.5rem' }}>
+              Quang Huy
+            </Text>
+            <NavLink href="/" className={classNames.higherIndex}>
+              <Text variant="Large" className={classNames.NavTopText}>
+                Logout
+              </Text>
+            </NavLink>
+          </Stack>
+        </Stack.Item>
         <Stack
           className={classNames.NavTopInfo}
           horizontalAlign="center"
