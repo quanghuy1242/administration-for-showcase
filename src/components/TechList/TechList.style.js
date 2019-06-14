@@ -7,7 +7,7 @@ export const getStyle = () => {
       height: 'calc(100vh - 50px - 48px)'
     },
     actived: {
-      backgroundColor: 'rgba(89, 144, 180, 0.377) !important',
+      backgroundColor: 'rgba(89, 144, 150, 0.277) !important',
       selectors: {
         "& span:nth-child(1)": {
           fontWeight: '700'
