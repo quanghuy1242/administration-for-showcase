@@ -13,7 +13,7 @@ export const getStyle = () => {
       width: 200,
     },
     projectsPanel: {
-      width: 250,
+      width: 220,
       boxShadow: Depths.depth8,
     },
     projectDetailPanel: {

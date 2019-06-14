@@ -49,6 +49,7 @@ export class FilterPanel extends React.Component {
         <Stack.Item grow disableShrink>
           <SearchBox
             placeholder="Filter..."
+            style={{ width: 80 }}
           />
         </Stack.Item>
         <Stack.Item>
