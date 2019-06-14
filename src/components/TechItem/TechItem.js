@@ -14,6 +14,21 @@ export class TechItem extends React.Component {
             <IconButton
               iconProps={{ iconName: 'MoreVertical' }}
               className={classNames.moreButton}
+              menuProps={{
+                items: [
+                  {
+                    key: 'edit',
+                    name: 'Edit',
+                    iconProps: { iconName: 'Edit' }
+                  },
+                  {
+                    key: 'delete',
+                    name: 'Delete',
+                    iconProps: { iconName: 'Delete' }
+                  }
+                ]
+              }}
+              onRenderMenuIcon={ () => false }
             />
           )
           : <></>}
