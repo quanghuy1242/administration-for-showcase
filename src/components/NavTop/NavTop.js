@@ -14,8 +14,15 @@ export class NavTop extends React.Component {
           className={classNames.iconButton}
         />
         <NavLink href="/">
-          <Text variant="xLarge" style={{fontWeight: 400, color: '#fff'}}>Administration for Project Showcase</Text>
+          <Text variant="xLarge" className={classNames.NavTopText}>Administration for Project Showcase</Text>
         </NavLink>
+        <Stack
+          className={classNames.NavTopInfo}
+          horizontalAlign="center"
+          verticalAlign="center"
+        >
+          <Text variant="xLarge" className={classNames.NavTopText}>Demo</Text>
+        </Stack>
       </Stack>
     );
   }
