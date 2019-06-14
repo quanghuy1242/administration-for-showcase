@@ -1,5 +1,5 @@
 import React from 'react';
-import { Stack, Text, IconButton } from 'office-ui-fabric-react';
+import { Stack, Text, IconButton, css } from 'office-ui-fabric-react';
 import { getStyle } from './NavTop.style';
 import { NavLink } from '../NavLink/NavLink';
 
@@ -11,10 +11,12 @@ export class NavTop extends React.Component {
         <IconButton
           iconProps={{iconName: "GlobalNavButton"}}
           onClick={this.props.onToggleSideBar}
-          className={classNames.iconButton}
+          className={css(classNames.iconButton, classNames.higherIndex)}
         />
-        <NavLink href="/">
-          <Text variant="xLarge" className={classNames.NavTopText}>Administration for Project Showcase</Text>
+        <NavLink href="/" className={classNames.higherIndex}>
+          <Text variant="xLarge" className={classNames.NavTopText}>
+            Administration for Project Showcase
+          </Text>
         </NavLink>
         <Stack
           className={classNames.NavTopInfo}

@@ -34,6 +34,14 @@ export const getStyle = () => {
     NavTopText: {
       fontWeight: 400,
       color: '#fff'
+    },
+    higherIndex: {
+      zIndex: 555,
+      selectors: {
+        '& a': {
+          zIndex: 555
+        }
+      }
     }
   })
 }
