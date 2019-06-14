@@ -11,7 +11,7 @@ export class MainApp extends React.Component {
     this.state = {
       isCollapsed: false,
       isOverlay: false,
-      currentNavTopText: 'Welcome'
+      currentNavTopText: ''
     };
   }
 

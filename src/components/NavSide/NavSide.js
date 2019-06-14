@@ -40,6 +40,8 @@ class NavSide extends React.Component {
   }
 
   componentDidMount() {
+    const currentRoute = this.state.links.find(link => link.url === this.props.location.pathname);
+    this.props.onNavTopTextChanged(currentRoute.name);
     this.props.history.listen((location, action) => {
       const currentRoute = this.state.links.find(link => link.url === location.pathname);
       if (currentRoute) {
