@@ -12,6 +12,9 @@ export const getStyle = () => {
         ':hover': {
           backgroundColor: 'rgba(141, 141, 141, 0.100)',
           transition: '0.2s'
+        },
+        ':active': {
+          backgroundColor: 'rgba(89, 144, 150, 0.477) !important',
         }
       }
     },
