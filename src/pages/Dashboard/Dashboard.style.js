@@ -1,4 +1,5 @@
 import { mergeStyleSets } from 'office-ui-fabric-react';
+import { Depths } from '@uifabric/fluent-theme';
 
 export const getStyle = () => {
   return mergeStyleSets({
@@ -9,17 +10,18 @@ export const getStyle = () => {
       backgroundColor: 'rgba(165, 181, 192, 0.082)',
     },
     technologiesPanel: {
-      width: 250,
-      boxShadow: 'rgba(0, 0, 0, 0.133) -5px 0px 5px -5px',
-      borderTop: '1px solid rgba(0, 0, 0, 0.12)'
+      width: 200,
     },
     projectsPanel: {
-      width: 270,
-      borderTop: '1px solid rgba(0, 0, 0, 0.12)',
-      borderLeft: '1px solid rgba(0, 0, 0, 0.12)'
+      width: 250,
+      boxShadow: Depths.depth8,
     },
     projectDetailPanel: {
-      borderLeft: '1px solid rgba(0, 0, 0, 0.12)'
+      boxShadow: Depths.depth8,
+      backgroundColor: 'white'
+    },
+    filterWrapper: {
+      boxShadow: Depths.depth8
     }
   })
 }
