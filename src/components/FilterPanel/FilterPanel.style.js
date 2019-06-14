@@ -9,7 +9,7 @@ export const getStyle = () => {
       margin: '0 0.5rem'
     },
     comboxFilter: {
-      width: 120,
+      width: 90,
       marginRight: '0.5rem'
     }
   })
