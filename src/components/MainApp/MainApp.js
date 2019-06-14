@@ -10,12 +10,17 @@ export class MainApp extends React.Component {
     super(props);
     this.state = {
       isCollapsed: false,
-      isOverlay: false
+      isOverlay: false,
+      currentNavTopText: 'Welcome'
     };
   }
 
   toggleSideBar() {
     this.setState({ isCollapsed: !this.state.isCollapsed })
+  }
+
+  onNavTopTextChanged = (value) => {
+    this.setState({ currentNavTopText: value })
   }
 
   render() {
@@ -24,12 +29,17 @@ export class MainApp extends React.Component {
       <div className={classNames.MainAppWrapper}>
         <Router>
           <Stack>
-            <NavTop onToggleSideBar={() => this.toggleSideBar()} />
+            <NavTop
+              onToggleSideBar={() => this.toggleSideBar()}
+              currentTopText={this.state.currentNavTopText}
+              onNavTopTextChanged={this.onNavTopTextChanged}
+            />
             <Stack horizontal>
               <NavSide
                 isCollapsed={this.state.isCollapsed} 
                 isOverlay={this.state.isOverlay} 
                 onDismiss={() => this.toggleSideBar()}
+                onNavTopTextChanged={this.onNavTopTextChanged}
               />
                 <>{this.props.children}</>
               </Stack>

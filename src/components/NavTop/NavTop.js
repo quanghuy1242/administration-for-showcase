@@ -21,7 +21,7 @@ export class NavTop extends React.Component {
           horizontalAlign="center"
           verticalAlign="center"
         >
-          <Text variant="xLarge" className={classNames.NavTopText}>Demo</Text>
+          <Text variant="xLarge" className={classNames.NavTopText}>{this.props.currentTopText}</Text>
         </Stack>
       </Stack>
     );

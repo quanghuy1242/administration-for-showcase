@@ -11,7 +11,7 @@ class NavSide extends React.Component {
     this.state = {
       links: [
         {
-          name: 'Dashboard',
+          name: 'Welcome',
           url: '/',
           key: "keyDashboard",
           icon: 'Taskboard'
@@ -46,6 +46,7 @@ class NavSide extends React.Component {
         this.setState({
           selectedKey: currentRoute.key
         });
+        this.props.onNavTopTextChanged(currentRoute.name);
         this.props.isOverlay && !this.props.isCollapsed && this.props.onDismiss(); // đóng navside chỉ khi navside đang mở
       };
     })
