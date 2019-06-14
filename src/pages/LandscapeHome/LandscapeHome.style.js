@@ -4,7 +4,7 @@ export const getStyle = () => {
   return mergeStyleSets({
     homeWrapper: {
       width: '100%',
-      height: 'calc(100vh - 55px)',
+      height: 'calc(100vh - 50px)',
       padding: '2rem'
     },
     leftPanel: {

@@ -4,7 +4,7 @@ export const getStyle = () => {
   return mergeStyleSets({
     projectsListWrapper: {
       overflowY: 'auto',
-      height: 'calc(100vh - 55px - 48px)'
+      height: 'calc(100vh - 50px - 48px)'
     },
     actived: {
       backgroundColor: 'rgba(89, 144, 180, 0.377) !important',
