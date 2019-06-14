@@ -41,14 +41,14 @@ class NavSide extends React.Component {
 
   componentDidMount() {
     const currentRoute = this.state.links.find(link => link.url === this.props.location.pathname);
-    this.props.onNavTopTextChanged(currentRoute.name);
+    this.props.onNavTopTextChanged(!currentRoute ? '' : currentRoute.name);
     this.props.history.listen((location, action) => {
       const currentRoute = this.state.links.find(link => link.url === location.pathname);
       if (currentRoute) {
         this.setState({
           selectedKey: currentRoute.key
         });
-        this.props.onNavTopTextChanged(currentRoute.name);
+        this.props.onNavTopTextChanged(!currentRoute ? '' : currentRoute.name);
         this.props.isOverlay && !this.props.isCollapsed && this.props.onDismiss(); // đóng navside chỉ khi navside đang mở
       };
     })
