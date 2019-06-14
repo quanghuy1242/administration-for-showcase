@@ -30,7 +30,7 @@ export const getStyle = ({ isCollapsed, isOverlay }) => {
     navInnerWrapper: {
       selectors: {
         '& ul': {
-          marginTop: '0.4rem'
+          marginTop: '0.6rem'
         }
       }
     }
