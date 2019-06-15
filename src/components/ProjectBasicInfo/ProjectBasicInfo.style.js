@@ -33,8 +33,8 @@ export const getStyle = () => {
     },
     imagePreview: {
       backgroundColor: CommunicationColors.primary,
-      width: 165,
-      height: 165
+      width: 130,
+      height: 130
     }
   })
 }

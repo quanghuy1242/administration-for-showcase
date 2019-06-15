@@ -7,7 +7,7 @@ export const getStyle = () => {
       margin: '1rem',
       padding: '0.5rem',
       boxShadow: Depths.depth8,
-      height: 'calc(100vh - 314px - 3rem)',
+      height: 'calc(100vh - 280px - 3rem)',
       overflowX: 'auto',
       position: 'relative',
       selectors: {

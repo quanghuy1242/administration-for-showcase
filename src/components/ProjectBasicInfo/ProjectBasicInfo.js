@@ -19,7 +19,7 @@ export class ProjectBasicInfo extends React.Component {
             </Stack>
           </Stack.Item>
           <Stack.Item grow disableShrink>
-            <Stack style={{ height: '100%', marginTop: '1rem' }} tokens={{ childrenGap: 5 }}>
+            <Stack style={{ height: '100%', marginTop: '0.5rem' }} tokens={{ childrenGap: 5 }}>
               <Text variant="xxLarge">Project Name</Text>
               <Text>15/6/2019</Text>
               <Text variant="large">Technology Name</Text>
