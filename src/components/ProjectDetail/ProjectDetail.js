@@ -1,29 +1,25 @@
 import React from 'react';
-import { Stack, TextField, Pivot, PivotItem, IconButton } from 'office-ui-fabric-react';
+import { Stack, Pivot, PivotItem, PivotLinkFormat } from 'office-ui-fabric-react';
 import { getStyle } from './ProjectDetail.style';
 
 export class ProjectDetail extends React.Component {
   render() {
     const classNames = getStyle();
     return (
-      <Stack className={classNames.projectDetailWrapper} tokens={{ childrenGap: 5 }}>
-        <Stack horizontal className={classNames.header} tokens={{ childrenGap: 5 }}>
-          <Stack.Item grow disableShrink>
-            <TextField
-              value="Untitled"
-            />
-          </Stack.Item>
-          <Stack.Item className={classNames.headerAction}>
-            <IconButton iconProps={{ iconName: 'Edit' }} />
-            <IconButton iconProps={{ iconName: 'Delete' }} />
-            <IconButton iconProps={{ iconName: 'MoreVertical' }} />
-          </Stack.Item>
-        </Stack>
-        <Pivot>
-          <PivotItem headerText="Description"></PivotItem>
-          <PivotItem headerText="Screenshots"></PivotItem>
-          <PivotItem headerText="Changelog"></PivotItem>
-          <PivotItem headerText="Upcoming features"></PivotItem>
+      <Stack className={classNames.projectDetailWrapper}>
+        <Pivot linkFormat={PivotLinkFormat.links} className={classNames.tabPivot}>
+          <PivotItem headerText="General">
+            Chúng ta đang ở một thế giới tàn bạo như quỷ
+          </PivotItem>
+          <PivotItem headerText="Description">
+
+          </PivotItem>
+          <PivotItem headerText="Features">
+
+          </PivotItem>
+          <PivotItem headerText="Changelog">
+
+          </PivotItem>
         </Pivot>
       </Stack>
     );
