@@ -12,7 +12,11 @@ export class ProjectScreenshots extends React.Component {
           className={css('iconButton')}
         />
         <Text variant="xLarge" className={classNames.headerText}>Screenshots</Text>
-        <Stack horizontal tokens={{ childrenGap: 5 }}>
+        <Stack
+          horizontal 
+          tokens={{ childrenGap: 5 }}
+          className={classNames.screenshotItemsWrapper}
+        >
           {[...Array(8)].map((v, i) => (
             <img
               src="https://via.placeholder.com/1920x1080"

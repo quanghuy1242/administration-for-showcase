@@ -35,6 +35,10 @@ export const getStyle = () => {
     },
     screenshotItem: {
       height: '100%'
+    },
+    screenshotItemsWrapper: {
+      width: '100%',
+      overflowX: 'auto'
     }
   })
 }
