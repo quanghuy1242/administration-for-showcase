@@ -1,5 +1,5 @@
 import React from 'react';
-import { Stack, Text } from 'office-ui-fabric-react';
+import { Stack, Text, IconButton, css } from 'office-ui-fabric-react';
 import { getStyle } from './ProjectScreenshots.style';
 
 export class ProjectScreenshots extends React.Component {
@@ -7,6 +7,10 @@ export class ProjectScreenshots extends React.Component {
     const classNames = getStyle();
     return (
       <Stack className={classNames.projectScreenshotsWrapper}>
+        <IconButton
+          iconProps={{ iconName: "Edit" }}
+          className={css('iconButton')}
+        />
         <Text variant="xLarge" className={classNames.headerText}>Screenshots</Text>
         <Stack horizontal tokens={{ childrenGap: 5 }}>
           {[...Array(8)].map((v, i) => (

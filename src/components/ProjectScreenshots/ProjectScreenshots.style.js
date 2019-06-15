@@ -8,7 +8,27 @@ export const getStyle = () => {
       padding: '0.5rem',
       boxShadow: Depths.depth8,
       height: 'calc(100vh - 314px - 3rem)',
-      overflowX: 'auto'
+      overflowX: 'auto',
+      position: 'relative',
+      selectors: {
+        '& .iconButton': {
+          position: 'absolute',
+          top: 0,
+          right: 0,
+          color: 'black',
+          backgroundColor: 'rgba(0, 0, 0, 0.112)',
+          transition: '0.2s',
+          selectors: {
+            ':hover': {
+              backgroundColor: 'rgba(0, 0, 0, 0.212)',
+              color: 'black'
+            },
+            ':active': {
+              backgroundColor: 'rgba(0, 0, 0, 0.312)',
+            }
+          }
+        }
+      }
     },
     headerText: {
       marginBottom: '0.5rem'
