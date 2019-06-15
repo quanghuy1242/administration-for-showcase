@@ -12,19 +12,16 @@ export const getStyle = () => {
           boxShadow: Depths.depth8,
           backgroundColor: 'rgba(165, 181, 192, 0.082)'
         },
-        '& button': {
+        '& button.ms-Pivot-link': {
           height: 48,
         },
-        '& button.is-selected': {
+        '& button.ms-Pivot-link.is-selected': {
           selectors: {
             '::before': {
               height: 3,
               borderBottom: '3px solid rgb(0, 120, 212)',
             }
           }
-        },
-        '& div:nth-child(2)': {
-          margin: '0.5rem'
         }
       }
     }
