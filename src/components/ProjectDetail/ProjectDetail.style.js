@@ -13,7 +13,7 @@ export const getStyle = () => {
           backgroundColor: 'rgba(165, 181, 192, 0.082)'
         },
         '& button': {
-          height: 35,
+          height: 48,
         },
         '& button.is-selected': {
           selectors: {
