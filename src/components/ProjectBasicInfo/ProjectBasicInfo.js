@@ -1,35 +1,40 @@
 import React from 'react';
-import { Stack, IconButton, css, Text, TextField, PrimaryButton } from 'office-ui-fabric-react';
+import { Stack, IconButton, css, Text, CompoundButton } from 'office-ui-fabric-react';
 import { getStyle } from './ProjectBasicInfo.style';
 
 export class ProjectBasicInfo extends React.Component {
   render() {
     const classNames = getStyle();
     return (
-      <Stack horizontal className={classNames.basicInfoWrapper} tokens={{ childrenGap: 10 }}>
-        <Stack.Item>
-          <div className={classNames.imagePreview}>
-            <IconButton
-              iconProps={{ iconName: "Edit" }}
-              className={css('iconButton')}
-            />
-          </div>
-        </Stack.Item>
-        <Stack.Item grow disableShrink>
-          <Stack verticalAlign="center" style={{ height: '100%' }}>
-            <Text variant="xLarge">Basic Infomation</Text>
-            <Text variant="Large">26/7/2018</Text>
-            <TextField
-              label="Name of Project"
-            />
-            <TextField
-              label="Direct Link"
-            />
-          </Stack>
-        </Stack.Item>
-        <Stack.Item styles={{ root: { marginTop: '1rem' } }}>
-          <PrimaryButton>Open Project</PrimaryButton>
-        </Stack.Item>
+      <Stack className={classNames.basicInfoWrapper}>
+        <IconButton
+          iconProps={{ iconName: "Edit" }}
+          className={css('iconButton')}
+        />
+        <Text variant="xLarge" className={classNames.headerText}>Basic Infomation</Text>
+        <Stack horizontal tokens={{ childrenGap: 10 }}>
+          <Stack.Item>
+            <Stack tokens={{ childrenGap: 10 }}>
+              <div className={classNames.imagePreview}></div>
+            </Stack>
+          </Stack.Item>
+          <Stack.Item grow disableShrink>
+            <Stack style={{ height: '100%', marginTop: '1rem' }} tokens={{ childrenGap: 5 }}>
+              <Text variant="xxLarge">Project Name</Text>
+              <Text>15/6/2019</Text>
+              <Text variant="large">Technology Name</Text>
+            </Stack>
+          </Stack.Item>
+          <Stack.Item>
+            <CompoundButton
+              primary={true}
+              secondaryText="Go to project's website"
+              style={{ marginRight: '1rem' }}
+            >
+              Open Project
+            </CompoundButton>
+          </Stack.Item>
+        </Stack>
       </Stack>
     );
   }
