@@ -2,6 +2,7 @@ import React from 'react';
 import { Stack, Pivot, PivotItem, PivotLinkFormat } from 'office-ui-fabric-react';
 import { getStyle } from './ProjectDetail.style';
 import { ProjectBasicInfo } from '../ProjectBasicInfo/ProjectBasicInfo';
+import { ProjectScreenshots } from '../ProjectScreenshots/ProjectScreenshots';
 
 export class ProjectDetail extends React.Component {
   render() {
@@ -11,6 +12,7 @@ export class ProjectDetail extends React.Component {
         <Pivot linkFormat={PivotLinkFormat.links} className={classNames.tabPivot}>
           <PivotItem headerText="General">
             <ProjectBasicInfo />
+            <ProjectScreenshots />
           </PivotItem>
           <PivotItem headerText="Description">
 
