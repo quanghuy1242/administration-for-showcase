@@ -9,12 +9,15 @@ export class ProjectList extends React.Component {
     super(props);
     this.state = {
       wrapperHeight: undefined,
-      isLoading: false
+      isLoading: true
     };
   }
 
   componentDidMount() {
     this.setState({ wrapperHeight: this.wrapper.clientHeight });
+    setTimeout(() => {
+      this.setState({ isLoading: false });
+    }, 3000);
   }
 
   render() {
@@ -24,21 +27,22 @@ export class ProjectList extends React.Component {
       <Stack>
         {this.state.wrapperHeight && this.state.isLoading
           ? <ShimmerLoading length={Math.floor(this.state.wrapperHeight / 58)} />
-          : <></>}
-        <div className={classNames.projectsListWrapper} ref={ (wrapper) => this.wrapper = wrapper }>
-          {projects.map(project => (
-            <div
-              onClick={() => this.props.onSelectedProjectChanged(project.id)}
-              key={project.id}
-            >
-              <ProjectItem
-                project={project}
-                selected={selected}
-                className={parseInt(selected) === parseInt(project.id) ? classNames.actived : ''}
-              />
+          : (
+            <div className={classNames.projectsListWrapper} ref={ (wrapper) => this.wrapper = wrapper }>
+              {projects.map(project => (
+                <div
+                  onClick={() => this.props.onSelectedProjectChanged(project.id)}
+                  key={project.id}
+                >
+                  <ProjectItem
+                    project={project}
+                    selected={selected}
+                    className={parseInt(selected) === parseInt(project.id) ? classNames.actived : ''}
+                  />
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
+          )}
       </Stack>
     );
   }
