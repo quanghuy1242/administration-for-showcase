@@ -45,7 +45,6 @@ export class MonacoEditor extends React.Component {
 
     editor.onDidChangeModelContent((event) => {
       const value = editor.getValue();
-      console.log(value);
     });
 
     didMount(editor);
