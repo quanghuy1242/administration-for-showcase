@@ -12,7 +12,7 @@ export class ProjectBasicInfo extends React.Component {
           className={css('iconButton')}
         />
         <Text variant="xLarge" className={classNames.headerText}>Basic Infomation</Text>
-        <Stack horizontal tokens={{ childrenGap: 10 }}>
+        <Stack horizontal tokens={{ childrenGap: 20 }}>
           <Stack.Item>
             <Stack tokens={{ childrenGap: 10 }}>
               <div className={classNames.imagePreview}></div>
