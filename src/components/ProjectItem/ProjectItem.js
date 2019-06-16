@@ -22,7 +22,7 @@ export class ProjectItem extends React.Component {
       >
         <Stack className={css(className, classNames.projectItem)} verticalAlign="center">
           <Text variant="medium" className={classNames.projectItem_Header} nowrap>{project.name}</Text>
-          <Text variant="medium" className={classNames.projectItem_Subheader}>{project.date.toLocaleDateString()}</Text>
+          <Text variant="medium" className={classNames.projectItem_Subheader}>{new Date(project.date).toLocaleDateString()}</Text>
         </Stack>
       </HoverCard>
     );

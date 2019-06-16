@@ -10,15 +10,15 @@ export class TechList extends React.Component {
     return (
       <Stack>
         <div className={classNames.projectsListWrapper}>
-          {techs.map(project => (
+          {techs.map(tech => (
             <div
-              onClick={() => this.props.onSelectedTechChanged(project.id)}
-              key={project.id}
+              onClick={() => this.props.onSelectedTechChanged(tech.nameId)}
+              key={tech.nameId}
             >
               <TechItem
-                tech={project}
+                tech={tech}
                 selected={selected}
-                className={parseInt(selected) === parseInt(project.id) ? classNames.actived : ''}
+                className={selected === tech.nameId ? classNames.actived : ''}
               />
             </div>
           ))}

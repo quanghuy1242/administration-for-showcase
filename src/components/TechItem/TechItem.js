@@ -9,7 +9,7 @@ export class TechItem extends React.Component {
     return (
       <Stack className={css(className, classNames.projectItem)} verticalAlign="center">
         <Text variant="medium" className={classNames.projectItem_Header} nowrap>{tech.name}</Text>
-        {parseInt(selected) === parseInt(tech.id)
+        {selected === tech.nameId
           ? (
             <IconButton
               iconProps={{ iconName: 'MoreVertical' }}

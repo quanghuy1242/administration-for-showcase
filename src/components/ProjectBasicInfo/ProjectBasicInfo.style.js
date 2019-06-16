@@ -1,7 +1,7 @@
 import { mergeStyleSets } from 'office-ui-fabric-react';
 import { Depths, CommunicationColors } from '@uifabric/fluent-theme';
 
-export const getStyle = () => {
+export const getStyle = ({ image }) => {
   return mergeStyleSets({
     basicInfoWrapper: {
       margin: '1rem',
@@ -34,7 +34,9 @@ export const getStyle = () => {
     imagePreview: {
       backgroundColor: CommunicationColors.primary,
       width: 130,
-      height: 130
+      height: 130,
+      backgroundImage: `url(${image})`,
+      backgroundSize: 'cover'
     }
   })
 }

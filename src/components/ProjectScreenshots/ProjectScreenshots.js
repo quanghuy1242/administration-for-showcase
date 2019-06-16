@@ -1,6 +1,7 @@
 import React from 'react';
 import { Stack, Text, IconButton, css } from 'office-ui-fabric-react';
 import { getStyle } from './ProjectScreenshots.style';
+import { AppContext } from '../../context/AppContext';
 
 export class ProjectScreenshots extends React.Component {
   render() {
@@ -17,9 +18,9 @@ export class ProjectScreenshots extends React.Component {
           tokens={{ childrenGap: 5 }}
           className={classNames.screenshotItemsWrapper}
         >
-          {[...Array(8)].map((v, i) => (
+          {this.context.selectedProjectDetail.screenshots.map((screenshot, i) => (
             <img
-              src="https://via.placeholder.com/1920x1080"
+              src={screenshot}
               alt="hmmmm" key={i}
               className={classNames.screenshotItem}
             />
@@ -29,3 +30,5 @@ export class ProjectScreenshots extends React.Component {
     );
   }
 }
+
+ProjectScreenshots.contextType = AppContext;

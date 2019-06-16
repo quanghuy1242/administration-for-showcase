@@ -31,13 +31,13 @@ export class ProjectList extends React.Component {
             <div className={classNames.projectsListWrapper} ref={ (wrapper) => this.wrapper = wrapper }>
               {projects.map(project => (
                 <div
-                  onClick={() => this.props.onSelectedProjectChanged(project.id)}
-                  key={project.id}
+                  onClick={() => this.props.onSelectedProjectChanged(project._id)}
+                  key={project._id}
                 >
                   <ProjectItem
                     project={project}
                     selected={selected}
-                    className={parseInt(selected) === parseInt(project.id) ? classNames.actived : ''}
+                    className={selected === project._id ? classNames.actived : ''}
                   />
                 </div>
               ))}
