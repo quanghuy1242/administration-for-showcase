@@ -1,5 +1,5 @@
 import React from 'react';
-import { Stack, IconButton, css, Text, CompoundButton } from 'office-ui-fabric-react';
+import { Stack, IconButton, css, Text, PrimaryButton } from 'office-ui-fabric-react';
 import { getStyle } from './ProjectBasicInfo.style';
 
 export class ProjectBasicInfo extends React.Component {
@@ -26,13 +26,12 @@ export class ProjectBasicInfo extends React.Component {
             </Stack>
           </Stack.Item>
           <Stack.Item>
-            <CompoundButton
+            <PrimaryButton
               primary={true}
               secondaryText="Go to project's website"
-              style={{ marginRight: '1rem' }}
             >
-              Open Project
-            </CompoundButton>
+              Project's website
+            </PrimaryButton>
           </Stack.Item>
         </Stack>
       </Stack>
