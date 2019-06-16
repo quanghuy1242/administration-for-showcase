@@ -14,7 +14,7 @@ export class LandscapeHome extends React.Component {
             <Text variant="superLarge">Administration</Text>
             <Text variant="superLarge">for Project Showcase</Text>
             <Link className={classNames.button} to='/projects'>
-              <PrimaryButton>Get into your work</PrimaryButton>
+              <PrimaryButton>Workspace</PrimaryButton>
             </Link>
           </Stack>
         </Stack.Item>
