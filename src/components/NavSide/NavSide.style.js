@@ -8,7 +8,7 @@ export const getStyle = ({ isCollapsed, isOverlay }) => {
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
-      height: 'calc(100vh - 58px)',
+      height: 'calc(100vh - 50px)',
       transition: '0.2s',
       backgroundColor: 'white',
       zIndex: 100,
