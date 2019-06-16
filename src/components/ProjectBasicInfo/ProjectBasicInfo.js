@@ -28,7 +28,6 @@ export class ProjectBasicInfo extends React.Component {
           <Stack.Item>
             <PrimaryButton
               primary={true}
-              secondaryText="Go to project's website"
             >
               Project's website
             </PrimaryButton>
