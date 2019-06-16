@@ -3,21 +3,18 @@ import { ProjectItem } from '../ProjectItem/ProjectItem';
 import { getStyle } from './ProjectList.style';
 import { Stack } from 'office-ui-fabric-react';
 import { ShimmerLoading } from '../ShimmerLoading/ShimmerLoading';
+import { AppContext } from '../../context/AppContext';
 
 export class ProjectList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      wrapperHeight: undefined,
-      isLoading: true
+      wrapperHeight: undefined
     };
   }
 
   componentDidMount() {
     this.setState({ wrapperHeight: this.wrapper.clientHeight });
-    setTimeout(() => {
-      this.setState({ isLoading: false });
-    }, 3000);
   }
 
   render() {
@@ -25,7 +22,7 @@ export class ProjectList extends React.Component {
     const classNames = getStyle();
     return (
       <Stack>
-        {this.state.wrapperHeight && this.state.isLoading
+        {this.state.wrapperHeight && !this.context.isProjectLoaded
           ? <ShimmerLoading length={Math.floor(this.state.wrapperHeight / 58)} />
           : (
             <div className={classNames.projectsListWrapper} ref={ (wrapper) => this.wrapper = wrapper }>
@@ -47,3 +44,5 @@ export class ProjectList extends React.Component {
     );
   }
 }
+
+ProjectList.contextType = AppContext;
