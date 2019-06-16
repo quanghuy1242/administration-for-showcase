@@ -14,6 +14,7 @@ export const getStyle = () => {
         '& .ms-Pivot': {
           boxShadow: Depths.depth8,
           backgroundColor: 'rgba(165, 181, 192, 0.082)',
+          zIndex: 55
         },
         '& button.ms-Pivot-link': {
           height: 48,
