@@ -5,6 +5,7 @@ import { ProjectBasicInfo } from '../ProjectBasicInfo/ProjectBasicInfo';
 import { ProjectScreenshots } from '../ProjectScreenshots/ProjectScreenshots';
 import { MonacoEditor } from '../MonacoEditor/MonacoEditor';
 import { AppContext } from '../../context/AppContext';
+import { ProjectInfomation } from '../ProjectInfomation/ProjectInfomation';
 
 export class ProjectDetail extends React.Component {
   render() {
@@ -12,9 +13,12 @@ export class ProjectDetail extends React.Component {
     return (
       <Stack className={classNames.projectDetailWrapper}>
         <Pivot linkFormat={PivotLinkFormat.links} className={classNames.tabPivot}>
-          <PivotItem headerText="General">
+          <PivotItem headerText="Overview">
             <ProjectBasicInfo />
             <ProjectScreenshots />
+          </PivotItem>
+          <PivotItem headerText="General">
+            <ProjectInfomation />
           </PivotItem>
           <PivotItem headerText="Description">
             <Stack>
