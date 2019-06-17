@@ -2,7 +2,6 @@ import React from 'react';
 
 export class MonacoEditor extends React.Component {
   static defaultProps = {
-    height: "calc(100vh - 98px)",
     language: "markdown",
     theme: "vs",
     didLoad: () => {},
@@ -71,7 +70,7 @@ export class MonacoEditor extends React.Component {
         ref={this.containerDidMount}
         className={className}
         style={{
-          height,
+          height: this.props.height,
           width,
           ...style
         }}
