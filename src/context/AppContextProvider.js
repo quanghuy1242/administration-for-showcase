@@ -15,7 +15,8 @@ export class AppContextProvider extends React.Component {
         technology: {},
         screenshots: []
       },
-      isProjectLoaded: false
+      isProjectLoaded: false,
+      isTechLoaded: false,
     };
   }
 
@@ -31,6 +32,7 @@ export class AppContextProvider extends React.Component {
       techs: techs,
       selectedTechId: techs[0].nameId
     });
+    this.handleToggleTechLoaded();
   };
 
   getProjectsOfSelectedTech = async (nameId) => {
@@ -57,6 +59,10 @@ export class AppContextProvider extends React.Component {
 
   handleToggleProjectLoaded = () => {
     this.setState({ isProjectLoaded: !this.state.isProjectLoaded });
+  }
+
+  handleToggleTechLoaded = () => {
+    this.setState({ isTechLoaded: !this.state.isTechLoaded });
   }
 
   render() {
