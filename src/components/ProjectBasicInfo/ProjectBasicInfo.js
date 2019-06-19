@@ -1,5 +1,5 @@
 import React from 'react';
-import { Stack, IconButton, css, Text, PrimaryButton } from 'office-ui-fabric-react';
+import { Stack, IconButton, css, Text, PrimaryButton, Image, ImageFit } from 'office-ui-fabric-react';
 import { getStyle } from './ProjectBasicInfo.style';
 import { AppContext } from '../../context/AppContext';
 
@@ -16,7 +16,13 @@ export class ProjectBasicInfo extends React.Component {
         <Stack horizontal tokens={{ childrenGap: 20 }}>
           <Stack.Item>
             <Stack tokens={{ childrenGap: 10 }}>
-              <div className={classNames.imagePreview}></div>
+              <Image
+                src={this.context.selectedProjectDetail.image}
+                alt="Image Priview"
+                width={120}
+                height={120}
+                imageFit={ImageFit.cover}
+              />
             </Stack>
           </Stack.Item>
           <Stack.Item grow disableShrink>
