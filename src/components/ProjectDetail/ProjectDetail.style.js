@@ -1,5 +1,5 @@
 import { mergeStyleSets } from 'office-ui-fabric-react';
-import { Depths } from '@uifabric/fluent-theme';
+import { Depths, MotionAnimations } from '@uifabric/fluent-theme';
 
 export const getStyle = () => {
   return mergeStyleSets({
@@ -10,6 +10,7 @@ export const getStyle = () => {
     tabPivot: {
       height: '100%',
       width: 'calc(100vw - 468px)',
+      animation: MotionAnimations.fadeIn,
       selectors: {
         '& .ms-Pivot': {
           boxShadow: Depths.depth8,

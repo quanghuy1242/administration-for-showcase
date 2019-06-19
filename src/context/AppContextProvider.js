@@ -17,6 +17,7 @@ export class AppContextProvider extends React.Component {
       },
       isProjectLoaded: false,
       isTechLoaded: false,
+      isProjectDetailLoaded: false
     };
   }
 
@@ -47,6 +48,7 @@ export class AppContextProvider extends React.Component {
   getSelectedProjectDetail = async (id) => {
     const project = await ProjectAPI.getProject(id);
     this.setState({ selectedProjectDetail: project });
+    this.handleToggleProjectDetailLoaded();
   }
 
   onSelectedProjectChanged = (id) => {
@@ -63,6 +65,10 @@ export class AppContextProvider extends React.Component {
 
   handleToggleTechLoaded = () => {
     this.setState({ isTechLoaded: !this.state.isTechLoaded });
+  }
+
+  handleToggleProjectDetailLoaded = () => {
+    this.setState({ isProjectDetailLoaded: !this.state.isProjectDetailLoaded });
   }
 
   render() {
