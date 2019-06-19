@@ -1,13 +1,12 @@
 import { mergeStyleSets } from 'office-ui-fabric-react';
-import { MotionAnimations, MotionDurations } from '@uifabric/fluent-theme';
+import { MotionAnimations } from '@uifabric/fluent-theme';
 
 export const getStyle = () => {
   return mergeStyleSets({
     projectsListWrapper: {
       overflowY: 'auto',
       height: 'calc(100vh - 50px - 48px)',
-      animation: MotionAnimations.fadeIn,
-      animationDuration: MotionDurations.duration4
+      animation: MotionAnimations.fadeIn
     },
     actived: {
       backgroundColor: 'rgba(89, 144, 150, 0.277) !important',
