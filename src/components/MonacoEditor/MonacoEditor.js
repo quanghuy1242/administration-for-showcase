@@ -88,7 +88,7 @@ export class MonacoEditor extends React.Component {
   action = {
     bold: () => {
       const contribution = this.editor.getContribution("snippetController2");
-      let pattern = /^\*\*(.*)\*\*$/;
+      let pattern = /^__(.*)__$/;
       try {
         let selectedText = this.selectedText();
         if(pattern.test(selectedText)) {
@@ -126,7 +126,7 @@ export class MonacoEditor extends React.Component {
             return;
           }
         }
-        contribution.insert(`**\${0:${selectedText}}**`);
+        contribution.insert(`__\${0:${selectedText}}__`);
       } catch (error) {
         let a = this.editor.getModel().getValueInRange({
           endColumn: this.editor.getSelection().endColumn + 2,
@@ -150,7 +150,7 @@ export class MonacoEditor extends React.Component {
           contribution.insert(`\${0:${pattern.exec(a)[1]}}`);
           return;
         }
-        contribution.insert(`**\${0}**`);
+        contribution.insert(`__\${0}__`);
         console.log(error);
       } finally {
         this.editor.focus();
