@@ -326,6 +326,16 @@ export class MonacoEditor extends React.Component {
                 iconProps={{ iconName: 'Video' }}
               />
             </TooltipHost>
+            <TooltipHost content="Formulas">
+              <IconButton
+                iconProps={{ iconName: 'Variable' }}
+              />
+            </TooltipHost>
+            <TooltipHost content="Table of Content">
+              <IconButton
+                iconProps={{ iconName: 'CustomList' }}
+              />
+            </TooltipHost>
           </Stack.Item>
           <Stack.Item>
             <TooltipHost content="Documentation">
