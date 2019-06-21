@@ -6,7 +6,12 @@ export const getStyle = () => {
     toolbar: {
       backgroundColor: 'rgba(165, 181, 192, 0.082)',
       boxShadow: Depths.depth4,
-      zIndex: 555
+      zIndex: 555,
+      selectors: {
+        '& .ms-Button-icon': {
+          color: '#444444'
+        }
+      }
     }
   })
 }
