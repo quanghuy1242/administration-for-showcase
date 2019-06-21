@@ -85,147 +85,80 @@ export class MonacoEditor extends React.Component {
     return selectedText;
   }
 
-  action = {
-    bold: () => {
-      const contribution = this.editor.getContribution("snippetController2");
-      let pattern = /^__(.*)__$/;
-      try {
-        let selectedText = this.selectedText();
-        if(pattern.test(selectedText)) {
-          this.editor.setSelection(
-            new window.monaco.Range(
-              this.editor.getPosition().lineNumber,
-              this.editor.getSelection().startColumn,
-              this.editor.getPosition().lineNumber,
-              this.editor.getSelection().endColumn
-            )
-          );
-          contribution.insert(`\${0:${pattern.exec(selectedText)[1]}}`);
-          return;
-        } else {
-          let a = this.editor.getModel().getValueInRange({
-            endColumn: this.editor.getSelection().endColumn + 2,
-            endLineNumber: this.editor.getPosition().lineNumber,
-            positionColumn: this.editor.getSelection().endColumn + 2,
-            positionLineNumber: this.editor.getPosition().lineNumber,
-            selectionStartColumn: this.editor.getSelection().startColumn - 2,
-            selectionStartLineNumber: this.editor.getPosition().lineNumber,
-            startColumn: this.editor.getSelection().startColumn - 2,
-            startLineNumber: this.editor.getPosition().lineNumber,
-          });
-          if(pattern.test(a)) {
-            this.editor.setSelection(
-              new window.monaco.Range(
-                this.editor.getPosition().lineNumber,
-                this.editor.getSelection().startColumn - 2,
-                this.editor.getPosition().lineNumber,
-                this.editor.getSelection().endColumn + 2
-              )
-            );
-            contribution.insert(`\${0:${pattern.exec(a)[1]}}`);
-            return;
-          }
-        }
-        contribution.insert(`__\${0:${selectedText}}__`);
-      } catch (error) {
+  actionWrapper = (pattern, characters) => {
+    const contribution = this.editor.getContribution("snippetController2");
+    const charactersLength = characters.length;
+    try {
+      let selectedText = this.selectedText();
+      if(pattern.test(selectedText)) {
+        this.editor.setSelection(
+          new window.monaco.Range(
+            this.editor.getPosition().lineNumber,
+            this.editor.getSelection().startColumn,
+            this.editor.getPosition().lineNumber,
+            this.editor.getSelection().endColumn
+          )
+        );
+        contribution.insert(`\${0:${pattern.exec(selectedText)[1]}}`);
+        return;
+      } else {
         let a = this.editor.getModel().getValueInRange({
-          endColumn: this.editor.getSelection().endColumn + 2,
+          endColumn: this.editor.getSelection().endColumn + charactersLength,
           endLineNumber: this.editor.getPosition().lineNumber,
-          positionColumn: this.editor.getSelection().endColumn + 2,
+          positionColumn: this.editor.getSelection().endColumn + charactersLength,
           positionLineNumber: this.editor.getPosition().lineNumber,
-          selectionStartColumn: this.editor.getSelection().startColumn - 2,
+          selectionStartColumn: this.editor.getSelection().startColumn - charactersLength,
           selectionStartLineNumber: this.editor.getPosition().lineNumber,
-          startColumn: this.editor.getSelection().startColumn - 2,
+          startColumn: this.editor.getSelection().startColumn - charactersLength,
           startLineNumber: this.editor.getPosition().lineNumber,
         });
         if(pattern.test(a)) {
           this.editor.setSelection(
             new window.monaco.Range(
               this.editor.getPosition().lineNumber,
-              this.editor.getSelection().startColumn - 2,
+              this.editor.getSelection().startColumn - charactersLength,
               this.editor.getPosition().lineNumber,
-              this.editor.getSelection().endColumn + 2
+              this.editor.getSelection().endColumn + charactersLength
             )
           );
           contribution.insert(`\${0:${pattern.exec(a)[1]}}`);
           return;
         }
-        contribution.insert(`__\${0}__`);
-        console.log(error);
-      } finally {
-        this.editor.focus();
       }
-    },
-    italic: () => {
-      const contribution = this.editor.getContribution("snippetController2");
-      let pattern = /^_(.*)_$/;
-      try {
-        let selectedText = this.selectedText();
-        if(pattern.test(selectedText)) {
-          this.editor.setSelection(
-            new window.monaco.Range(
-              this.editor.getPosition().lineNumber,
-              this.editor.getSelection().startColumn,
-              this.editor.getPosition().lineNumber,
-              this.editor.getSelection().endColumn
-            )
-          );
-          contribution.insert(`\${0:${pattern.exec(selectedText)[1]}}`);
-          return;
-        } else {
-          let a = this.editor.getModel().getValueInRange({
-            endColumn: this.editor.getSelection().endColumn + 1,
-            endLineNumber: this.editor.getPosition().lineNumber,
-            positionColumn: this.editor.getSelection().endColumn + 1,
-            positionLineNumber: this.editor.getPosition().lineNumber,
-            selectionStartColumn: this.editor.getSelection().startColumn - 1,
-            selectionStartLineNumber: this.editor.getPosition().lineNumber,
-            startColumn: this.editor.getSelection().startColumn - 1,
-            startLineNumber: this.editor.getPosition().lineNumber,
-          });
-          if(pattern.test(a)) {
-            this.editor.setSelection(
-              new window.monaco.Range(
-                this.editor.getPosition().lineNumber,
-                this.editor.getSelection().startColumn - 1,
-                this.editor.getPosition().lineNumber,
-                this.editor.getSelection().endColumn + 1
-              )
-            );
-            contribution.insert(`\${0:${pattern.exec(a)[1]}}`);
-            return;
-          }
-        }
-        contribution.insert(`_\${0:${selectedText}}_`);
-      } catch (error) {
-        let a = this.editor.getModel().getValueInRange({
-          endColumn: this.editor.getSelection().endColumn + 1,
-          endLineNumber: this.editor.getPosition().lineNumber,
-          positionColumn: this.editor.getSelection().endColumn + 1,
-          positionLineNumber: this.editor.getPosition().lineNumber,
-          selectionStartColumn: this.editor.getSelection().startColumn - 1,
-          selectionStartLineNumber: this.editor.getPosition().lineNumber,
-          startColumn: this.editor.getSelection().startColumn - 1,
-          startLineNumber: this.editor.getPosition().lineNumber,
-        });
-        if(pattern.test(a)) {
-          this.editor.setSelection(
-            new window.monaco.Range(
-              this.editor.getPosition().lineNumber,
-              this.editor.getSelection().startColumn - 1,
-              this.editor.getPosition().lineNumber,
-              this.editor.getSelection().endColumn + 1
-            )
-          );
-          contribution.insert(`\${0:${pattern.exec(a)[1]}}`);
-          return;
-        }
-        contribution.insert(`_\${0}_`);
-        console.log(error);
-      } finally {
-        this.editor.focus();
+      contribution.insert(`${characters}\${0:${selectedText}}${characters}`);
+    } catch (error) {
+      let a = this.editor.getModel().getValueInRange({
+        endColumn: this.editor.getSelection().endColumn + charactersLength,
+        endLineNumber: this.editor.getPosition().lineNumber,
+        positionColumn: this.editor.getSelection().endColumn + charactersLength,
+        positionLineNumber: this.editor.getPosition().lineNumber,
+        selectionStartColumn: this.editor.getSelection().startColumn - charactersLength,
+        selectionStartLineNumber: this.editor.getPosition().lineNumber,
+        startColumn: this.editor.getSelection().startColumn - charactersLength,
+        startLineNumber: this.editor.getPosition().lineNumber,
+      });
+      if(pattern.test(a)) {
+        this.editor.setSelection(
+          new window.monaco.Range(
+            this.editor.getPosition().lineNumber,
+            this.editor.getSelection().startColumn - charactersLength,
+            this.editor.getPosition().lineNumber,
+            this.editor.getSelection().endColumn + charactersLength
+          )
+        );
+        contribution.insert(`\${0:${pattern.exec(a)[1]}}`);
+        return;
       }
+      contribution.insert(`${characters}\${0}${characters}`);
+      console.log(error);
+    } finally {
+      this.editor.focus();
     }
+  }
+
+  action = {
+    bold: () => this.actionWrapper(/^\*\*(.*)\*\*$/, '**'),
+    italic: () => this.actionWrapper(/^_(.*)_$/, '_')
   }
 
   render() {
