@@ -23,8 +23,7 @@ export const getStyle = () => {
         '& button.ms-Pivot-link.is-selected': {
           selectors: {
             '::before': {
-              height: 3,
-              borderBottom: '3px solid rgb(0, 120, 212)',
+              height: 3
             }
           }
         }
