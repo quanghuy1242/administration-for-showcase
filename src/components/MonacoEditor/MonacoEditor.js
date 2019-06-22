@@ -69,16 +69,17 @@ export class MonacoEditor extends React.Component {
     }
   };
 
-  selectedText() {
+  selectedText(type) {
     let selectedText = this.editor.getModel().getValueInRange(this.editor.getSelection());
     if (!selectedText) {
       selectedText = this.editor.getModel().getWordAtPosition(this.editor.getPosition());
+      const currentLine = this.editor.getModel().getLineContent(this.editor.getPosition().lineNumber);
       this.editor.setSelection(
         new window.monaco.Range(
           this.editor.getPosition().lineNumber,
-          selectedText.startColumn,
+          type === 1 ? 1 : selectedText.startColumn,
           this.editor.getPosition().lineNumber,
-          selectedText.endColumn
+          type === 1 ? currentLine.length + 1 : selectedText.endColumn
         )
       );
       selectedText = this.editor.getModel().getValueInRange(this.editor.getSelection());
@@ -86,11 +87,14 @@ export class MonacoEditor extends React.Component {
     return selectedText;
   }
 
-  actionWrapper = (pattern, characters) => {
+  /**
+   * @param type `{ null: getValueAtPosition, 1: getLine }`
+   */
+  actionWrapper = (pattern, charactersLeft, charactersRight, type = null) => {
     const contribution = this.editor.getContribution("snippetController2");
-    const charactersLength = characters.length;
+    const charactersLength = charactersRight.length;
     try {
-      let selectedText = this.selectedText();
+      let selectedText = this.selectedText(type);
       if(pattern.test(selectedText)) {
         this.editor.setSelection(
           new window.monaco.Range(
@@ -126,7 +130,7 @@ export class MonacoEditor extends React.Component {
           return;
         }
       }
-      contribution.insert(`${characters}\${0:${selectedText}}${characters}`);
+      contribution.insert(`${charactersLeft}\${0:${selectedText}}${charactersRight}`);
     } catch (error) {
       let a = this.editor.getModel().getValueInRange({
         endColumn: this.editor.getSelection().endColumn + charactersLength,
@@ -150,7 +154,7 @@ export class MonacoEditor extends React.Component {
         contribution.insert(`\${0:${pattern.exec(a)[1]}}`);
         return;
       }
-      contribution.insert(`${characters}\${0}${characters}`);
+      contribution.insert(`${charactersLeft}\${0}${charactersRight}`);
       console.log(error);
     } finally {
       this.editor.focus();
@@ -158,9 +162,12 @@ export class MonacoEditor extends React.Component {
   }
 
   action = {
-    bold: () => this.actionWrapper(/^\*\*(.*)\*\*$/, '**'),
-    italic: () => this.actionWrapper(/^_(.*)_$/, '_'),
-    strikethrough: () => this.actionWrapper(/^~~(.*)~~$/, '~~'),
+    bold: () => this.actionWrapper(/^\*\*(.*)\*\*$/, '**', '**'),
+    italic: () => this.actionWrapper(/^_(.*)_$/, '_', '_'),
+    strikethrough: () => this.actionWrapper(/^~~(.*)~~$/, '~~', '~~'),
+    codeInline: () => this.actionWrapper(/^`(.*)`$/, '`', '`'),
+    // eslint-disable-next-line no-template-curly-in-string
+    codeBlock: () => this.actionWrapper(/^\n```\n(.*)\n```\n$/, '\n```${1:language}\n', '\n```\n', 1)
   }
 
   render() {
@@ -300,12 +307,14 @@ export class MonacoEditor extends React.Component {
                     {
                       iconProps: { iconName: 'CalculatorSubtract' },
                       text: 'Inline',
-                      key: '1'
+                      key: '1',
+                      onClick: this.action.codeInline
                     },
                     {
                       iconProps: { iconName: 'CollapseMenu' },
                       text: 'Block',
-                      key: '2'
+                      key: '2',
+                      onClick: this.action.codeBlock
                     }
                   ]
                 }}
