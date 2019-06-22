@@ -70,16 +70,19 @@ export class MonacoEditor extends React.Component {
   };
 
   selectedText(type) {
-    let selectedText = this.editor.getModel().getValueInRange(this.editor.getSelection());
+    let selectedText = type !== 1
+      ? this.editor.getModel().getValueInRange(this.editor.getSelection())
+      : null;
     if (!selectedText) {
-      selectedText = this.editor.getModel().getWordAtPosition(this.editor.getPosition());
-      const currentLine = this.editor.getModel().getLineContent(this.editor.getPosition().lineNumber);
+      selectedText = type !== 1
+        ? this.editor.getModel().getWordAtPosition(this.editor.getPosition())
+        : this.editor.getModel().getLineContent(this.editor.getPosition().lineNumber);
       this.editor.setSelection(
         new window.monaco.Range(
           this.editor.getPosition().lineNumber,
           type === 1 ? 1 : selectedText.startColumn,
           this.editor.getPosition().lineNumber,
-          type === 1 ? currentLine.length + 1 : selectedText.endColumn
+          type === 1 ? selectedText.length + 1 : selectedText.endColumn
         )
       );
       selectedText = this.editor.getModel().getValueInRange(this.editor.getSelection());
@@ -90,9 +93,12 @@ export class MonacoEditor extends React.Component {
   /**
    * @param type `{ null: getValueAtPosition, 1: getLine }`
    */
-  actionWrapper = (pattern, charactersLeft, charactersRight, type = null) => {
+  actionWrapper = (pattern, charactersLeft, charactersRight, charactersLength = null, type = null) => {
     const contribution = this.editor.getContribution("snippetController2");
-    const charactersLength = charactersRight.length;
+    const charactersLengthCs = {
+      left: charactersLength ? charactersLength: charactersLeft.length,
+      right: charactersLength ? charactersLength: charactersRight.length
+    }
     try {
       let selectedText = this.selectedText(type);
       if(pattern.test(selectedText)) {
@@ -108,22 +114,23 @@ export class MonacoEditor extends React.Component {
         return;
       } else {
         let a = this.editor.getModel().getValueInRange({
-          endColumn: this.editor.getSelection().endColumn + charactersLength,
+          endColumn: this.editor.getSelection().endColumn + charactersLengthCs.right,
           endLineNumber: this.editor.getPosition().lineNumber,
-          positionColumn: this.editor.getSelection().endColumn + charactersLength,
+          positionColumn: this.editor.getSelection().endColumn + charactersLengthCs.right,
           positionLineNumber: this.editor.getPosition().lineNumber,
-          selectionStartColumn: this.editor.getSelection().startColumn - charactersLength,
+          selectionStartColumn: this.editor.getSelection().startColumn - charactersLengthCs.left,
           selectionStartLineNumber: this.editor.getPosition().lineNumber,
-          startColumn: this.editor.getSelection().startColumn - charactersLength,
+          startColumn: this.editor.getSelection().startColumn - charactersLengthCs.left,
           startLineNumber: this.editor.getPosition().lineNumber,
         });
+        console.log(a);
         if(pattern.test(a)) {
           this.editor.setSelection(
             new window.monaco.Range(
               this.editor.getPosition().lineNumber,
-              this.editor.getSelection().startColumn - charactersLength,
+              this.editor.getSelection().startColumn - charactersLengthCs.left,
               this.editor.getPosition().lineNumber,
-              this.editor.getSelection().endColumn + charactersLength
+              this.editor.getSelection().endColumn + charactersLengthCs.right
             )
           );
           contribution.insert(`\${0:${pattern.exec(a)[1]}}`);
@@ -133,13 +140,13 @@ export class MonacoEditor extends React.Component {
       contribution.insert(`${charactersLeft}\${0:${selectedText}}${charactersRight}`);
     } catch (error) {
       let a = this.editor.getModel().getValueInRange({
-        endColumn: this.editor.getSelection().endColumn + charactersLength,
+        endColumn: this.editor.getSelection().endColumn + charactersLengthCs.right,
         endLineNumber: this.editor.getPosition().lineNumber,
-        positionColumn: this.editor.getSelection().endColumn + charactersLength,
+        positionColumn: this.editor.getSelection().endColumn + charactersLengthCs.right,
         positionLineNumber: this.editor.getPosition().lineNumber,
-        selectionStartColumn: this.editor.getSelection().startColumn - charactersLength,
+        selectionStartColumn: this.editor.getSelection().startColumn - charactersLengthCs.left,
         selectionStartLineNumber: this.editor.getPosition().lineNumber,
-        startColumn: this.editor.getSelection().startColumn - charactersLength,
+        startColumn: this.editor.getSelection().startColumn - charactersLengthCs.left,
         startLineNumber: this.editor.getPosition().lineNumber,
       });
       if(pattern.test(a)) {
@@ -161,13 +168,46 @@ export class MonacoEditor extends React.Component {
     }
   }
 
+  preHeader = () => {
+    const pattern = /^(#|##|###|####)\s(.*)$/;
+    const contribution = this.editor.getContribution("snippetController2");
+    const line = this.selectedText(1);
+    if (pattern.test(line)) {
+      this.editor.setSelection(
+        new window.monaco.Range(
+          this.editor.getPosition().lineNumber,
+          this.editor.getSelection().startColumn,
+          this.editor.getPosition().lineNumber,
+          line.length + 1
+        )
+      );
+      contribution.insert(`\${0:${pattern.exec(line)[2]}}`);
+    }
+  }
+
   action = {
     bold: () => this.actionWrapper(/^\*\*(.*)\*\*$/, '**', '**'),
     italic: () => this.actionWrapper(/^_(.*)_$/, '_', '_'),
     strikethrough: () => this.actionWrapper(/^~~(.*)~~$/, '~~', '~~'),
     codeInline: () => this.actionWrapper(/^`(.*)`$/, '`', '`'),
     // eslint-disable-next-line no-template-curly-in-string
-    codeBlock: () => this.actionWrapper(/^\n```\n(.*)\n```\n$/, '\n```${1:language}\n', '\n```\n', 1)
+    codeBlock: () => this.actionWrapper(/^\n```\n(.*)\n```\n$/, '\n```${1:language}\n', '\n```\n', 5, 1),
+    header1: () => {
+      this.preHeader();
+      this.actionWrapper(/^#\s(.*)$/, '# ', '', null, 1);
+    },
+    header2: () => {
+      this.preHeader();
+      this.actionWrapper(/^##\s(.*)$/, '## ', '', null, 1)
+    },
+    header3: () => {
+      this.preHeader();
+      this.actionWrapper(/^###\s(.*)$/, '### ', '', null, 1)
+    },
+    header4: () => {
+      this.preHeader();
+      this.actionWrapper(/^####\s(.*)$/, '#### ', '', null, 1)
+    },
   }
 
   render() {
@@ -198,22 +238,26 @@ export class MonacoEditor extends React.Component {
                     {
                       iconProps: { iconName: 'Header1' },
                       text: 'Header 1',
-                      key: '1'
+                      key: '1',
+                      onClick: this.action.header1
                     },
                     {
                       iconProps: { iconName: 'Header2' },
                       text: 'Header 2',
-                      key: '2'
+                      key: '2',
+                      onClick: this.action.header2
                     },
                     {
                       iconProps: { iconName: 'Header3' },
                       text: 'Header 3',
-                      key: '3'
+                      key: '3',
+                      onClick: this.action.header3
                     },
                     {
                       iconProps: { iconName: 'Header4' },
                       text: 'Header 4',
-                      key: '4'
+                      key: '4',
+                      onClick: this.action.header4
                     }
                   ]
                 }}
