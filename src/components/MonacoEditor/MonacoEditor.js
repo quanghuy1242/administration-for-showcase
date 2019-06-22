@@ -208,6 +208,14 @@ export class MonacoEditor extends React.Component {
       this.preHeader();
       this.actionWrapper(/^####\s(.*)$/, '#### ', '', null, 1)
     },
+    blockquotes: () => this.actionWrapper(/^>\s(.*)$/, '> ', '', null, 1),
+    bulletedList: () => this.actionWrapper(/^\*\s(.*)$/, '* ', '', null, 1),
+    numberedList: () => this.actionWrapper(/^1\.\s(.*)$/, '1. ', '', null, 1),
+    taskList: () => this.actionWrapper(/^-\s\[\s\]\s(.*)$/, '- [ ] ', '', null, 1),
+    // eslint-disable-next-line no-template-curly-in-string
+    link: () => this.actionWrapper(/^-\s\[\s\]\s(.*)$/, '[', '](${1:https://google.com})'),
+    // eslint-disable-next-line no-template-curly-in-string
+    image: () => this.actionWrapper(/^-\s\[\s\]\s(.*)$/, '![${2:Alt Text}](${1:https://google.com/logo.png} "', '")'),
   }
 
   render() {
@@ -284,24 +292,25 @@ export class MonacoEditor extends React.Component {
             <TooltipHost content="Blockquotes">
               <IconButton
                 iconProps={{ iconName: 'RightDoubleQuote' }}
+                onClick={this.action.blockquotes}
               />
             </TooltipHost>
             <TooltipHost content="Bulleted List">
               <IconButton
                 iconProps={{ iconName: 'BulletedList' }}
-                onClick={this.action.strikethrough}
+                onClick={this.action.bulletedList}
               />
             </TooltipHost>
             <TooltipHost content="Numbered List">
               <IconButton
                 iconProps={{ iconName: 'NumberedList' }}
-                onClick={this.action.strikethrough}
+                onClick={this.action.numberedList}
               />
             </TooltipHost>
             <TooltipHost content="Task List">
               <IconButton
                 iconProps={{ iconName: 'CheckList' }}
-                onClick={this.action.strikethrough}
+                onClick={this.action.taskList}
               />
             </TooltipHost>
             <TooltipHost content="Table">
@@ -367,11 +376,13 @@ export class MonacoEditor extends React.Component {
             <TooltipHost content="Link">
               <IconButton
                 iconProps={{ iconName: 'Link' }}
+                onClick={this.action.link}
               />
             </TooltipHost>
             <TooltipHost content="Image">
               <IconButton
                 iconProps={{ iconName: 'Photo2' }}
+                onClick={this.action.image}
               />
             </TooltipHost>
             <TooltipHost content="Video">
