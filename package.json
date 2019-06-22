@@ -3,12 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@uifabric/fluent-theme": "^0.16.10",
-    "axios": "^0.18.0",
-    "office-ui-fabric-react": "^6.186.1",
+    "@uifabric/fluent-theme": "^7.0.2",
+    "axios": "^0.18.1",
+    "office-ui-fabric-react": "^7.5.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-router-dom": "^5.0.0",
+    "react-router-dom": "^5.0.1",
     "react-scripts": "3.0.1"
   },
   "scripts": {
