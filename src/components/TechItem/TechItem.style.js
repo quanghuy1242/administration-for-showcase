@@ -30,13 +30,14 @@ export const getStyle = () => {
     moreButton: {
       position: 'absolute',
       right: 0,
+      backgroundColor: 'transparent',
       selectors: {
         ':hover': {
-          backgroundColor: 'none',
+          backgroundColor: 'transparent',
           color: 'black'
         },
         ':active': {
-          backgroundColor: 'none'
+          backgroundColor: 'transparent'
         }
       }
     }
