@@ -56,7 +56,13 @@ class NavSide extends React.Component {
 
   onRenderLink = (props) => {
     return (
-      <TooltipHost content={props.title} calloutProps={{ directionalHint: DirectionalHint.rightTopEdge }}>
+      <TooltipHost
+        content={props.title} 
+        calloutProps={{
+          directionalHint: DirectionalHint.rightTopEdge,
+          beakWidth: 10
+        }}
+      >
         <Link className={props.className} style={{color: 'inherit', boxSizing: 'border-box'}} to={props.href}>
           <span style={{display: 'flex'}}>
             { props.iconProps && <Icon style={{margin: '0 10px', fontSize: '20px'}} {...props.iconProps} /> }
