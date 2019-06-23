@@ -1,5 +1,5 @@
 import React from 'react';
-import { Stack, IconButton, css, Text, PrimaryButton, Image, ImageFit } from 'office-ui-fabric-react';
+import { Stack, Text, PrimaryButton, Image, ImageFit } from 'office-ui-fabric-react';
 import { getStyle } from './ProjectBasicInfo.style';
 import { AppContext } from '../../context/AppContext';
 
@@ -8,10 +8,6 @@ export class ProjectBasicInfo extends React.Component {
     const classNames = getStyle({ image: this.context.selectedProjectDetail.image });
     return (
       <Stack className={classNames.basicInfoWrapper}>
-        <IconButton
-          iconProps={{ iconName: "Edit" }}
-          className={css('iconButton')}
-        />
         <Text variant="xLarge" className={classNames.headerText}>Basic Infomation</Text>
         <Stack horizontal tokens={{ childrenGap: 20 }}>
           <Stack.Item>
