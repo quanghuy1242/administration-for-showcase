@@ -11,8 +11,8 @@ export class LandscapeHome extends React.Component {
       <Stack horizontal className={classNames.homeWrapper}>
         <Stack.Item className={classNames.leftPanel}>
           <Stack horizontalAlign="center" verticalAlign='center' className={classNames.leftPanelInner}>
-            <Text variant="superLarge">Administration</Text>
-            <Text variant="superLarge">for Project Showcase</Text>
+            <Text variant="superLarge" className={classNames.headerText}>Administration</Text>
+            <Text variant="superLarge" className={classNames.headerText}>for Project Showcase</Text>
             <Link className={classNames.button} to='/projects'>
               <PrimaryButton>Workspace</PrimaryButton>
             </Link>

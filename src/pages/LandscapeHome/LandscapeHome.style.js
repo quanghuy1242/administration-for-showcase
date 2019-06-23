@@ -19,6 +19,9 @@ export const getStyle = () => {
     },
     button: {
       marginTop: '1.5rem !important'
+    },
+    headerText: {
+      fontFamily: `'Fjalla One', sans-serif`
     }
   })
 }
