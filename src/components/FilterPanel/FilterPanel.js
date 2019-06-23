@@ -1,25 +1,14 @@
 import React from 'react';
 import { getStyle } from './FilterPanel.style';
-import { Stack, SearchBox, PrimaryButton, Dropdown } from 'office-ui-fabric-react';
+import { Stack, SearchBox, PrimaryButton } from 'office-ui-fabric-react';
 import { TechDetail } from '../TechDetail/TechDetail';
 
 export class FilterPanel extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isPanelOpen: false,
-      selectedFilterItem: undefined,
-      dropdownItem: [
-        { key: 'projectOpt', text: 'Project' },
-        { key: 'technolOpt', text: 'Technology' }
-      ]
+      isPanelOpen: false
     };
-  }
-
-  componentDidMount() {
-    this.setState({
-      selectedFilterItem: this.state.dropdownItem[0]
-    });
   }
 
   handleShowPanel = () => {
@@ -30,22 +19,10 @@ export class FilterPanel extends React.Component {
     this.setState({ isPanelOpen: false })
   }
 
-  handleFilterChange = (event, item) => {
-    this.setState({
-      selectedFilterItem: item
-    })
-  }
-
   render() {
     const classNames = getStyle();
     return (
       <Stack horizontal className={classNames.filterSession}>
-        <Dropdown
-          selectedKey={this.state.selectedFilterItem ? this.state.selectedFilterItem.key : undefined}
-          options={this.state.dropdownItem}
-          onChange={this.handleFilterChange}
-          className={classNames.comboxFilter}
-        />
         <Stack.Item grow disableShrink>
           <SearchBox
             placeholder="Filter..."

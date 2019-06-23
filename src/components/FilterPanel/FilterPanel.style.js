@@ -8,9 +8,5 @@ export const getStyle = () => {
     newButton: {
       margin: '0 0.5rem'
     },
-    comboxFilter: {
-      width: 90,
-      marginRight: '0.5rem'
-    }
   })
 }
