@@ -17,7 +17,8 @@ export class ProjectInfomation extends React.Component {
                 <TextField label="Project's name" />
                 <DatePicker firstDayOfWeek={DayOfWeek.Sunday} label="Date created" />
                 <TextField label="Project's website" />
-                <ComboBox label="Technology" />
+                <TextField label="Repository" />
+                <ComboBox allowFreeform={true} label="Technology" />
                 <TextField multiline={true} label="Bref Description" resizable={false} />
               </Stack>
             </Stack.Item>
