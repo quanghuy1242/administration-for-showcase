@@ -7,6 +7,9 @@ export const getStyle = () => {
       // margin: '0.5rem'
       height: '100%'
     },
+    projectDetailInner: {
+      position: 'relative'
+    },
     tabPivot: {
       height: '100%',
       width: 'calc(100vw - 468px)',
@@ -28,6 +31,12 @@ export const getStyle = () => {
           }
         }
       }
+    },
+    buttonSave: {
+      position: 'absolute',
+      top: 8,
+      right: 8,
+      zIndex: 555
     }
   })
 }
