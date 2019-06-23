@@ -1,13 +1,16 @@
 import React from 'react';
 import { RouteContainer } from './components/RouteContainer/RouteContainer';
 import { MainApp } from './components/MainApp/MainApp';
+import { Fabric } from 'office-ui-fabric-react';
 
 class App extends React.Component {
   render() {
     return (
-      <MainApp>
-        <RouteContainer />
-      </MainApp>
+      <Fabric>
+        <MainApp>
+          <RouteContainer />
+        </MainApp>
+      </Fabric>
     );
   }
 }
