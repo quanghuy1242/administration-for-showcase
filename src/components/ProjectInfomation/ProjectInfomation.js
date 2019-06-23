@@ -1,8 +1,29 @@
 import React from 'react';
 import { getStyle } from './ProjectInfomation.style';
-import { Stack, TextField, ComboBox, DatePicker, DayOfWeek, Text } from 'office-ui-fabric-react';
+import { Stack, TextField, ComboBox, DatePicker, DayOfWeek, Text, Separator, Image, Icon } from 'office-ui-fabric-react';
 
 export class ProjectInfomation extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      scrItemWidth: 0,
+      scrItemHeight: 0,
+    }
+  }
+
+  componentDidMount() {
+    const cfg = {
+      padding: 8,
+      gap: 10,
+      itemLength: 6
+    }
+    const itemWidth = (this.screenshotWrapper.clientWidth - 2 * cfg.padding - 5 * cfg.gap) / cfg.itemLength;
+    this.setState({
+      scrItemWidth: Math.floor(itemWidth),
+      scrItemHeight: Math.floor(itemWidth * 9 / 16)
+    });
+  }
+
   render() {
     const classNames = getStyle();
     return (
@@ -26,6 +47,43 @@ export class ProjectInfomation extends React.Component {
               <Stack className={classNames.rightWrapper}>
                 <div className={classNames.imgPreview}></div>
               </Stack>
+            </Stack.Item>
+          </Stack>
+        </Stack.Item>
+        <Separator />
+        <Stack.Item>
+          <Text variant="xxLarge">Screenshots</Text>
+        </Stack.Item>
+        <Stack.Item>
+          <Stack>
+            <Stack.Item grow>
+              <div ref={screenshotWrapper => this.screenshotWrapper = screenshotWrapper}>
+                <Stack horizontalAlign="center" tokens={{ childrenGap: 10 }}>
+                  <Image
+                    src="https://via.placeholder.com/1920x1080"
+                    alt="Primary Image"
+                    width={500}
+                  />
+                  <TextField placeholder="Image Url" style={{ width: 500 }} />
+                  <Stack horizontal tokens={{ childrenGap: 10 }}>
+                    {[...Array(6)].map((v, i) => (
+                      <Stack
+                        style={{
+                          width: this.state.scrItemWidth,
+                          height: this.state.scrItemHeight,
+                          border: '1px solid rgba(0, 0, 0, 0.35)',
+                          borderRadius: 2
+                        }}
+                        key={i}
+                        horizontalAlign="center"
+                        verticalAlign="center"
+                      >
+                        <Icon iconName="Add" />
+                      </Stack>
+                    ))}
+                  </Stack>
+                </Stack>
+              </div>
             </Stack.Item>
           </Stack>
         </Stack.Item>

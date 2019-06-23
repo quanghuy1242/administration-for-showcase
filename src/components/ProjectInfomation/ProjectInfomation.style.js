@@ -7,7 +7,7 @@ export const getStyle = () => {
       boxShadow: Depths.depth8,
       margin: '1rem',
       padding: '0.5rem',
-      minHeight: 'calc(100vh - 98px - 32px)',
+      height: 'calc(100vh - 98px - 32px)',
       overflowY: 'auto'
     },
     leftWrapper: {
