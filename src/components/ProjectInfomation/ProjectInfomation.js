@@ -1,6 +1,7 @@
 import React from 'react';
 import { getStyle } from './ProjectInfomation.style';
-import { Stack, TextField, ComboBox, DatePicker, DayOfWeek, Text, Separator, Image, Icon } from 'office-ui-fabric-react';
+import { Stack, TextField, ComboBox, DatePicker, DayOfWeek, Text, Separator, Image, Icon, IconButton } from 'office-ui-fabric-react';
+import { AppContext } from '../../context/AppContext';
 
 export class ProjectInfomation extends React.Component {
   constructor(props) {
@@ -25,7 +26,7 @@ export class ProjectInfomation extends React.Component {
   }
 
   render() {
-    const classNames = getStyle();
+    const classNames = getStyle({ image: this.context.selectedProjectDetail.image });
     return (
       <Stack className={classNames.wrapper}>
         <Stack.Item>
@@ -35,17 +36,31 @@ export class ProjectInfomation extends React.Component {
           <Stack horizontal tokens={{ childrenGap: 40 }}>
             <Stack.Item grow disableShrink>
               <Stack className={classNames.leftWrapper}>
-                <TextField label="Project's name" />
-                <DatePicker firstDayOfWeek={DayOfWeek.Sunday} label="Date created" />
-                <TextField label="Project's website" />
+                <TextField label="Project's name" value={this.context.selectedProjectDetail.name} />
+                <DatePicker
+                  firstDayOfWeek={DayOfWeek.Sunday}
+                  label="Date created"
+                  value={new Date(this.context.selectedProjectDetail.date) || ''}
+                />
+                <TextField label="Project's website" value={this.context.selectedProjectDetail.url} />
                 <TextField label="Repository" />
                 <ComboBox allowFreeform={true} label="Technology" />
-                <TextField multiline={true} label="Bref Description" resizable={false} />
+                <TextField
+                  multiline={true}
+                  label="Bref Description"
+                  resizable={false}
+                  value={this.context.selectedProjectDetail.description}
+                />
               </Stack>
             </Stack.Item>
             <Stack.Item>
               <Stack className={classNames.rightWrapper}>
-                <div className={classNames.imgPreview}></div>
+                <div className={classNames.imgPreview}>
+                  <IconButton
+                    iconProps={{ iconName: 'Edit' }}
+                    className={classNames.editImage}
+                  />
+                </div>
               </Stack>
             </Stack.Item>
           </Stack>
@@ -91,3 +106,5 @@ export class ProjectInfomation extends React.Component {
     );
   }
 }
+
+ProjectInfomation.contextType = AppContext;
