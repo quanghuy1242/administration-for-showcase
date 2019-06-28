@@ -1,8 +1,10 @@
 import React from 'react';
 import { Stack, TextField, PrimaryButton, Text } from 'office-ui-fabric-react';
 import { getStyle } from './Login.style';
+import { AuthApi } from '../../api/auth.api';
+import { withRouter } from 'react-router-dom';
 
-export class Login extends React.Component {
+class Login extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -47,9 +49,17 @@ export class Login extends React.Component {
     }
   }
 
-  handleSubmitForm = () => {
-    if (!this.hasError()) {
-      alert('Đăng nhập thành công');
+  handleSubmitForm = async () => {
+    if (this.hasError()) { return; }
+    const checkLogin = await AuthApi.login({
+      username: this.state.username,
+      password: this.state.password
+    });
+    if (!checkLogin) {
+      alert('Đăng nhập không thành công');
+    } else {
+      alert('Đăng nhập thành công!');
+      this.props.history.push('/');
     }
   }
 
@@ -91,3 +101,5 @@ export class Login extends React.Component {
     );
   }
 }
+
+export default withRouter(Login);

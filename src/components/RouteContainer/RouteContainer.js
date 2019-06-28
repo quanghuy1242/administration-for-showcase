@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { Dashboard } from '../../pages/Dashboard/Dashboard';
-import { Login } from '../../pages/Login/Login';
+import Login from '../../pages/Login/Login';
 import { LandscapeHome } from '../../pages/LandscapeHome/LandscapeHome';
 import { PrivateRoute } from '../PrivateRoute/PrivateRoute';
 
