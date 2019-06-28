@@ -2,6 +2,7 @@ import React from 'react';
 import { AppContext } from './AppContext';
 import { CategoryAPI } from '../api/categories.api';
 import { ProjectAPI } from '../api/projects.api';
+import { AuthApi } from '../api/auth.api';
 
 export class AppContextProvider extends React.Component {
   constructor(props) {
@@ -22,9 +23,11 @@ export class AppContextProvider extends React.Component {
   }
 
   async componentDidMount() {
-    await this.getTechnologies();
-    await this.getProjectsOfSelectedTech(this.state.selectedTechId);
-    await this.getSelectedProjectDetail(this.state.selectedProjectId);
+    if (AuthApi.isAuthenticated()) {
+      await this.getTechnologies();
+      await this.getProjectsOfSelectedTech(this.state.selectedTechId);
+      await this.getSelectedProjectDetail(this.state.selectedProjectId);
+    }
   }
 
   getTechnologies = async () => {
