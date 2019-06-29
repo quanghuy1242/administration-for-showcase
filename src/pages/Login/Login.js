@@ -13,13 +13,15 @@ class Login extends React.Component {
       password: '',
       hasUsernameErr: true,
       hasPasswordErr: true,
+      isLoading: true
     };
   }
 
-  async componentDidMount() {
+  async componentWillMount() {
     if (await AuthApi.isAuthenticated(false)) {
       this.props.history.push('/');
     }
+    this.setState({ isLoading: false })
   }
 
   handleUsernameError = (value) => {
@@ -75,36 +77,40 @@ class Login extends React.Component {
     const classNames = getStyle();
     return (
       <div className={classNames.loginWrapperOuter}>
-        <Stack className={classNames.loginWrapper}>
-          <Stack horizontalAlign='center'>
-            <Text variant="superLarge">Login</Text>
-          </Stack>
-          <Stack.Item grow disableShrink>
-            <Stack verticalAlign="center" style={{ height: '100%' }}>
-              <TextField
-                label="Username"
-                onGetErrorMessage={this.handleUsernameError}
-                value={this.state.username}
-                onChange={this.handleUsernameChanged}
-              />
-              <TextField
-                type="password"
-                label="Password"
-                onGetErrorMessage={this.handlePasswordError}
-                value={this.state.password}
-                onChange={this.handlePasswordChanged}
-              />
-            </Stack>
-          </Stack.Item>
-          <Stack horizontalAlign='end' className={classNames.loginAction}>
-            <PrimaryButton
-              onClick={this.handleSubmitForm}
-              disabled={this.state.hasUsernameErr || this.state.hasPasswordErr}
-            >
-              Login
-            </PrimaryButton>
-          </Stack>
-        </Stack>
+        {this.state.isLoading
+          ? <></>
+          : (
+              <Stack className={classNames.loginWrapper}>
+                <Stack horizontalAlign='center'>
+                  <Text variant="superLarge">Login</Text>
+                </Stack>
+                <Stack.Item grow disableShrink>
+                  <Stack verticalAlign="center" style={{ height: '100%' }}>
+                    <TextField
+                      label="Username"
+                      onGetErrorMessage={this.handleUsernameError}
+                      value={this.state.username}
+                      onChange={this.handleUsernameChanged}
+                    />
+                    <TextField
+                      type="password"
+                      label="Password"
+                      onGetErrorMessage={this.handlePasswordError}
+                      value={this.state.password}
+                      onChange={this.handlePasswordChanged}
+                    />
+                  </Stack>
+                </Stack.Item>
+                <Stack horizontalAlign='end' className={classNames.loginAction}>
+                  <PrimaryButton
+                    onClick={this.handleSubmitForm}
+                    disabled={this.state.hasUsernameErr || this.state.hasPasswordErr}
+                  >
+                    Login
+                  </PrimaryButton>
+                </Stack>
+              </Stack>
+          )}
       </div>
     );
   }
