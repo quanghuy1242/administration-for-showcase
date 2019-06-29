@@ -3,6 +3,7 @@ import { Stack, TextField, PrimaryButton, Text } from 'office-ui-fabric-react';
 import { getStyle } from './Login.style';
 import { AuthApi } from '../../api/auth.api';
 import { withRouter } from 'react-router-dom';
+import { AppContext } from '../../context/AppContext';
 
 class Login extends React.Component {
   constructor(props) {
@@ -13,6 +14,12 @@ class Login extends React.Component {
       hasUsernameErr: true,
       hasPasswordErr: true,
     };
+  }
+
+  async componentDidMount() {
+    if (await AuthApi.isAuthenticated(false)) {
+      this.props.history.push('/');
+    }
   }
 
   handleUsernameError = (value) => {
@@ -59,6 +66,7 @@ class Login extends React.Component {
       alert('Đăng nhập không thành công');
     } else {
       alert('Đăng nhập thành công!');
+      await this.context.getUserLoginInformation(); // Gọi lại hàm để lấy thông tin đăng nhập
       this.props.history.push('/');
     }
   }
@@ -101,5 +109,6 @@ class Login extends React.Component {
     );
   }
 }
+Login.contextType = AppContext;
 
 export default withRouter(Login);
