@@ -2,8 +2,21 @@ import React from 'react';
 import { Stack, Text, IconButton, css } from 'office-ui-fabric-react';
 import { getStyle } from './NavTop.style';
 import { NavLink } from '../NavLink/NavLink';
+import { AuthApi } from '../../api/auth.api';
+import { withRouter } from 'react-router-dom';
+import { AppContext } from '../../context/AppContext';
 
-export class NavTop extends React.Component {
+class NavTopClass extends React.Component {
+  handleLogout = async () => {
+    const check = await AuthApi.logout();
+    if (check) {
+      this.context.handleClearUserLoginInfo();
+      this.props.history.push('/login');
+    } else {
+      alert('Có lỗi khi logout.');
+    }
+  }
+
   render() {
     const classNames = getStyle();
     return (
@@ -27,11 +40,11 @@ export class NavTop extends React.Component {
             <Text variant="Large" className={classNames.NavTopText} style={{ marginRight: '0.5rem' }}>
               Quang Huy
             </Text>
-            <NavLink href="/" className={classNames.higherIndex}>
+            <div className={css(classNames.higherIndex, classNames.btnLogout)} onClick={this.handleLogout}>
               <Text variant="Large" className={classNames.NavTopText}>
                 Logout
               </Text>
-            </NavLink>
+            </div>
           </Stack>
         </Stack.Item>
         <Stack
@@ -45,3 +58,6 @@ export class NavTop extends React.Component {
     );
   }
 }
+NavTopClass.contextType = AppContext;
+
+export const NavTop = withRouter(NavTopClass);
