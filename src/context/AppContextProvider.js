@@ -18,12 +18,14 @@ export class AppContextProvider extends React.Component {
       },
       isProjectLoaded: false,
       isTechLoaded: false,
-      isProjectDetailLoaded: false
+      isProjectDetailLoaded: false,
+      userLoginInformation: undefined,
+      isUserLoginLoaded: false
     };
   }
 
   async componentDidMount() {
-    if (AuthApi.isAuthenticated()) {
+    if (this.getUserLoginInformation()) {
       await this.getTechnologies();
       await this.getProjectsOfSelectedTech(this.state.selectedTechId);
       await this.getSelectedProjectDetail(this.state.selectedProjectId);
@@ -54,6 +56,18 @@ export class AppContextProvider extends React.Component {
     this.handleToggleProjectDetailLoaded();
   }
 
+  getUserLoginInformation = async () => {
+    const isAuthenticated = await AuthApi.isAuthenticated();
+    this.setState({ isUserLoginLoaded: true });
+    if (isAuthenticated) {
+      this.setState({ userLoginInformation: isAuthenticated });
+      return true;
+    } else {
+      this.setState({ userLoginInformation: null });
+      return false;
+    }
+  }
+
   onSelectedProjectChanged = (id) => {
     this.setState({ selectedProjectId: id });
   }
@@ -74,11 +88,21 @@ export class AppContextProvider extends React.Component {
     this.setState({ isProjectDetailLoaded: !this.state.isProjectDetailLoaded });
   }
 
+  handleToggleUserLoginInforLoaded = () => {
+    this.setState({ isUserLoginLoaded: !this.state.isUserLoginLoaded });
+  }
+
+  handleClearUserLoginInfo = () => {
+    this.setState({ userLoginInformation: null });
+  }
+
   render() {
     const value = {
       ...this.state,
       onSelectedTechChanged: this.onSelectedTechChanged,
-      onSelectedProjectChanged: this.onSelectedProjectChanged
+      onSelectedProjectChanged: this.onSelectedProjectChanged,
+      getUserLoginInformation: this.getUserLoginInformation,
+      handleClearUserLoginInfo: this.handleClearUserLoginInfo
     }
     return (
       <AppContext.Provider value={value}>
