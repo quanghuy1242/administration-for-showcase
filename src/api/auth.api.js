@@ -1,10 +1,10 @@
 import api from './api';
 
 export class AuthApi {
-  static async isAuthenticated() {
+  static async isAuthenticated(fullDetail = true) {
     try {
-      await api.post('/auth/isAuthenticated');
-      return true;
+      const res = await api.post('/auth/isAuthenticated', { fullDetail: true });
+      return res.data;
     } catch (error) {
       return false;
     }
@@ -16,6 +16,15 @@ export class AuthApi {
         username: username,
         password: password
       })
+      return true;
+    } catch (error) {
+      return false;
+    }
+  }
+
+  static async logout() {
+    try {
+      await api.post('/auth/logout');
       return true;
     } catch (error) {
       return false;
