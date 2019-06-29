@@ -42,6 +42,10 @@ export const getStyle = () => {
           zIndex: 555
         }
       }
+    },
+    btnLogout: {
+      userSelect: 'none',
+      cursor: 'pointer'
     }
   })
 }
