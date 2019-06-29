@@ -1,24 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { Redirect, Route } from 'react-router-dom';
-import { AuthApi } from '../../api/auth.api';
+import { AppContext } from '../../context/AppContext';
 
 export const PrivateRoute = ({ component: Component, ...rest }) => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
-  
-  useEffect(() => {
-    setIsLoading(true);
-    async function fetchData() {
-      const isAuthenticated = await AuthApi.isAuthenticated();
-      if (isAuthenticated) { setIsAuthenticated(true) }
-      else setIsAuthenticated(false);
-      setIsLoading(false);
-    }
-    fetchData();
-  }, []);
-
+  const context = useContext(AppContext);
   return (
-    isLoading
+    !context.isUserLoginLoaded
       ? (
         <div style={{
           position: 'absolute',
@@ -40,7 +27,7 @@ export const PrivateRoute = ({ component: Component, ...rest }) => {
         <Route
           {...rest}
           render={props => 
-            isAuthenticated ? (
+            context.userLoginInformation !== null ? (
               <Component {...props} />
             ) : (
               <Redirect
