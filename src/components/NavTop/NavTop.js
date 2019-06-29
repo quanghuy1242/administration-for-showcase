@@ -38,7 +38,7 @@ class NavTopClass extends React.Component {
             horizontal
           >
             <Text variant="Large" className={classNames.NavTopText} style={{ marginRight: '0.5rem' }}>
-              Quang Huy
+              {this.context.userLoginInformation ? this.context.userLoginInformation.displayName : ''}
             </Text>
             <div className={css(classNames.higherIndex, classNames.btnLogout)} onClick={this.handleLogout}>
               <Text variant="Large" className={classNames.NavTopText}>
