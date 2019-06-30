@@ -13,7 +13,8 @@ class Login extends React.Component {
       password: '',
       hasUsernameErr: true,
       hasPasswordErr: true,
-      isLoading: true
+      isLoading: true,
+      isSubmitting: false
     };
   }
 
@@ -59,6 +60,7 @@ class Login extends React.Component {
   }
 
   handleSubmitForm = async () => {
+    this.setState({ isSubmitting: true });
     if (this.hasError()) { return; }
     const checkLogin = await AuthApi.login({
       username: this.state.username,
@@ -71,6 +73,11 @@ class Login extends React.Component {
       await this.context.getUserLoginInformation(); // Gọi lại hàm để lấy thông tin đăng nhập
       this.props.history.push('/');
     }
+    this.setState({ isSubmitting: false });
+  }
+
+  handleDisableLoginButton = () => {
+    return this.state.hasUsernameErr || this.state.hasPasswordErr || this.state.isSubmitting;
   }
 
   render() {
@@ -104,7 +111,7 @@ class Login extends React.Component {
                 <Stack horizontalAlign='end' className={classNames.loginAction}>
                   <PrimaryButton
                     onClick={this.handleSubmitForm}
-                    disabled={this.state.hasUsernameErr || this.state.hasPasswordErr}
+                    disabled={this.handleDisableLoginButton()}
                   >
                     Login
                   </PrimaryButton>
