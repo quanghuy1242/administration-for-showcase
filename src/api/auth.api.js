@@ -30,4 +30,12 @@ export class AuthApi {
       return false;
     }
   }
+
+  static refreshToken() {
+    try {
+      await api.post('/auth/refresh_token');
+    } catch (error) {
+      console.error(error);
+    }
+  }
 }
