@@ -31,7 +31,7 @@ export class AuthApi {
     }
   }
 
-  static refreshToken() {
+  static async refreshToken() {
     try {
       await api.post('/auth/refresh_token');
     } catch (error) {
