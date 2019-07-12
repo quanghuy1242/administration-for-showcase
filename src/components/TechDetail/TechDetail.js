@@ -44,7 +44,6 @@ export class TechDetail extends React.Component {
   }
   
   handleSaveTech = (tech) => {
-    tech.date = new Date();
     this.props.onAddEditTech(tech);
     this.props.onClosing();
   }
