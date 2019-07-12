@@ -1,6 +1,7 @@
 import React from 'react';
 import { Panel, PanelType, TextField, PrimaryButton, DefaultButton, Image } from 'office-ui-fabric-react';
 import { getStyle } from './TechDetail.style';
+import { AppContext } from '../../context/AppContext';
 
 export class TechDetail extends React.Component {
   constructor(props) {
@@ -10,14 +11,14 @@ export class TechDetail extends React.Component {
         nameId: '',
         name: '',
         description: '',
-        imageUrl: ''
+        image: ''
       },
     };
   }
 
   handleIdChanged = (event) => {
     this.setState(state => {
-      state.tech.id = event.target.value;
+      state.tech.nameId = event.target.value;
       return state;
     })
   }
@@ -38,14 +39,15 @@ export class TechDetail extends React.Component {
 
   handleImageUrlChanged = event => {
     this.setState(state => {
-      state.tech.imageUrl = event.target.value;
+      state.tech.image = event.target.value;
       return state;
     })
   }
   
-  handleSaveTech = (tech) => {
-    this.props.onAddEditTech(tech);
-    this.props.onClosing();
+  handleSaveTech = async (tech) => {
+    if (await this.context.handleAddNewTech(tech)) {
+      this.props.onClosing();
+    }
   }
   
   handleRenderFooterContent = () => {
@@ -75,14 +77,14 @@ export class TechDetail extends React.Component {
         onRenderFooterContent={this.handleRenderFooterContent}
       >
         <Image
-          src={this.state.tech.imageUrl}
+          src={this.state.tech.image}
           alt="Image Preview"
           width="100%"
           className={classNames.imagePreview}
         />
         <TextField
           label="Identify Name"
-          value={this.state.tech.id}
+          value={this.state.tech.nameId}
           onChange={this.handleIdChanged}
         />
         <TextField
@@ -98,10 +100,12 @@ export class TechDetail extends React.Component {
         />
         <TextField
           label="Image URL"
-          value={this.state.tech.imageUrl}
+          value={this.state.tech.image}
           onChange={this.handleImageUrlChanged}
         />
       </Panel>
     );
   }
 }
+
+TechDetail.contextType = AppContext;

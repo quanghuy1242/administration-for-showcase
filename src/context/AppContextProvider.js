@@ -45,12 +45,16 @@ export class AppContextProvider extends React.Component {
     const techDetail = await CategoryAPI.getCategory(nameId);
     this.setState({
       projects: techDetail.projects,
-      selectedProjectId: techDetail.projects[0]._id
+      selectedProjectId: techDetail.projects[0] ? techDetail.projects[0]._id : null
     });
     this.handleToggleProjectLoaded();
   }
 
   getSelectedProjectDetail = async (id) => {
+    if (!id) {
+      this.handleToggleProjectDetailLoaded();
+      return;
+    }
     const project = await ProjectAPI.getProject(id);
     this.setState({ selectedProjectDetail: project });
     this.handleToggleProjectDetailLoaded();
