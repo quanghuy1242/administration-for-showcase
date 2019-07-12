@@ -3,7 +3,7 @@ import api from './api';
 export class AuthApi {
   static async isAuthenticated(fullDetail = true) {
     try {
-      const res = await api.post('/auth/isAuthenticated', { fullDetail: true });
+      const res = await api.post('/auth/isAuthenticated', { fullDetail: fullDetail });
       return res.data;
     } catch (error) {
       return false;
