@@ -96,13 +96,23 @@ export class AppContextProvider extends React.Component {
     this.setState({ userLoginInformation: null });
   }
 
+  handleAddNewTech = async tech => {
+    if (await CategoryAPI.addNewTech(tech)) {
+      const techs = await CategoryAPI.getCategories();
+      this.setState({ techs: techs });
+      return true;
+    }
+    return false;
+  }
+
   render() {
     const value = {
       ...this.state,
       onSelectedTechChanged: this.onSelectedTechChanged,
       onSelectedProjectChanged: this.onSelectedProjectChanged,
       getUserLoginInformation: this.getUserLoginInformation,
-      handleClearUserLoginInfo: this.handleClearUserLoginInfo
+      handleClearUserLoginInfo: this.handleClearUserLoginInfo,
+      handleAddNewTech: this.handleAddNewTech
     }
     return (
       <AppContext.Provider value={value}>
