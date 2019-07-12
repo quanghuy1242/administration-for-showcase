@@ -1,5 +1,5 @@
 import React from 'react';
-import { Stack, Pivot, PivotItem, PivotLinkFormat, Spinner, SpinnerSize, PrimaryButton } from 'office-ui-fabric-react';
+import { Stack, Pivot, PivotItem, PivotLinkFormat, Spinner, SpinnerSize, PrimaryButton, Text } from 'office-ui-fabric-react';
 import { getStyle } from './ProjectDetail.style';
 import { ProjectBasicInfo } from '../ProjectBasicInfo/ProjectBasicInfo';
 import { ProjectScreenshots } from '../ProjectScreenshots/ProjectScreenshots';
@@ -14,38 +14,54 @@ export class ProjectDetail extends React.Component {
       <Stack className={classNames.projectDetailWrapper}>
         {!this.context.isProjectDetailLoaded
           ? <Spinner size={SpinnerSize.large} style={{ height: 'calc(100vh - 50px)' }} />
-          : (
-              <div className={classNames.projectDetailInner}>
+          : !this.context.selectedProjectId
+            ? (
+              <Stack 
+                horizontalAlign="center" 
+                verticalAlign="center" 
+                style={{ height: '100%' }} 
+                tokens={{ childrenGap: 10 }}
+              >
+                <Text variant="large">
+                  Chưa có project nào, hãy thêm vào một project
+                </Text>
                 <PrimaryButton
-                  text="Save"
-                  className={classNames.buttonSave}
+                  text="New Project"
                 />
-                <Pivot linkFormat={PivotLinkFormat.links} className={classNames.tabPivot}>
-                  <PivotItem headerText="Overview">
-                    <ProjectBasicInfo />
-                    <ProjectScreenshots />
-                  </PivotItem>
-                  <PivotItem headerText="General">
-                    <ProjectInfomation />
-                  </PivotItem>
-                  <PivotItem headerText="Description">
-                    <Stack>
-                      <ProjectDescription />
-                    </Stack>
-                  </PivotItem>
-                  <PivotItem headerText="Features">
-                    <Stack>
-                      <ProjectDescription />
-                    </Stack>
-                  </PivotItem>
-                  <PivotItem headerText="Changelog">
-                    <Stack>
-                      <ProjectDescription />
-                    </Stack>
-                  </PivotItem>
-                </Pivot>
-              </div>
-            )}
+              </Stack>
+            )
+            : (
+                <div className={classNames.projectDetailInner}>
+                  <PrimaryButton
+                    text="Save"
+                    className={classNames.buttonSave}
+                  />
+                  <Pivot linkFormat={PivotLinkFormat.links} className={classNames.tabPivot}>
+                    <PivotItem headerText="Overview">
+                      <ProjectBasicInfo />
+                      <ProjectScreenshots />
+                    </PivotItem>
+                    <PivotItem headerText="General">
+                      <ProjectInfomation />
+                    </PivotItem>
+                    <PivotItem headerText="Description">
+                      <Stack>
+                        <ProjectDescription />
+                      </Stack>
+                    </PivotItem>
+                    <PivotItem headerText="Features">
+                      <Stack>
+                        <ProjectDescription />
+                      </Stack>
+                    </PivotItem>
+                    <PivotItem headerText="Changelog">
+                      <Stack>
+                        <ProjectDescription />
+                      </Stack>
+                    </PivotItem>
+                  </Pivot>
+                </div>
+              )}
       </Stack>
     );
   }

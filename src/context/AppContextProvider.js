@@ -32,28 +32,47 @@ export class AppContextProvider extends React.Component {
     }
   }
 
+  async shouldComponentUpdate(nextProps, nextState) {
+    console.log(nextState.selectedTechId, this.state.selectedTechId);
+    if (nextState.selectedTechId !== this.state.selectedTechId) {
+      if (this.getUserLoginInformation()) {
+        await this.getProjectsOfSelectedTech(nextState.selectedTechId);
+        await this.getSelectedProjectDetail(this.state.selectedProjectId);
+      }
+    }
+    return true;
+  }
+
   getTechnologies = async () => {
+    this.handleToggleTechLoaded(false);
     const techs = await CategoryAPI.getCategories();
     this.setState({
       techs: techs,
       selectedTechId: techs[0].nameId
     });
-    this.handleToggleTechLoaded();
+    this.handleToggleTechLoaded(true);
   };
 
   getProjectsOfSelectedTech = async (nameId) => {
+    this.handleToggleProjectLoaded(false);
     const techDetail = await CategoryAPI.getCategory(nameId);
     this.setState({
       projects: techDetail.projects,
-      selectedProjectId: techDetail.projects[0]._id
+      selectedProjectId: techDetail.projects[0] ? techDetail.projects[0]._id : null
     });
-    this.handleToggleProjectLoaded();
+    this.handleToggleProjectLoaded(true);
   }
 
   getSelectedProjectDetail = async (id) => {
+    this.handleToggleProjectDetailLoaded(true);
+    if (!id) {
+      this.setState({ selectedProjectDetail: { technology: {}, screenshots: [] } });
+      this.handleToggleProjectDetailLoaded(true);
+      return;
+    }
     const project = await ProjectAPI.getProject(id);
     this.setState({ selectedProjectDetail: project });
-    this.handleToggleProjectDetailLoaded();
+    this.handleToggleProjectDetailLoaded(true);
   }
 
   getUserLoginInformation = async () => {
@@ -76,24 +95,33 @@ export class AppContextProvider extends React.Component {
     this.setState({ selectedTechId: id });
   }
 
-  handleToggleProjectLoaded = () => {
-    this.setState({ isProjectLoaded: !this.state.isProjectLoaded });
+  handleToggleProjectLoaded = (isDone) => {
+    this.setState({ isProjectLoaded: isDone });
   }
 
-  handleToggleTechLoaded = () => {
-    this.setState({ isTechLoaded: !this.state.isTechLoaded });
+  handleToggleTechLoaded = (isDone) => {
+    this.setState({ isTechLoaded: isDone });
   }
 
-  handleToggleProjectDetailLoaded = () => {
-    this.setState({ isProjectDetailLoaded: !this.state.isProjectDetailLoaded });
+  handleToggleProjectDetailLoaded = (isDone) => {
+    this.setState({ isProjectDetailLoaded: isDone });
   }
 
-  handleToggleUserLoginInforLoaded = () => {
-    this.setState({ isUserLoginLoaded: !this.state.isUserLoginLoaded });
+  handleToggleUserLoginInforLoaded = (isDone) => {
+    this.setState({ isUserLoginLoaded: isDone });
   }
 
   handleClearUserLoginInfo = () => {
     this.setState({ userLoginInformation: null });
+  }
+
+  handleAddNewTech = async tech => {
+    if (await CategoryAPI.addNewTech(tech)) {
+      const techs = await CategoryAPI.getCategories();
+      this.setState({ techs: techs });
+      return true;
+    }
+    return false;
   }
 
   render() {
@@ -102,7 +130,8 @@ export class AppContextProvider extends React.Component {
       onSelectedTechChanged: this.onSelectedTechChanged,
       onSelectedProjectChanged: this.onSelectedProjectChanged,
       getUserLoginInformation: this.getUserLoginInformation,
-      handleClearUserLoginInfo: this.handleClearUserLoginInfo
+      handleClearUserLoginInfo: this.handleClearUserLoginInfo,
+      handleAddNewTech: this.handleAddNewTech
     }
     return (
       <AppContext.Provider value={value}>

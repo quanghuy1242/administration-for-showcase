@@ -1,21 +1,24 @@
 import React from 'react';
-import { Panel, PanelType, TextField, PrimaryButton, DefaultButton } from 'office-ui-fabric-react';
+import { Panel, PanelType, TextField, PrimaryButton, DefaultButton, Image } from 'office-ui-fabric-react';
+import { getStyle } from './TechDetail.style';
+import { AppContext } from '../../context/AppContext';
 
 export class TechDetail extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       tech: {
-        id: '',
+        nameId: '',
         name: '',
-        date: null
+        description: '',
+        image: ''
       },
     };
   }
 
   handleIdChanged = (event) => {
     this.setState(state => {
-      state.tech.id = event.target.value;
+      state.tech.nameId = event.target.value;
       return state;
     })
   }
@@ -26,11 +29,25 @@ export class TechDetail extends React.Component {
       return state;
     })
   }
+
+  handleDesChanged = event => {
+    this.setState(state => {
+      state.tech.description = event.target.value;
+      return state;
+    })
+  }
+
+  handleImageUrlChanged = event => {
+    this.setState(state => {
+      state.tech.image = event.target.value;
+      return state;
+    })
+  }
   
-  handleSaveTech = (tech) => {
-    tech.date = new Date();
-    this.props.onAddEditTech(tech);
-    this.props.onClosing();
+  handleSaveTech = async (tech) => {
+    if (await this.context.handleAddNewTech(tech)) {
+      this.props.onClosing();
+    }
   }
   
   handleRenderFooterContent = () => {
@@ -50,6 +67,7 @@ export class TechDetail extends React.Component {
   };
 
   render() {
+    const classNames = getStyle();
     return (
       <Panel
         isOpen={this.props.isOpen}
@@ -58,9 +76,15 @@ export class TechDetail extends React.Component {
         closeButtonAriaLabel="Close"
         onRenderFooterContent={this.handleRenderFooterContent}
       >
+        <Image
+          src={this.state.tech.image}
+          alt="Image Preview"
+          width="100%"
+          className={classNames.imagePreview}
+        />
         <TextField
-          label="Id"
-          value={this.state.tech.id}
+          label="Identify Name"
+          value={this.state.tech.nameId}
           onChange={this.handleIdChanged}
         />
         <TextField
@@ -68,7 +92,20 @@ export class TechDetail extends React.Component {
           value={this.state.tech.name}
           onChange={this.handleNameChanged}
         />
+        <TextField
+          label="Description"
+          multiline={true}
+          value={this.state.tech.description}
+          onChange={this.handleDesChanged}
+        />
+        <TextField
+          label="Image URL"
+          value={this.state.tech.image}
+          onChange={this.handleImageUrlChanged}
+        />
       </Panel>
     );
   }
 }
+
+TechDetail.contextType = AppContext;
