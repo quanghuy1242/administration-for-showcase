@@ -2,6 +2,7 @@ import React from 'react';
 import { Panel, PanelType, TextField, PrimaryButton, DefaultButton, Image } from 'office-ui-fabric-react';
 import { getStyle } from './TechDetail.style';
 import { AppContext } from '../../context/AppContext';
+import { CategoryAPI } from '../../api/categories.api';
 
 export class TechDetail extends React.Component {
   constructor(props) {
@@ -13,7 +14,29 @@ export class TechDetail extends React.Component {
         description: '',
         image: ''
       },
+      hasLoaded: false
     };
+  }
+
+  async componentDidMount() {
+    if (!this.props.isAdd) {
+      if (!this.state.hasLoaded) {
+        const tech = await CategoryAPI.getCategory(this.context.selectedTechId);
+        this.setState({
+          tech: tech,
+          hasLoaded: true
+        });
+      }
+    } else {
+      this.setState({
+        tech: {
+          nameId: '',
+          name: '',
+          description: '',
+          image: ''
+        }
+      });
+    }
   }
 
   handleIdChanged = (event) => {
@@ -45,8 +68,14 @@ export class TechDetail extends React.Component {
   }
   
   handleSaveTech = async (tech) => {
-    if (await this.context.handleAddNewTech(tech)) {
-      this.props.onClosing();
+    if (this.props.isAdd) {
+      if (await this.context.handleAddNewTech(tech)) {
+        this.props.onClosing();
+      }
+    } else {
+      if (await this.context.handleEditTech(tech)) {
+        this.props.onClosing();
+      }
     }
   }
   
@@ -86,6 +115,7 @@ export class TechDetail extends React.Component {
           label="Identify Name"
           value={this.state.tech.nameId}
           onChange={this.handleIdChanged}
+          readOnly={!this.props.isAdd}
         />
         <TextField
           label="Name of technologoy"
