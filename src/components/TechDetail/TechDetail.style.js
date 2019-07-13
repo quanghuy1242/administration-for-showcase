@@ -6,7 +6,7 @@ export const getStyle = () => {
     imagePreview: {
       boxShadow: Depths.depth8,
       backgroundColor: CommunicationColors.primary,
-      minHeight: 300
+      minHeight: 200
     }
   })
 }
