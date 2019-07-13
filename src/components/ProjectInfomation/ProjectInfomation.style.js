@@ -24,7 +24,8 @@ export const getStyle = ({ image }) => {
       backgroundImage: `url(${image})`,
       backgroundSize: 'cover',
       position: 'relative',
-      boxShadow: Depths.depth8
+      boxShadow: Depths.depth8,
+      backgroundPosition: 'center'
     },
     editImage: {
       position: 'absolute',
