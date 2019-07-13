@@ -24,4 +24,17 @@ export class CategoryAPI {
       return false;
     }
   }
+
+  static async editTech(tech) {
+    try {
+      await api.put(`/technologies/${tech.nameId}`, {
+        tech: tech
+      });
+      return true;
+    } catch (error) {
+      console.log(JSON.stringify(error, null, 2));
+      alert('Có lỗi xảy ra!');
+      return false;
+    }
+  }
 }
