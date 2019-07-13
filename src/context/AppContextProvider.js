@@ -33,7 +33,6 @@ export class AppContextProvider extends React.Component {
   }
 
   async shouldComponentUpdate(nextProps, nextState) {
-    console.log(nextState.selectedTechId, this.state.selectedTechId);
     if (nextState.selectedTechId !== this.state.selectedTechId) {
       if (this.getUserLoginInformation()) {
         await this.getProjectsOfSelectedTech(nextState.selectedTechId);
