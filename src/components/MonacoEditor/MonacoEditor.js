@@ -15,6 +15,13 @@ export class MonacoEditor extends React.Component {
     this.handleLoad();
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    if (this.props.value !== nextProps.value) {
+      this.editor.setValue(nextProps.value);
+    }
+    return true;
+  }
+
   containerDidMount = ref => {
     this.ref = ref;
   };
