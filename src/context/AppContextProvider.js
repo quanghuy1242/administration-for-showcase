@@ -123,6 +123,15 @@ export class AppContextProvider extends React.Component {
     return false;
   }
 
+  handleEditTech = async tech => {
+    if (await CategoryAPI.editTech(tech)) {
+      const techs = await CategoryAPI.getCategories();
+      this.setState({ techs: techs });
+      return true;
+    }
+    return false;
+  }
+
   render() {
     const value = {
       ...this.state,
@@ -130,7 +139,8 @@ export class AppContextProvider extends React.Component {
       onSelectedProjectChanged: this.onSelectedProjectChanged,
       getUserLoginInformation: this.getUserLoginInformation,
       handleClearUserLoginInfo: this.handleClearUserLoginInfo,
-      handleAddNewTech: this.handleAddNewTech
+      handleAddNewTech: this.handleAddNewTech,
+      handleEditTech: this.handleEditTech
     }
     return (
       <AppContext.Provider value={value}>
