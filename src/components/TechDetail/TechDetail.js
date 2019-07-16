@@ -14,6 +14,7 @@ export class TechDetail extends React.Component {
         description: '',
         image: ''
       },
+      error: {},
       hasLoaded: false
     };
   }
@@ -66,15 +67,40 @@ export class TechDetail extends React.Component {
       return state;
     })
   }
+
+  validate = tech => {
+    let error = {};
+    if (!/[a-z]+/.test(tech.nameId)) {
+      error.nameId = 'Indentify Name chỉ bao gồm các kí tự thường';
+    }
+    if (tech.name.length >= 100 || tech.name.length === 0) {
+      error.name = 'Tên không quá 15 kí tự';
+    }
+    if (tech.description.length >= 100 || tech.description.length === 0) {
+      error.description = 'Description không quá 100 kí tự';
+    }
+    if (!/(http|https):\/\/.+/.test(tech.image)) {
+      error.image = 'Link Image không đúng định dạng';
+    }
+    return error;
+  }
   
-  handleSaveTech = async (tech) => {
-    if (this.props.isAdd) {
-      if (await this.context.handleAddNewTech(tech)) {
-        this.props.onClosing();
-      }
-    } else {
-      if (await this.context.handleEditTech(tech)) {
-        this.props.onClosing();
+  handleSaveTech = async () => {
+    const tech = this.state.tech;
+    const error = this.validate(tech);
+    if (Object.keys(error).length) {
+      this.setState({ error });
+      return;
+    }
+    else {
+      if (this.props.isAdd) {
+        if (await this.context.handleAddNewTech(tech)) {
+          this.props.onClosing();
+        }
+      } else {
+        if (await this.context.handleEditTech(tech)) {
+          this.props.onClosing();
+        }
       }
     }
   }
@@ -84,7 +110,7 @@ export class TechDetail extends React.Component {
       <div>
         <PrimaryButton
           style={{ marginRight: 8 }}
-          onClick={() => this.handleSaveTech(this.state.tech)}
+          onClick={this.handleSaveTech}
         >
           Save
         </PrimaryButton>
@@ -116,22 +142,26 @@ export class TechDetail extends React.Component {
           value={this.state.tech.nameId}
           onChange={this.handleIdChanged}
           readOnly={!this.props.isAdd}
+          errorMessage={this.state.error.nameId}
         />
         <TextField
           label="Name of technologoy"
           value={this.state.tech.name}
           onChange={this.handleNameChanged}
+          errorMessage={this.state.error.name}
         />
         <TextField
           label="Description"
           multiline={true}
           value={this.state.tech.description}
           onChange={this.handleDesChanged}
+          errorMessage={this.state.error.description}
         />
         <TextField
           label="Image URL"
           value={this.state.tech.image}
           onChange={this.handleImageUrlChanged}
+          errorMessage={this.state.error.image}
         />
       </Panel>
     );
