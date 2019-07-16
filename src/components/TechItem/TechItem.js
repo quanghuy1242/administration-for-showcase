@@ -19,6 +19,13 @@ export class TechItem extends React.Component {
     this.setState({ isPanelOpen: false })
   }
 
+  handleDelete = () => {
+    const isConfirmed = window.confirm('Bạn có chắn chắn muốn xóa technologies này không?');
+    if (isConfirmed) {
+      alert('asshole');
+    }
+  }
+
   render() {
     const { tech, className, selected } = this.props;
     const classNames = getStyle();
@@ -41,7 +48,8 @@ export class TechItem extends React.Component {
                   {
                     key: 'delete',
                     name: 'Delete',
-                    iconProps: { iconName: 'Delete' }
+                    iconProps: { iconName: 'Delete' },
+                    onClick: this.handleDelete
                   }
                 ]
               }}
