@@ -4,7 +4,7 @@ import { getStyle } from './LandscapeHome.style';
 import logo from './image.svg';
 import { Link } from 'react-router-dom';
 
-export class LandscapeHome extends React.Component {
+export default class LandscapeHome extends React.Component {
   render() {
     const classNames = getStyle();
     return (

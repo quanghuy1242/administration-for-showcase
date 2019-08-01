@@ -7,7 +7,7 @@ import { TechList } from '../../components/TechList/TechList';
 import { FilterPanel } from '../../components/FilterPanel/FilterPanel';
 import { AppContext } from '../../context/AppContext';
 
-export class Dashboard extends React.Component {
+export default class Dashboard extends React.Component {
   onAddEditTech = (newTech) => {
     for (let tech of this.state.techs) {
       if (tech.id !== newTech.id) {

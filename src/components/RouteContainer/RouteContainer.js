@@ -1,18 +1,39 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import { Switch, Route } from 'react-router-dom';
-import { Dashboard } from '../../pages/Dashboard/Dashboard';
-import Login from '../../pages/Login/Login';
-import { LandscapeHome } from '../../pages/LandscapeHome/LandscapeHome';
 import { PrivateRoute } from '../PrivateRoute/PrivateRoute';
+
+const Login = lazy(() => import('../../pages/Login/Login'));
+const Dashboard = lazy(() => import('../../pages/Dashboard/Dashboard'));
+const LandscapeHome = lazy(() => import('../../pages/LandscapeHome/LandscapeHome'));
 
 export class RouteContainer extends React.Component {
   render() {
     return (
-      <Switch>
-        <PrivateRoute exact path="/" component={LandscapeHome} />
-        <PrivateRoute exact path="/projects" component={Dashboard} />
-        <Route exact path="/login" component={Login} />
-      </Switch>
+      <Suspense
+        fallback={
+          <div style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            bottom: 0,
+            right: 0,
+            backgroundColor: 'white',
+            zIndex: 999999999999999,
+            display: "flex",
+            justifyContent: 'center',
+            alignItems: 'center'
+          }}>
+            {/* TODO Splash View */}
+            Loading...
+          </div>
+        }
+      >
+        <Switch>
+          <PrivateRoute exact path="/" component={LandscapeHome} />
+          <PrivateRoute exact path="/projects" component={Dashboard} />
+          <Route exact path="/login" component={Login} />
+        </Switch>
+      </Suspense>
     );
   }
 }
