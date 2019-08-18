@@ -9,6 +9,7 @@ export class ProjectInfomation extends React.Component {
     this.state = {
       scrItemWidth: 0,
       scrItemHeight: 0,
+      selectedScreenshot: 0
     }
   }
 
@@ -75,25 +76,38 @@ export class ProjectInfomation extends React.Component {
               <div ref={screenshotWrapper => this.screenshotWrapper = screenshotWrapper}>
                 <Stack horizontalAlign="center" tokens={{ childrenGap: 10 }}>
                   <Image
-                    src="https://via.placeholder.com/1920x1080"
+                    src={this.context.selectedProjectDetail.screenshots[this.state.selectedScreenshot]}
                     alt="Primary Image"
                     width={500}
                   />
-                  <TextField placeholder="Image Url" style={{ width: 500 }} />
+                  <TextField
+                    placeholder="Image Url"
+                    style={{ width: 500 }}
+                    value={this.context.selectedProjectDetail.screenshots[this.state.selectedScreenshot]}
+                  />
                   <Stack horizontal tokens={{ childrenGap: 10 }}>
                     {[...Array(6)].map((v, i) => (
                       <Stack
                         style={{
                           width: this.state.scrItemWidth,
                           height: this.state.scrItemHeight,
-                          border: '1px solid rgba(0, 0, 0, 0.35)',
-                          borderRadius: 2
+                          border: `2px solid ${i === this.state.selectedScreenshot ? 'rgba(0, 0, 0, 0.55)' : 'transparent'}`,
+                          borderRadius: 2,
+                          transition: '0.2s'
                         }}
                         key={i}
                         horizontalAlign="center"
                         verticalAlign="center"
+                        onClick={() => { this.setState({ selectedScreenshot: i }) }}
                       >
-                        <Icon iconName="Add" />
+                        {this.context.selectedProjectDetail.screenshots[i]
+                          ? <Image 
+                              src={this.context.selectedProjectDetail.screenshots[i]}
+                              alt={'hmmm'}
+                              width='100%'
+                              height='100%'
+                            />
+                          : <Icon iconName="Add" />}
                       </Stack>
                     ))}
                   </Stack>
