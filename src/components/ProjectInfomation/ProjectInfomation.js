@@ -9,7 +9,9 @@ export class ProjectInfomation extends React.Component {
     this.state = {
       scrItemWidth: 0,
       scrItemHeight: 0,
-      selectedScreenshot: 0
+      selectedScreenshot: 0,
+      options: [],
+      initialDisplayValue: '',
     }
   }
 
@@ -24,6 +26,30 @@ export class ProjectInfomation extends React.Component {
       scrItemWidth: Math.floor(itemWidth),
       scrItemHeight: Math.floor(itemWidth * 9 / 16)
     });
+  }
+
+  getOptions = () => {
+    if (this.state.options.length > 0) {
+      return this.state.options;
+    }
+
+    const options = this.context.techs.map(tech => ({ key: tech.nameId, text: tech.name }));
+    
+    this.setState({
+      options: options,
+      selectedOptionKey: this.context.selectedProjectDetail.technology.nameId,
+      initialDisplayValue: undefined
+    });
+
+    return options;
+  }
+
+  onComboboxChanged = (event, option, index, value) => {
+    if (option) {
+      this.setState({
+        selectedOptionKey: option.key
+      });
+    }
   }
 
   render() {
@@ -45,7 +71,16 @@ export class ProjectInfomation extends React.Component {
                 />
                 <TextField label="Project's website" value={this.context.selectedProjectDetail.url} />
                 <TextField label="Repository" />
-                <ComboBox allowFreeform={true} label="Technology" />
+                {/* <ComboBox
+                  allowFreeform={true}
+                  label="Technology"
+                  selectedKey={this.state.selectedOptionKey}
+                  autoComplete="on"
+                  options={this.state.options}
+                  onChange={this.onComboboxChanged}
+                  onResolveOptions={this.getOptions}
+                  text={this.state.initialDisplayValue}
+                /> */}
                 <TextField
                   multiline={true}
                   label="Bref Description"
