@@ -111,7 +111,10 @@ export class ProjectInfomation extends React.Component {
               <div ref={screenshotWrapper => this.screenshotWrapper = screenshotWrapper}>
                 <Stack horizontalAlign="center" tokens={{ childrenGap: 10 }}>
                   <Image
-                    src={this.context.selectedProjectDetail.screenshots[this.state.selectedScreenshot]}
+                    src={
+                      this.context.selectedProjectDetail.screenshots[this.state.selectedScreenshot]
+                      || 'https://via.placeholder.com/1920x1080'
+                    }
                     alt="Primary Image"
                     width={500}
                   />
