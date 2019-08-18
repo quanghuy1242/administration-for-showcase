@@ -22,7 +22,7 @@ export class ProjectDetail extends React.Component {
                 style={{ height: '100%' }} 
                 tokens={{ childrenGap: 10 }}
               >
-                <Text variant="large">
+                <Text>
                   Chưa có project nào, hãy thêm vào một project
                 </Text>
                 <PrimaryButton
