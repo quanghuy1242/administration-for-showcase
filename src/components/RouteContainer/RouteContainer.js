@@ -1,6 +1,7 @@
 import React, { lazy, Suspense } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { PrivateRoute } from '../PrivateRoute/PrivateRoute';
+import { Spinner, SpinnerSize } from 'office-ui-fabric-react';
 
 const Login = lazy(() => import('../../pages/Login/Login'));
 const Dashboard = lazy(() => import('../../pages/Dashboard/Dashboard'));
@@ -25,7 +26,7 @@ export class RouteContainer extends React.Component {
             alignItems: 'center'
           }}>
             {/* TODO Splash View */}
-            Loading...
+            <Spinner size={SpinnerSize.large} />
           </div>
         }
       >

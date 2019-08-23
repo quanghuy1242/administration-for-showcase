@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { Redirect, Route } from 'react-router-dom';
 import { AppContext } from '../../context/AppContext';
+import { Spinner, SpinnerSize } from 'office-ui-fabric-react';
 
 export const PrivateRoute = ({ component: Component, ...rest }) => {
   const context = useContext(AppContext);
@@ -20,7 +21,7 @@ export const PrivateRoute = ({ component: Component, ...rest }) => {
           alignItems: 'center'
         }}>
           {/* TODO Splash View */}
-          Loading...
+          <Spinner size={SpinnerSize.large} />
         </div>
       )
       : (
