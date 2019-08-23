@@ -157,7 +157,6 @@ export class AppContextProvider extends React.Component {
       handleClearUserLoginInfo: this.handleClearUserLoginInfo,
       handleAddNewTech: this.handleAddNewTech,
       handleEditTech: this.handleEditTech,
-      handleClearUserLoginInfo: this.handleClearUserLoginInfo,
       handleLocalModified: this.handleLocalModified,
       handleToggleModifiedProject: this.handleToggleModifiedProject
     }
