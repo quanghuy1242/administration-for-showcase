@@ -14,13 +14,15 @@ export class ProjectScreenshots extends React.Component {
           tokens={{ childrenGap: 5 }}
           className={classNames.screenshotItemsWrapper}
         >
-          {this.context.selectedProjectDetail.screenshots.map((screenshot, i) => (
-            <img
-              src={screenshot}
-              alt="hmmmm" key={i}
-              className={classNames.screenshotItem}
-            />
-          ))}
+          {this.context.selectedProjectDetail.screenshots.length
+            ? this.context.selectedProjectDetail.screenshots.map((screenshot, i) => (
+                <img
+                  src={screenshot}
+                  alt="hmmmm" key={i}
+                  className={classNames.screenshotItem}
+                />
+              ))
+            : <Text>Chưa có screenshot nào</Text>}
         </Stack>
       </Stack>
     );
