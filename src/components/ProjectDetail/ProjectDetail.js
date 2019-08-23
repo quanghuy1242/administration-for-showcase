@@ -32,10 +32,12 @@ export class ProjectDetail extends React.Component {
             )
             : (
                 <div className={classNames.projectDetailInner}>
-                  <PrimaryButton
-                    text="Save"
-                    className={classNames.buttonSave}
-                  />
+                  {this.context.isProjectModified
+                    ? <PrimaryButton
+                        text="Save"
+                        className={classNames.buttonSave}
+                      />
+                    : <></>}
                   <Pivot linkFormat={PivotLinkFormat.links} className={classNames.tabPivot}>
                     <PivotItem headerText="Overview">
                       <ProjectBasicInfo />

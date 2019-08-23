@@ -52,6 +52,28 @@ export class ProjectInfomation extends React.Component {
     }
   }
 
+  onProjectNameChange = (event) => {
+    this.context.handleLocalModified('name', event.target.value);
+  }
+
+  onProjectDateChange = (date) => {
+    this.context.handleLocalModified('date', date);
+  }
+
+  onProjectSiteChange = (event) => {
+    this.context.handleLocalModified('url', event.target.value);
+  }
+
+  onProjectBrefDescriptionChange = (event) => {
+    this.context.handleLocalModified('briefDescription', event.target.value);
+  }
+
+  onProjectScreenshotChange = (event) => {
+    let newScreenshot = JSON.parse(JSON.stringify(this.context.selectedProjectDetail.screenshots));
+    newScreenshot[this.state.selectedScreenshot] = event.target.value;
+    this.context.handleLocalModified('screenshots', newScreenshot);
+  }
+
   render() {
     const classNames = getStyle({ image: this.context.selectedProjectDetail.image });
     return (
@@ -63,14 +85,25 @@ export class ProjectInfomation extends React.Component {
           <Stack horizontal tokens={{ childrenGap: 40 }}>
             <Stack.Item grow disableShrink>
               <Stack className={classNames.leftWrapper}>
-                <TextField label="Project's name" value={this.context.selectedProjectDetail.name} />
+                <TextField
+                  label="Project's name"
+                  value={this.context.selectedProjectDetail.name}
+                  onChange={this.onProjectNameChange}
+                />
                 <DatePicker
                   firstDayOfWeek={DayOfWeek.Sunday}
                   label="Date created"
                   value={new Date(this.context.selectedProjectDetail.date) || ''}
+                  onSelectDate={this.onProjectDateChange}
                 />
-                <TextField label="Project's website" value={this.context.selectedProjectDetail.url} />
-                <TextField label="Repository" />
+                <TextField
+                  label="Project's website"
+                  value={this.context.selectedProjectDetail.url}
+                  onChange={this.onProjectSiteChange}
+                />
+                <TextField
+                  label="Repository"
+                />
                 {/* <ComboBox
                   allowFreeform={true}
                   label="Technology"
@@ -85,7 +118,8 @@ export class ProjectInfomation extends React.Component {
                   multiline={true}
                   label="Bref Description"
                   resizable={false}
-                  value={this.context.selectedProjectDetail.description}
+                  value={this.context.selectedProjectDetail.briefDescription}
+                  onChange={this.onProjectBrefDescriptionChange}
                 />
               </Stack>
             </Stack.Item>
@@ -122,6 +156,7 @@ export class ProjectInfomation extends React.Component {
                     placeholder="Image Url"
                     style={{ width: 500 }}
                     value={this.context.selectedProjectDetail.screenshots[this.state.selectedScreenshot]}
+                    onChange={this.onProjectScreenshotChange}
                   />
                   <Stack horizontal tokens={{ childrenGap: 10 }}>
                     {[...Array(6)].map((v, i) => (

@@ -36,7 +36,8 @@ export const getStyle = () => {
       position: 'absolute',
       top: 8,
       right: 8,
-      zIndex: 555
+      zIndex: 555,
+      backgroundColor: 'red'
     }
   })
 }

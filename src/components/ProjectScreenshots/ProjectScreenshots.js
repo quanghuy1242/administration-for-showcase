@@ -16,11 +16,14 @@ export class ProjectScreenshots extends React.Component {
         >
           {this.context.selectedProjectDetail.screenshots.length
             ? this.context.selectedProjectDetail.screenshots.map((screenshot, i) => (
-                <img
-                  src={screenshot}
-                  alt="hmmmm" key={i}
-                  className={classNames.screenshotItem}
-                />
+                screenshot
+                  ? 
+                    <img
+                      src={screenshot}
+                      alt="hmmmm" key={i}
+                      className={classNames.screenshotItem}
+                    />
+                  : null
               ))
             : <Text>Chưa có screenshot nào</Text>}
         </Stack>

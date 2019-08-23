@@ -20,7 +20,8 @@ export class AppContextProvider extends React.Component {
       isTechLoaded: false,
       isProjectDetailLoaded: false,
       userLoginInformation: undefined,
-      isUserLoginLoaded: false
+      isUserLoginLoaded: false,
+      isProjectModified: false
     };
   }
 
@@ -87,10 +88,12 @@ export class AppContextProvider extends React.Component {
   }
 
   onSelectedProjectChanged = (id) => {
+    this.handleToggleModifiedProject(false);
     this.setState({ selectedProjectId: id });
   }
 
   onSelectedTechChanged = (id) => {
+    this.handleToggleModifiedProject(false);
     this.setState({ selectedTechId: id });
   }
 
@@ -108,6 +111,10 @@ export class AppContextProvider extends React.Component {
 
   handleToggleUserLoginInforLoaded = (isDone) => {
     this.setState({ isUserLoginLoaded: isDone });
+  }
+
+  handleToggleModifiedProject = (isModified) => {
+    this.setState({ isProjectModified: isModified });
   }
 
   handleClearUserLoginInfo = () => {
@@ -132,6 +139,15 @@ export class AppContextProvider extends React.Component {
     return false;
   }
 
+  // modified selected project
+  handleLocalModified = (field, data) => {
+    this.handleToggleModifiedProject(true);
+    this.setState(state => {
+      state.selectedProjectDetail[field] = data
+      return state;
+    });
+  }
+
   render() {
     const value = {
       ...this.state,
@@ -140,7 +156,10 @@ export class AppContextProvider extends React.Component {
       getUserLoginInformation: this.getUserLoginInformation,
       handleClearUserLoginInfo: this.handleClearUserLoginInfo,
       handleAddNewTech: this.handleAddNewTech,
-      handleEditTech: this.handleEditTech
+      handleEditTech: this.handleEditTech,
+      handleClearUserLoginInfo: this.handleClearUserLoginInfo,
+      handleLocalModified: this.handleLocalModified,
+      handleToggleModifiedProject: this.handleToggleModifiedProject
     }
     return (
       <AppContext.Provider value={value}>
