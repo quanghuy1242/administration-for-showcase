@@ -1,6 +1,6 @@
 import React from 'react';
 import { getStyle } from './ProjectInfomation.style';
-import { Stack, TextField, ComboBox, DatePicker, DayOfWeek, Text, Separator, Image, Icon, IconButton } from 'office-ui-fabric-react';
+import { Stack, TextField, DatePicker, DayOfWeek, Text, Separator, Image, Icon, IconButton } from 'office-ui-fabric-react';
 import { AppContext } from '../../context/AppContext';
 
 export class ProjectInfomation extends React.Component {
