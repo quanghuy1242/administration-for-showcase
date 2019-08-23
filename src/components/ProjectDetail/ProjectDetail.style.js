@@ -37,7 +37,15 @@ export const getStyle = () => {
       top: 8,
       right: 8,
       zIndex: 555,
-      backgroundColor: 'red'
+      backgroundColor: '#da3b01',
+      selectors: {
+        ':hover': {
+          backgroundColor: '#d13438',
+        },
+        ':active': {
+          backgroundColor: '#a4262c',
+        }
+      }
     }
   })
 }
