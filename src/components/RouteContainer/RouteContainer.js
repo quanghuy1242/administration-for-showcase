@@ -1,11 +1,11 @@
 import React, { lazy, Suspense } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { PrivateRoute } from '../PrivateRoute/PrivateRoute';
-import About from '../../pages/About/About';
 
 const Login = lazy(() => import('../../pages/Login/Login'));
 const Dashboard = lazy(() => import('../../pages/Dashboard/Dashboard'));
 const LandscapeHome = lazy(() => import('../../pages/LandscapeHome/LandscapeHome'));
+const About = lazy(() => import('../../pages/About/About'));
 
 export class RouteContainer extends React.Component {
   render() {
