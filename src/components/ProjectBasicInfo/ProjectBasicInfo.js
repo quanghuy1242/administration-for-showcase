@@ -35,12 +35,20 @@ export class ProjectBasicInfo extends React.Component {
             </Stack>
           </Stack.Item>
           <Stack.Item>
-            <PrimaryButton
-              primary={true}
-              onClick={() => window.open(this.context.selectedProjectDetail.url, '_blank')}
-            >
-              Project's website
-            </PrimaryButton>
+            <Stack tokens={{ childrenGap: 8 }}>
+              <PrimaryButton
+                primary={true}
+                onClick={() => window.open(`https://project-showcase.netlify.com/project/${this.context.selectedProjectDetail._id}`, '_blank')}
+              >
+                Project's Infomation
+              </PrimaryButton>
+              <PrimaryButton
+                primary={true}
+                onClick={() => window.open(this.context.selectedProjectDetail.url, '_blank')}
+              >
+                Project's website
+              </PrimaryButton>
+            </Stack>
           </Stack.Item>
         </Stack>
       </Stack>
