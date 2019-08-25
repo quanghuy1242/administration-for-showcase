@@ -12,6 +12,7 @@ export class ProjectDescription extends React.Component {
         <MonacoEditor
           value={this.context.selectedProjectDetail.description}
           height="calc(100vh - 98px - 64px)"
+          onEditorChange={this.context.handleLocalModified}
         />
       </Stack>
     );
