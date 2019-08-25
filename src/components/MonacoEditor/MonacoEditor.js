@@ -44,7 +44,8 @@ export class MonacoEditor extends React.Component {
       value: this.props.value,
       wordWrap: 'on',
       language,
-      theme
+      theme,
+      fontFamily: '"Roboto Mono", monospace',
     });
     this.didMount(this.editor);
     return this.editor;
