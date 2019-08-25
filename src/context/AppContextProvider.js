@@ -148,6 +148,31 @@ export class AppContextProvider extends React.Component {
     });
   }
 
+  // Thay đổi data của project vừa sửa trong project list
+  handleModifiedProjectList = projectModified => {
+    this.setState(state => {
+      state.projects.map((project, index) => {
+        if (project._id === projectModified._id) {
+          state.projects[index] = projectModified;
+        }
+        return 1;
+      });
+      return state;
+    })
+  }
+
+  // save current project information to database
+  handleSaveSelectedProject = async () => {
+    const data = {
+      ...this.state.selectedProjectDetail,
+      technology: this.state.selectedProjectDetail.technology._id
+    }
+    if (await ProjectAPI.editProject(data)) {
+      this.handleToggleModifiedProject(false);
+      this.handleModifiedProjectList(data);
+    }
+  }
+
   render() {
     const value = {
       ...this.state,
@@ -158,7 +183,8 @@ export class AppContextProvider extends React.Component {
       handleAddNewTech: this.handleAddNewTech,
       handleEditTech: this.handleEditTech,
       handleLocalModified: this.handleLocalModified,
-      handleToggleModifiedProject: this.handleToggleModifiedProject
+      handleToggleModifiedProject: this.handleToggleModifiedProject,
+      handleSaveSelectedProject: this.handleSaveSelectedProject
     }
     return (
       <AppContext.Provider value={value}>

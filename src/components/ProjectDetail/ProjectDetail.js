@@ -8,10 +8,27 @@ import { ProjectInfomation } from '../ProjectInfomation/ProjectInfomation';
 import { ProjectDescription } from '../ProjectDescription/ProjectDescription';
 
 export class ProjectDetail extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isDone: true
+    };
+  }
+
+  handleToggleIsDone = isDone => {
+    this.setState({ isDone: isDone });
+  }
+
   render() {
     const classNames = getStyle();
     return (
       <Stack className={classNames.projectDetailWrapper}>
+        {this.state.isDone
+          || (
+            <Stack className={classNames.overlay}>
+              <Spinner style={{ height: '100%' }} size={SpinnerSize.large} />
+            </Stack>
+          )}
         {!this.context.isProjectDetailLoaded
           ? <Spinner size={SpinnerSize.large} style={{ height: 'calc(100vh - 50px)' }} />
           : !this.context.selectedProjectId
@@ -36,6 +53,11 @@ export class ProjectDetail extends React.Component {
                     ? <PrimaryButton
                         text="Save"
                         className={classNames.buttonSave}
+                        onClick={async () => {
+                          this.handleToggleIsDone(false);
+                          await this.context.handleSaveSelectedProject();
+                          this.handleToggleIsDone(true);
+                        }}
                       />
                     : <></>}
                   <Pivot linkFormat={PivotLinkFormat.links} className={classNames.tabPivot}>

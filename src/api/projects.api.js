@@ -10,4 +10,15 @@ export class ProjectAPI {
     let projectRespone = await api.get(`/projects/${projectsId}`);
     return projectRespone.data.project;
   }
+
+  static async editProject(project) {
+    try {
+      await api.put(`/projects/${project._id}`, { project: project });
+      return true;
+    } catch (error) {
+      console.log(JSON.stringify(error, null, 2));
+      alert('Có lỗi xảy ra!');
+      return false;
+    }
+  }
 }

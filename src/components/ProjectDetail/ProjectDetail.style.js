@@ -46,6 +46,16 @@ export const getStyle = () => {
           backgroundColor: '#a4262c',
         }
       }
+    },
+    overlay: {
+      position: 'absolute',
+      top: 50,
+      bottom: 0,
+      left: 0,
+      right: 0,
+      zIndex: 9999999,
+      backgroundColor: 'rgba(0, 0, 0, 0.7)',
+      animation: MotionAnimations.fadeIn,
     }
   })
 }
