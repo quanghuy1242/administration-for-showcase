@@ -141,6 +141,10 @@ export class AppContextProvider extends React.Component {
 
   // modified selected project
   handleLocalModified = (field, data) => {
+    // Nếu dữ liêu không có gì thay đổi thì thôi đừng sửa
+    if (JSON.stringify(data) === JSON.stringify(this.state.selectedProjectDetail[field])) {
+      return;
+    }
     this.handleToggleModifiedProject(true);
     this.setState(state => {
       state.selectedProjectDetail[field] = data
