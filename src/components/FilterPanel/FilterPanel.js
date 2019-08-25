@@ -36,7 +36,7 @@ export class FilterPanel extends React.Component {
               items: [
                 {
                   key: 'newProject',
-                  text: 'Project (Selected technology)',
+                  text: 'Project',
                   iconProps: { iconName: 'OEM' }
                 },
                 {
