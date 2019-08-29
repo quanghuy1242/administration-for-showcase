@@ -2,12 +2,14 @@ import React from 'react';
 import { getStyle } from './FilterPanel.style';
 import { Stack, SearchBox, PrimaryButton } from 'office-ui-fabric-react';
 import { TechDetail } from '../TechDetail/TechDetail';
+import { ProjectDetailEditor } from '../ProjectDetailEditor/ProjectDetailEditor';
 
 export class FilterPanel extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isPanelTechOpen: false
+      isPanelTechOpen: false,
+      isPanelProjectOpen: false
     };
   }
 
@@ -17,6 +19,14 @@ export class FilterPanel extends React.Component {
 
   handleClosePanelTech = () => {
     this.setState({ isPanelTechOpen: false })
+  }
+
+  handleShowPanelProject = () => {
+    this.setState({ isPanelProjectOpen: true });
+  }
+
+  handleClosePanelProject = () => {
+    this.setState({ isPanelProjectOpen: false })
   }
 
   render() {
@@ -37,7 +47,8 @@ export class FilterPanel extends React.Component {
                 {
                   key: 'newProject',
                   text: 'Project',
-                  iconProps: { iconName: 'OEM' }
+                  iconProps: { iconName: 'OEM' },
+                  onClick: this.handleShowPanelProject
                 },
                 {
                   key: 'newTech',
@@ -56,6 +67,10 @@ export class FilterPanel extends React.Component {
           onClosing={this.handleClosePanelTech}
           isAdd={true}
           onAddEditTech={this.props.onAddEditTech}
+        />
+        <ProjectDetailEditor
+          isOpen={this.state.isPanelProjectOpen}
+          onClosing={this.handleClosePanelProject}
         />
       </Stack>
     );
