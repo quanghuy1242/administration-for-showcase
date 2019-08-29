@@ -28,7 +28,6 @@ export const getStyle = () => {
     },
     hoverCard: {
       width: 270,
-      height: 200
     }
   })
 }

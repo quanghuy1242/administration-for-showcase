@@ -1,5 +1,5 @@
 import React from 'react';
-import { Stack, Text, css, HoverCard, HoverCardType, DirectionalHint } from 'office-ui-fabric-react';
+import { Stack, Text, css, HoverCard, HoverCardType, DirectionalHint, DocumentCard, DocumentCardPreview, ImageFit } from 'office-ui-fabric-react';
 import { getStyle } from './ProjectItem.style';
 
 export class ProjectItem extends React.Component {
@@ -13,7 +13,20 @@ export class ProjectItem extends React.Component {
           onRenderPlainCard: () => {
             return (
               <div className={classNames.hoverCard}>
-                Content goes here
+                <DocumentCard>
+                  <DocumentCardPreview
+                    previewImages={[{
+                      name: project.name,
+                      previewImageSrc: project.image,
+                      imageFit: ImageFit.cover,
+                      height: 150
+                    }]}
+                  />
+                  <Stack style={{ padding: '0.5rem' }}>
+                    <Text variant='xLarge'>{project.name}</Text>
+                    <Text>{project.briefDescription}</Text>
+                  </Stack>
+                </DocumentCard>
               </div>
             );
           },
