@@ -130,6 +130,7 @@ export class TechDetail extends React.Component {
         headerText="Technology Detail"
         closeButtonAriaLabel="Close"
         onRenderFooterContent={this.handleRenderFooterContent}
+        isFooterAtBottom={true}
       >
         <Image
           src={this.state.tech.image}
