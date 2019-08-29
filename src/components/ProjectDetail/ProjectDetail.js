@@ -42,9 +42,6 @@ export class ProjectDetail extends React.Component {
                 <Text>
                   Chưa có project nào, hãy thêm vào một project
                 </Text>
-                <PrimaryButton
-                  text="New Project"
-                />
               </Stack>
             )
             : (
