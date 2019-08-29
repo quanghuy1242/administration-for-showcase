@@ -7,16 +7,16 @@ export class FilterPanel extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isPanelOpen: false
+      isPanelTechOpen: false
     };
   }
 
-  handleShowPanel = () => {
-    this.setState({ isPanelOpen: true });
+  handleShowPanelTech = () => {
+    this.setState({ isPanelTechOpen: true });
   }
 
-  handleClosePanel = () => {
-    this.setState({ isPanelOpen: false })
+  handleClosePanelTech = () => {
+    this.setState({ isPanelTechOpen: false })
   }
 
   render() {
@@ -43,7 +43,7 @@ export class FilterPanel extends React.Component {
                   key: 'newTech',
                   text: 'Technology',
                   iconProps: { iconName: 'Stack' },
-                  onClick: this.handleShowPanel
+                  onClick: this.handleShowPanelTech
                 }
               ]
             }}
@@ -52,8 +52,8 @@ export class FilterPanel extends React.Component {
           </PrimaryButton>
         </Stack.Item>
         <TechDetail
-          isOpen={this.state.isPanelOpen}
-          onClosing={this.handleClosePanel}
+          isOpen={this.state.isPanelTechOpen}
+          onClosing={this.handleClosePanelTech}
           isAdd={true}
           onAddEditTech={this.props.onAddEditTech}
         />
