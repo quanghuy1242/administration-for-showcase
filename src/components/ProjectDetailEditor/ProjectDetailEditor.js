@@ -37,6 +37,7 @@ export class ProjectDetailEditor extends Component {
             height={150}
             src={'https://picsum.photos/200'}
             alt='Image preview'
+            className={classes.imagePreview}
           />
           <Stack.Item grow disableShrink>
             <Stack verticalAlign='center' style={{ height: '100%' }}>
