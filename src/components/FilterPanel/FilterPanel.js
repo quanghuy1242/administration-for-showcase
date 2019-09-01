@@ -66,7 +66,6 @@ export class FilterPanel extends React.Component {
           isOpen={this.state.isPanelTechOpen}
           onClosing={this.handleClosePanelTech}
           isAdd={true}
-          onAddEditTech={this.props.onAddEditTech}
         />
         <ProjectDetailEditor
           isOpen={this.state.isPanelProjectOpen}
