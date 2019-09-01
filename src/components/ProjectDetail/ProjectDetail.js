@@ -80,6 +80,9 @@ export class ProjectDetail extends React.Component {
                         <ProjectDescription />
                       </Stack>
                     </PivotItem>
+                    <PivotItem headerText="Action">
+                      Comming soon...
+                    </PivotItem>
                   </Pivot>
                 </div>
               )}
