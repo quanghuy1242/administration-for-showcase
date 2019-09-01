@@ -53,7 +53,7 @@ export const getStyle = () => {
       bottom: 0,
       left: 0,
       right: 0,
-      zIndex: 9999999,
+      zIndex: 9999999999999999999,
       backgroundColor: 'rgba(0, 0, 0, 0.7)',
       animation: MotionAnimations.fadeIn,
     }
