@@ -40,6 +40,9 @@ export class AppContextProvider extends React.Component {
         await this.getSelectedProjectDetail(this.state.selectedProjectId);
       }
     }
+    else if (nextState.selectedProjectId !== this.state.selectedProjectId) {
+      await this.getSelectedProjectDetail(nextState.selectedProjectId);
+    }
     return true;
   }
 
