@@ -31,7 +31,7 @@ export class ProjectDetailEditor extends Component {
         onRenderFooterContent={this.handleRenderFooterContent}
         isFooterAtBottom={true}
       >
-        <Stack horizontal tokens={{ childrenGap: 10 }} className={classes.projectInformationHeader}>
+        <Stack horizontal tokens={{ childrenGap: 20 }} className={classes.projectInformationHeader}>
           <Image
             width={150}
             height={150}
