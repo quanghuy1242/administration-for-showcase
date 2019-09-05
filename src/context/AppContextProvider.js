@@ -177,6 +177,15 @@ export class AppContextProvider extends React.Component {
     }
   }
 
+  // add new project to selected tech
+  handleAddNewProject = async project => {
+    if (await ProjectAPI.addProject(project)) {
+      await this.getProjectsOfSelectedTech(this.state.selectedTechId);
+      return true;
+    }
+    return false;
+  }
+
   render() {
     const value = {
       ...this.state,
@@ -188,7 +197,8 @@ export class AppContextProvider extends React.Component {
       handleEditTech: this.handleEditTech,
       handleLocalModified: this.handleLocalModified,
       handleToggleModifiedProject: this.handleToggleModifiedProject,
-      handleSaveSelectedProject: this.handleSaveSelectedProject
+      handleSaveSelectedProject: this.handleSaveSelectedProject,
+      handleAddNewProject: this.handleAddNewProject
     }
     return (
       <AppContext.Provider value={value}>
