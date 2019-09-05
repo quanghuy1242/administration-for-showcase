@@ -21,4 +21,15 @@ export class ProjectAPI {
       return false;
     }
   }
+
+  static async addProject(project) {
+    try {
+      await api.post('/projects', { project: project });
+      return true;
+    } catch (error) {
+      console.log(JSON.stringify(error, null, 2));
+      alert('Có lỗi xảy ra!');
+      return false;
+    }
+  }
 }
