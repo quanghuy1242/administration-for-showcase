@@ -6,6 +6,7 @@ import { ProjectScreenshots } from '../ProjectScreenshots/ProjectScreenshots';
 import { AppContext } from '../../context/AppContext';
 import { ProjectInfomation } from '../ProjectInfomation/ProjectInfomation';
 import { ProjectDescription } from '../ProjectDescription/ProjectDescription';
+import { ProjectAction } from '../ProjectAction/ProjectAction';
 
 export class ProjectDetail extends React.Component {
   constructor(props) {
@@ -81,7 +82,7 @@ export class ProjectDetail extends React.Component {
                       </Stack>
                     </PivotItem>
                     <PivotItem headerText="Action">
-                      Comming soon...
+                      <ProjectAction />
                     </PivotItem>
                   </Pivot>
                 </div>
