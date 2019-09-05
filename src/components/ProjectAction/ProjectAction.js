@@ -1,5 +1,5 @@
 import React from 'react';
-import { DefaultButton, Stack, Panel } from 'office-ui-fabric-react';
+import { DefaultButton, Stack } from 'office-ui-fabric-react';
 import { getStyle } from './ProjectAction.style';
 import { ProjectDelete } from '../ProjectDelete/ProjectDelete';
 
