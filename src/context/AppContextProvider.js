@@ -189,6 +189,15 @@ export class AppContextProvider extends React.Component {
     return false;
   }
 
+  // delete project
+  handleDeleteProject = async _id => {
+    if (await ProjectAPI.deleteProject(_id)) {
+      await this.getProjectsOfSelectedTech(this.state.selectedTechId);
+      return true;
+    }
+    return false;
+  }
+
   render() {
     const value = {
       ...this.state,
@@ -201,7 +210,8 @@ export class AppContextProvider extends React.Component {
       handleLocalModified: this.handleLocalModified,
       handleToggleModifiedProject: this.handleToggleModifiedProject,
       handleSaveSelectedProject: this.handleSaveSelectedProject,
-      handleAddNewProject: this.handleAddNewProject
+      handleAddNewProject: this.handleAddNewProject,
+      handleDeleteProject: this.handleDeleteProject
     }
     return (
       <AppContext.Provider value={value}>
