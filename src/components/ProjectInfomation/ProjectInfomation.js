@@ -101,9 +101,9 @@ export class ProjectInfomation extends React.Component {
                   value={this.context.selectedProjectDetail.url}
                   onChange={this.onProjectSiteChange}
                 />
-                <TextField
+                {/* <TextField
                   label="Repository"
-                />
+                /> */}
                 {/* <ComboBox
                   allowFreeform={true}
                   label="Technology"
