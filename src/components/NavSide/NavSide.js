@@ -14,19 +14,19 @@ class NavSide extends React.Component {
           name: 'Welcome',
           url: '/',
           key: "keyDashboard",
-          icon: 'Taskboard'
+          icon: 'Home'
         },
         {
-          name: 'Projects',
+          name: 'Dashboard',
           url: '/projects',
           key: 'keyprojects',
-          icon: 'OEM'
+          icon: 'ViewDashboard'
         },
         {
-          name: 'Categories',
-          url: '/categories',
-          key: 'keyCategories',
-          icon: 'Stack'
+          name: 'Account',
+          url: '/account',
+          key: 'keyAccount',
+          icon: 'AccountManagement'
         },
         {
           name: 'About',
