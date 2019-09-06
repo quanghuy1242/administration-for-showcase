@@ -155,7 +155,7 @@ export class ProjectInfomation extends React.Component {
                   <TextField
                     placeholder="Image Url"
                     style={{ width: 500 }}
-                    value={this.context.selectedProjectDetail.screenshots[this.state.selectedScreenshot]}
+                    value={this.context.selectedProjectDetail.screenshots[this.state.selectedScreenshot] || ''}
                     onChange={this.onProjectScreenshotChange}
                   />
                   <Stack horizontal tokens={{ childrenGap: 10 }}>
