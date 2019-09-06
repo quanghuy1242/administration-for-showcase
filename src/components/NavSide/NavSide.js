@@ -1,5 +1,5 @@
 import React from 'react';
-import { Nav, Icon, initializeIcons, TooltipHost, DirectionalHint } from 'office-ui-fabric-react';
+import { Nav, Icon, initializeIcons } from 'office-ui-fabric-react';
 import { getStyle } from './NavSide.style';
 import { Link, withRouter } from 'react-router-dom';
 
@@ -56,20 +56,12 @@ class NavSide extends React.Component {
 
   onRenderLink = (props) => {
     return (
-      <TooltipHost
-        content={props.title} 
-        calloutProps={{
-          directionalHint: DirectionalHint.rightTopEdge,
-          beakWidth: 10
-        }}
-      >
-        <Link className={props.className} style={{color: 'inherit', boxSizing: 'border-box'}} to={props.href}>
-          <span style={{display: 'flex'}}>
-            { props.iconProps && <Icon style={{margin: '0 10px', fontSize: '20px'}} {...props.iconProps} /> }
-            {/* {props.children} */}
-          </span>
-        </Link>  
-      </TooltipHost>
+      <Link className={props.className} style={{color: 'inherit', boxSizing: 'border-box'}} to={props.href}>
+        <span style={{display: 'flex'}}>
+          { props.iconProps && <Icon style={{margin: '0 10px', fontSize: '20px'}} {...props.iconProps} /> }
+          {/* {props.children} */}
+        </span>
+      </Link>
     );
   }
 
