@@ -164,7 +164,7 @@ export class ProjectInfomation extends React.Component {
                         style={{
                           width: this.state.scrItemWidth,
                           height: this.state.scrItemHeight,
-                          border: `2px solid ${i === this.state.selectedScreenshot ? 'rgba(0, 0, 0, 0.55)' : 'transparent'}`,
+                          border: `2px solid ${i === this.state.selectedScreenshot ? 'rgba(0, 0, 0, 0.55)' : 'rgba(0, 0, 0, 0.1)'}`,
                           borderRadius: 2,
                           transition: '0.2s'
                         }}
