@@ -2,6 +2,7 @@ import React from 'react';
 import { Stack, Nav, Icon, Text } from 'office-ui-fabric-react';
 import { getStyle } from './AccountManagement.style';
 import { Link, withRouter, Route, Redirect } from 'react-router-dom';
+import AccountGeneral from '../../components/AccountGeneral/AccountGeneral';
 
 class AccountManagement extends React.Component {
   onRenderLink = (props) => {
@@ -59,10 +60,12 @@ class AccountManagement extends React.Component {
           />
         </Stack>
         <Stack.Item disableShrink grow>
-          <Route path={`${this.props.match.path}/general`} render={() => <Text variant='xLarge'>General</Text>} />
-          <Route path={`${this.props.match.path}/bio`} render={() => <Text variant='xLarge'>Bio</Text>} />
-          <Route path={`${this.props.match.path}/story`} render={() => <Text variant='xLarge'>Story</Text>} />
-          <Redirect to={`${this.props.match.path}/general`} />
+          <Stack style={{ width: '100%' }}>
+            <Route path={`${this.props.match.path}/general`} component={AccountGeneral} />
+            <Route path={`${this.props.match.path}/bio`} render={() => <Text variant='xLarge'>Bio</Text>} />
+            <Route path={`${this.props.match.path}/story`} render={() => <Text variant='xLarge'>Story</Text>} />
+            <Redirect to={`${this.props.match.path}/general`} />
+          </Stack>
         </Stack.Item>
       </Stack>
     );
