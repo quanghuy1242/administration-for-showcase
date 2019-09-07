@@ -8,14 +8,14 @@ class AccountBio extends React.Component {
     return (
       <Stack className={classNames.wrapper}>
         <Text variant='xLarge'>Bio - Introduction</Text>
-        <Text>Các thông tin cơ bản</Text>
+        <Text>Thông tin giới thiệu cơ bản</Text>
         <Stack horizontal tokens={{ childrenGap: 32 }}>
           <Stack.Item>
             <Stack style={{ width: 500 }}>
               <TextField
                 label='Bio'
                 multiline
-                style={{ height: 400 }}
+                style={{ height: 'calc(100vh - 200px)' }}
               />
               <Stack horizontalAlign='end' style={{ marginTop: 8 }}>
                 <PrimaryButton
