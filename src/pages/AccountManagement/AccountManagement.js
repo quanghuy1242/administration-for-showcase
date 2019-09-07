@@ -65,7 +65,7 @@ class AccountManagement extends React.Component {
             <Route path={`${this.props.match.path}/general`} component={AccountGeneral} />
             <Route path={`${this.props.match.path}/bio`} component={AccountBio} />
             <Route path={`${this.props.match.path}/story`} render={() => <Text variant='xLarge'>Story</Text>} />
-            <Redirect to={`${this.props.match.path}/general`} />
+            <Route exact path={`${this.props.match.path}`} render={() => <Redirect to={`${this.props.match.path}/general`} />} />
           </Stack>
         </Stack.Item>
       </Stack>
