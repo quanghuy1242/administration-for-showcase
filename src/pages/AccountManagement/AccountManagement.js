@@ -3,6 +3,7 @@ import { Stack, Nav, Icon, Text } from 'office-ui-fabric-react';
 import { getStyle } from './AccountManagement.style';
 import { Link, withRouter, Route, Redirect } from 'react-router-dom';
 import AccountGeneral from '../../components/AccountGeneral/AccountGeneral';
+import AccountBio from '../../components/AccountBio/AccountBio';
 
 class AccountManagement extends React.Component {
   onRenderLink = (props) => {
@@ -62,7 +63,7 @@ class AccountManagement extends React.Component {
         <Stack.Item disableShrink grow>
           <Stack style={{ width: '100%' }}>
             <Route path={`${this.props.match.path}/general`} component={AccountGeneral} />
-            <Route path={`${this.props.match.path}/bio`} render={() => <Text variant='xLarge'>Bio</Text>} />
+            <Route path={`${this.props.match.path}/bio`} component={AccountBio} />
             <Route path={`${this.props.match.path}/story`} render={() => <Text variant='xLarge'>Story</Text>} />
             <Redirect to={`${this.props.match.path}/general`} />
           </Stack>
