@@ -6,6 +6,7 @@ import { Spinner, SpinnerSize } from 'office-ui-fabric-react';
 const Login = lazy(() => import('../../pages/Login/Login'));
 const Dashboard = lazy(() => import('../../pages/Dashboard/Dashboard'));
 const LandscapeHome = lazy(() => import('../../pages/LandscapeHome/LandscapeHome'));
+const AccountManagement = lazy(() => import('../../pages/AccountManagement/AccountManagement'));
 const About = lazy(() => import('../../pages/About/About'));
 
 export class RouteContainer extends React.Component {
@@ -33,6 +34,7 @@ export class RouteContainer extends React.Component {
         <Switch>
           <PrivateRoute exact path="/" component={LandscapeHome} />
           <PrivateRoute exact path="/projects" component={Dashboard} />
+          <PrivateRoute path="/account" component={AccountManagement} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/about" component={About} />
         </Switch>
