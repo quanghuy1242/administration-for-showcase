@@ -1,5 +1,5 @@
 import React from 'react';
-import { Stack, Text, TextField, Image, ImageFit } from 'office-ui-fabric-react';
+import { Stack, Text, TextField, Image, ImageFit, PrimaryButton } from 'office-ui-fabric-react';
 import { getStyle } from './AccountGeneral.style';
 
 class AccountGeneral extends React.Component {
@@ -11,7 +11,7 @@ class AccountGeneral extends React.Component {
         <Text>Các thông tin cơ bản</Text>
         <Stack horizontal tokens={{ childrenGap: 32 }}>
           <Stack.Item>
-            <Stack style={{ width: 500 }}>
+            <Stack style={{ width: 500 }} className={classNames.mainInput}>
               <TextField
                 label='Name'
               />
@@ -36,6 +36,14 @@ class AccountGeneral extends React.Component {
               <TextField
                 label='Wordpress'
               />
+              <TextField
+                label='Github'
+              />
+              <Stack horizontalAlign='end' style={{ marginTop: 8 }}>
+                <PrimaryButton
+                  text='Save'
+                />
+              </Stack>
             </Stack>
           </Stack.Item>
           <Stack.Item>
