@@ -4,7 +4,8 @@ export const getStyle = () => {
   return mergeStyleSets({
     accountWrapper: {
       padding: '1rem',
-      width: '100%'
+      width: '100%',
+      paddingRight: 0
     },
     navInnerWrapper: {
     }
