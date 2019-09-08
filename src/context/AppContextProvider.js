@@ -3,6 +3,7 @@ import { AppContext } from './AppContext';
 import { CategoryAPI } from '../api/categories.api';
 import { ProjectAPI } from '../api/projects.api';
 import { AuthApi } from '../api/auth.api';
+import { AdministratorAPI } from '../api/administrator.api';
 
 export class AppContextProvider extends React.Component {
   constructor(props) {
@@ -16,6 +17,7 @@ export class AppContextProvider extends React.Component {
         technology: {},
         screenshots: []
       },
+      administrator: {},
       isProjectLoaded: false,
       isTechLoaded: false,
       isProjectDetailLoaded: false,
@@ -30,6 +32,7 @@ export class AppContextProvider extends React.Component {
       await this.getTechnologies();
       await this.getProjectsOfSelectedTech(this.state.selectedTechId);
       await this.getSelectedProjectDetail(this.state.selectedProjectId);
+      await this.getAdminInformation();
     }
   }
 
@@ -44,6 +47,11 @@ export class AppContextProvider extends React.Component {
       await this.getSelectedProjectDetail(nextState.selectedProjectId);
     }
     return true;
+  }
+
+  getAdminInformation = async () => {
+    const info = await AdministratorAPI.getAdminInfo();
+    this.setState({ administrator: info });
   }
 
   getTechnologies = async () => {
