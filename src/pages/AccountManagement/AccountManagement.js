@@ -4,6 +4,7 @@ import { getStyle } from './AccountManagement.style';
 import { Link, withRouter, Route, Redirect } from 'react-router-dom';
 import AccountGeneral from '../../components/AccountGeneral/AccountGeneral';
 import AccountBio from '../../components/AccountBio/AccountBio';
+import AccountPassword from '../../components/AccountPassword/AccountPassword';
 
 class AccountManagement extends React.Component {
   onRenderLink = (props) => {
@@ -70,7 +71,7 @@ class AccountManagement extends React.Component {
             <Route path={`${this.props.match.path}/general`} component={AccountGeneral} />
             <Route path={`${this.props.match.path}/bio`} component={AccountBio} />
             <Route path={`${this.props.match.path}/contact`} render={() => <Text variant='xLarge'>Contact</Text>} />
-            <Route path={`${this.props.match.path}/password`} render={() => <Text variant='xLarge'>Password</Text>} />
+            <Route path={`${this.props.match.path}/password`} component={AccountPassword} />
             <Route exact path={`${this.props.match.path}`} render={() => <Redirect to={`${this.props.match.path}/general`} />} />
           </Stack>
         </Stack.Item>
