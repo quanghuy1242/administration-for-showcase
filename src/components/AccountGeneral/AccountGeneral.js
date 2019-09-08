@@ -56,13 +56,14 @@ class AccountGeneral extends React.Component {
             </Stack>
           </Stack.Item>
           <Stack.Item>
-            <Stack>
+            <Stack className={classNames.imagePanel}>
               <Image
                 alt='Image Preview'
                 src='https://raw.githubusercontent.com/quanghuy1242/MyLibary/master/images/ima2.jpg'
                 imageFit={ImageFit.cover}
                 width={200}
                 height={200}
+                className={classNames.imagePreview}
               />
               <Text variant='xxLarge'>Quang Huy</Text>
               <Text variant='medium'>@quanghuy1242</Text>
