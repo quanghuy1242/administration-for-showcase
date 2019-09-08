@@ -13,9 +13,14 @@ class AccountBio extends React.Component {
           <Stack.Item>
             <Stack style={{ width: 500 }}>
               <TextField
+                label='Slogan'
+                description='Một câu để giới thiệu vắn tắt về bản thân'
+              />
+              <TextField
                 label='Bio'
                 multiline
-                style={{ height: 'calc(100vh - 200px)' }}
+                style={{ height: 'calc(100vh - 300px)' }}
+                description='Tóm tắt bản thân thành một đoạn ngắn, hỗ trợ định dạng markdown'
               />
               <Stack horizontalAlign='end' style={{ marginTop: 8 }}>
                 <PrimaryButton
