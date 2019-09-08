@@ -166,6 +166,7 @@ export class ProjectInfomation extends React.Component {
                       }
                       alt="Primary Image"
                       width={500}
+                      className={classNames.mainScreenshot}
                     />
                     <TextField
                       placeholder="Image Url"

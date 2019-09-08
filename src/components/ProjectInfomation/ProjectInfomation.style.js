@@ -44,6 +44,12 @@ export const getStyle = ({ image }) => {
           color: 'white'
         }
       }
+    },
+    mainScreenshot: {
+      border: '1px solid rgba(0, 0, 0, 0.25)',
+      borderRadius: 2,
+      padding: 3,
+      minHeight: 250
     }
   })
 }
