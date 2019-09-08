@@ -76,7 +76,7 @@ class AccountGeneral extends React.Component {
                 className={classNames.imagePreview}
               />
               <Text variant='xxLarge'>{this.context.administrator.name}</Text>
-              <Text variant='medium'>@{this.context.administrator.username}</Text>
+              <Text variant='medium'>{this.context.administrator.username}</Text>
             </Stack>
           </Stack.Item>
         </Stack>
