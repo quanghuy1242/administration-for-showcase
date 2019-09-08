@@ -71,8 +71,8 @@ class AccountGeneral extends React.Component {
                 alt='Image Preview'
                 src={this.context.administrator.image}
                 imageFit={ImageFit.cover}
-                width={200}
-                height={200}
+                width={250}
+                height={250}
                 className={classNames.imagePreview}
               />
               <Text variant='xxLarge'>{this.context.administrator.name}</Text>
