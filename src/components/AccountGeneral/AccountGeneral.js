@@ -1,6 +1,7 @@
 import React from 'react';
 import { Stack, Text, TextField, Image, ImageFit, PrimaryButton } from 'office-ui-fabric-react';
 import { getStyle } from './AccountGeneral.style';
+import { AppContext } from '../../context/AppContext';
 
 class AccountGeneral extends React.Component {
   render() {
@@ -15,18 +16,22 @@ class AccountGeneral extends React.Component {
                 <Text variant='xLarge'>Các thông tin cơ bản</Text>
                 <TextField
                   label='Username'
+                  value={this.context.administrator.username}
                   description='Tên administrator, có thể hiểu là tên đăng nhập'
                 />
                 <TextField
                   label='Display Name'
+                  value={this.context.administrator.name}
                   description='Tên hiển thị, có thể sử dụng một cái tên đẹp'
                 />
                 <TextField
                   label='Image'
+                  value={this.context.administrator.image}
                   description='Đường dẫn đến hình ảnh của ảnh đại diện'
                 />
                 <TextField
                   label='Cover Image'
+                  value={this.context.administrator.coverImage}
                   description='Đường dẫn đến hình ảnh của ảnh bìa'
                 />
               </Stack>
@@ -34,18 +39,23 @@ class AccountGeneral extends React.Component {
                 <Text variant='xLarge'>Liên kết mạng xã hội</Text>
                 <TextField
                   label='Facebook'
+                  value={this.context.administrator.facebook}
                 />
                 <TextField
                   label='Twitter'
+                  value={this.context.administrator.twitter}
                 />
                 <TextField
                   label='Instagram'
+                  value={this.context.administrator.instagram}
                 />
                 <TextField
                   label='Wordpress'
+                  value={this.context.administrator.wordpress}
                 />
                 <TextField
                   label='Github'
+                  value={this.context.administrator.github}
                 />
               </Stack>
               <Stack horizontalAlign='end' style={{ marginTop: 8 }}>
@@ -59,14 +69,14 @@ class AccountGeneral extends React.Component {
             <Stack className={classNames.imagePanel}>
               <Image
                 alt='Image Preview'
-                src='https://raw.githubusercontent.com/quanghuy1242/MyLibary/master/images/ima2.jpg'
+                src={this.context.administrator.image}
                 imageFit={ImageFit.cover}
                 width={200}
                 height={200}
                 className={classNames.imagePreview}
               />
-              <Text variant='xxLarge'>Quang Huy</Text>
-              <Text variant='medium'>@quanghuy1242</Text>
+              <Text variant='xxLarge'>{this.context.administrator.name}</Text>
+              <Text variant='medium'>@{this.context.administrator.username}</Text>
             </Stack>
           </Stack.Item>
         </Stack>
@@ -74,5 +84,7 @@ class AccountGeneral extends React.Component {
     );
   }
 }
+
+AccountGeneral.contextType = AppContext;
 
 export default AccountGeneral;
