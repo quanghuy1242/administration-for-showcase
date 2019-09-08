@@ -50,9 +50,14 @@ class AccountManagement extends React.Component {
                   iconProps: { iconName: 'ContactInfo' }
                 },
                 {
-                  name: 'Story',
-                  url: `${this.props.match.url}/story`,
-                  iconProps: { iconName: 'StorageOptical' }
+                  name: 'Contact',
+                  url: `${this.props.match.url}/contact`,
+                  iconProps: { iconName: 'ContactLink' }
+                },
+                {
+                  name: 'Password',
+                  url: `${this.props.match.url}/password`,
+                  iconProps: { iconName: 'PasswordField' }
                 }
               ]
             }]}
@@ -64,7 +69,8 @@ class AccountManagement extends React.Component {
           <Stack style={{ width: '100%' }}>
             <Route path={`${this.props.match.path}/general`} component={AccountGeneral} />
             <Route path={`${this.props.match.path}/bio`} component={AccountBio} />
-            <Route path={`${this.props.match.path}/story`} render={() => <Text variant='xLarge'>Story</Text>} />
+            <Route path={`${this.props.match.path}/contact`} render={() => <Text variant='xLarge'>Contact</Text>} />
+            <Route path={`${this.props.match.path}/password`} render={() => <Text variant='xLarge'>Password</Text>} />
             <Route exact path={`${this.props.match.path}`} render={() => <Redirect to={`${this.props.match.path}/general`} />} />
           </Stack>
         </Stack.Item>
