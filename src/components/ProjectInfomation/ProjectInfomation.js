@@ -208,10 +208,12 @@ export class ProjectInfomation extends React.Component {
         </Stack>
         <Dialog
           hidden={this.state.dialogImageHidden}
-          onDismiss={false}
           dialogContentProps={{
             type: DialogType.normal,
             title: 'Image Preview'
+          }}
+          modalProps={{
+            isBlocking: true
           }}
         >
           <Image
