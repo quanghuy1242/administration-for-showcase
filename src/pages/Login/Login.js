@@ -1,5 +1,5 @@
 import React from 'react';
-import { Stack, TextField, PrimaryButton, Text } from 'office-ui-fabric-react';
+import { Stack, TextField, PrimaryButton, Text, Dialog, DialogFooter, DialogType } from 'office-ui-fabric-react';
 import { getStyle } from './Login.style';
 import { AuthApi } from '../../api/auth.api';
 import { withRouter } from 'react-router-dom';
@@ -14,7 +14,9 @@ class Login extends React.Component {
       hasUsernameErr: true,
       hasPasswordErr: true,
       isLoading: true,
-      isSubmitting: false
+      isSubmitting: false,
+      isDialogOpen: false,
+      dialogContent: '',
     };
   }
 
@@ -67,9 +69,8 @@ class Login extends React.Component {
       password: this.state.password
     });
     if (!checkLogin) {
-      alert('Đăng nhập không thành công');
+      this.handleOpenDialog('Đăng nhập không thành công');
     } else {
-      alert('Đăng nhập thành công!');
       await this.context.getUserLoginInformation(); // Gọi lại hàm để lấy thông tin đăng nhập
       this.props.history.push('/');
     }
@@ -80,45 +81,71 @@ class Login extends React.Component {
     return this.state.hasUsernameErr || this.state.hasPasswordErr || this.state.isSubmitting;
   }
 
+  handleOpenDialog = content => {
+    this.setState({ isDialogOpen: true, dialogContent: content });
+  }
+
+  handleCloseDialog = () => {
+    this.setState({ isDialogOpen: false });
+  }
+
   render() {
     const classNames = getStyle();
     return (
-      <div className={classNames.loginWrapperOuter}>
-        {this.state.isLoading
-          ? <></>
-          : (
-              <Stack className={classNames.loginWrapper}>
-                <Stack horizontalAlign='center'>
-                  <Text variant="superLarge">Login</Text>
-                </Stack>
-                <Stack.Item grow disableShrink>
-                  <Stack verticalAlign="center" style={{ height: '100%' }}>
-                    <TextField
-                      label="Username"
-                      onGetErrorMessage={this.handleUsernameError}
-                      value={this.state.username}
-                      onChange={this.handleUsernameChanged}
-                    />
-                    <TextField
-                      type="password"
-                      label="Password"
-                      onGetErrorMessage={this.handlePasswordError}
-                      value={this.state.password}
-                      onChange={this.handlePasswordChanged}
-                    />
+      <>
+        <div className={classNames.loginWrapperOuter}>
+          {this.state.isLoading
+            ? <></>
+            : (
+                <Stack className={classNames.loginWrapper}>
+                  <Stack horizontalAlign='center'>
+                    <Text variant="superLarge">Login</Text>
                   </Stack>
-                </Stack.Item>
-                <Stack horizontalAlign='end' className={classNames.loginAction}>
-                  <PrimaryButton
-                    onClick={this.handleSubmitForm}
-                    disabled={this.handleDisableLoginButton()}
-                  >
-                    Login
-                  </PrimaryButton>
+                  <Stack.Item grow disableShrink>
+                    <Stack verticalAlign="center" style={{ height: '100%' }}>
+                      <TextField
+                        label="Username"
+                        onGetErrorMessage={this.handleUsernameError}
+                        value={this.state.username}
+                        onChange={this.handleUsernameChanged}
+                      />
+                      <TextField
+                        type="password"
+                        label="Password"
+                        onGetErrorMessage={this.handlePasswordError}
+                        value={this.state.password}
+                        onChange={this.handlePasswordChanged}
+                      />
+                    </Stack>
+                  </Stack.Item>
+                  <Stack horizontalAlign='end' className={classNames.loginAction}>
+                    <PrimaryButton
+                      onClick={this.handleSubmitForm}
+                      disabled={this.handleDisableLoginButton()}
+                    >
+                      Login
+                    </PrimaryButton>
+                  </Stack>
                 </Stack>
-              </Stack>
-          )}
-      </div>
+            )}
+        </div>
+        <Dialog
+          hidden={!this.state.isDialogOpen}
+          onDismiss={this.handleCloseDialog}
+          modalProps={{
+            className: classNames.dialog
+          }}
+          dialogContentProps={{
+            type: DialogType.normal,
+            title: 'Thông báo',
+            subText: this.state.dialogContent
+          }}
+        >
+          <DialogFooter>
+            <PrimaryButton text="OK" onClick={this.handleCloseDialog} />
+          </DialogFooter>
+        </Dialog>
+      </>
     );
   }
 }

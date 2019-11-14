@@ -16,13 +16,16 @@ export const getStyle = () => {
       bottom: 0,
       right: 0,
       backgroundColor: 'white',
-      zIndex: 999999999999999,
+      zIndex: 12345,
       display: "flex",
       justifyContent: 'center',
       alignItems: 'center'
     },
     loginAction: {
       paddingTop: '1rem'
+    },
+    dialog: {
+      zIndex: 12346,
     }
   })
 }
